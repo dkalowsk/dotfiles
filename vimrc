@@ -550,7 +550,20 @@ endif
       let g:undotree_SetFocusWhenToggle=1
   endif
 " }}}
-  
+
+" vim-mucomplete {{{
+if isdirectory(expand("~/.vim/bundle/vim-mucomplete"))
+	" For automatic completion, you most likely want this:
+	set completeopt+=menuone,noinsert,noselect
+	set noshowmode shortmess+=c
+
+	" Enable mucomplete at startup
+	let g:clang_user_options = '-std=c++14'
+	let g:clang_complete_auto = 1
+	let g:mucomplete#enable_auto_at_startup = 1
+endif
+" }}}
+
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
