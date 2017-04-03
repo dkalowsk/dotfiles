@@ -61,6 +61,23 @@ augroup configgroup
 augroup END
 " }}}
 
+" clang-complete {{{
+if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
+  "let s:clang_library_path='/Developer/usr/clang-ide/lib'
+  "let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
+  let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+  if isdirectory(s:clang_library_path)
+    let g:clang_library_path=s:clang_library_path
+  endif
+  let g:clang_use_library=1
+  let g:clang_complete_auto = 1
+  let g:clang_auto_select = 1
+  let g:clang_hl_errors = 1
+  let g:clang_snippets = 1
+  let g:clang_snippets_engine = 'clang_complete'
+endif
+" }}}
+
 " {{{ autocmd filetype overrides
 " Avoid doing all of this for the crontab!
 autocmd FileType crontab setlocal nowritebackup
