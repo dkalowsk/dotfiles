@@ -123,7 +123,7 @@ brew 'jasonmp85/iwyu/iwyu'
 # Apps
 cask 'xquartz'
 cask 'kdiff3'
-cask 'meld'
+cask 'araxis-merge'
 
 # Install Mac App Store apps
 mas '1Password', id: 443987910
