@@ -305,6 +305,7 @@ if executable('ag')
 	" Since ag is fast enough, CtrlP doesn't need to cache
 	let g:ctrlp_use_caching = 0
 endif
+
 if filereadable(expand("~/.vim/bundle/vim-airline/README.md"))
 	let g:airline#extensions#ctrlp#color_template = 'insert'
 	"let g:airline#extensions#ctrlp#color_template = 'normal'
@@ -466,8 +467,8 @@ if filereadable(exists("~/.vim/bundle/youcompleteme/README.md"))
 
 	"let g:ycm_filetype_whitelist = {'cpp': 1}
 	let g:ycm_filetype_whitelist = {'*': 1}
-	let g:ycm_confirm_extra_conf = 1
-	let g:ycm_global_ycm_extra_conf = ~/.vim/.ycm_extra_conf.py
+	let g:ycm_confirm_extra_conf = 0
+	let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 	let g:ycm_extra_conf_globlist = []
 
 	let g:ycm_key_invoke_completion = '<C-Space>'
