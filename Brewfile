@@ -124,6 +124,7 @@ brew 'jasonmp85/iwyu/iwyu'
 cask 'xquartz'
 cask 'kdiff3'
 cask 'araxis-merge'
+cask 'shiftit'
 
 # Install Mac App Store apps
 mas '1Password', id: 443987910
