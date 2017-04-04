@@ -127,3 +127,4 @@ cask 'araxis-merge'
 
 # Install Mac App Store apps
 mas '1Password', id: 443987910
+mas 'Xcode',     id: 497799835
