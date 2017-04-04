@@ -1,76 +1,74 @@
-[user]
-    name = Dan Kalowsky
-    email = "(none)"
 [core]
-    editor = /usr/local/bin/vim
-    eol = lf
-    autocrlf = input
-    # Don't prompt for commit messages on merge commits
-    mergeoptions = --no-edit
+	editor = /usr/local/bin/vim
+	eol = lf
+	autocrlf = input
+	# Don't prompt for commit messages on merge commits
+	mergeoptions = --no-edit
 [fetch]
-    # always prune when fetching (and pulling)
-    prune = 1
+	# always prune when fetching (and pulling)
+	prune = 1
 [rerere]
 	enabled = true
 [alias]
-    # show short one line commit info with both author and commiter names
-    ls = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an >> %cn>%Creset' --abbrev-commit
-    # show commits with list of files per each commit
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --numstat
-    f = "!git ls-files | grep -i"
-    grep = grep -Ii
-    gr = grep -Ii
-    # show the commit history with a graph of merge timelines
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an >> %cn>%Creset' --abbrev-commit
-    # list the top commiters to a repo
-    names = shortlog -n -s
-    # assume the file is unchanged to stop changes being seen by git
-    hide = update-index --assume-unchanged
-    # stop assuming the file is unchanged
-    unhide = update-index --no-assume-unchanged
-    # show the current list of files to be assumed unchanged
-    hidden = !git ls-files -v | grep  \"^[[:lower:]]\"
-    ignored = !git status -s --ignored | grep \"^!!\"
-    # get the current number of commits ahead of source branch
-    count = "!f() { git rev-list --count HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u});  }; f"
-    # On an interactive add, work around the githooks adding back in the whole file at commit
-    icommit = !git stash save -q "original index" && git commit -s && git stash apply -q --index stash@{1}
-    # unstage the changes in a given file
-    unstage = reset HEAD --
-    # view the current changes in the staging area
-    staged = diff --cached
-    # print the name of the current branch
-    current-branch = symbolic_ref --short HEAD
-    # cherry-pick a commit and apply sign off
-    sign = cherry-pick --signoff
-    # use the short status
-    sstatus = status -sb
+	# show short one line commit info with both author and commiter names
+	ls = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an >> %cn>%Creset' --abbrev-commit
+	# show commits with list of files per each commit
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --numstat
+	f = "!git ls-files | grep -i"
+	grep = grep -Ii
+	gr = grep -Ii
+	# show the commit history with a graph of merge timelines
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an >> %cn>%Creset' --abbrev-commit
+	# list the top commiters to a repo
+	names = shortlog -n -s
+	# assume the file is unchanged to stop changes being seen by git
+	hide = update-index --assume-unchanged
+	# stop assuming the file is unchanged
+	unhide = update-index --no-assume-unchanged
+	# show the current list of files to be assumed unchanged
+	hidden = !git ls-files -v | grep  \"^[[:lower:]]\"
+	ignored = !git status -s --ignored | grep \"^!!\"
+	# get the current number of commits ahead of source branch
+	count = "!f() { git rev-list --count HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u});  }; f"
+	# On an interactive add, work around the githooks adding back in the whole file at commit
+	icommit = !git stash save -q "original index" && git commit -s && git stash apply -q --index stash@{1}
+	# unstage the changes in a given file
+	unstage = reset HEAD --
+	# view the current changes in the staging area
+	staged = diff --cached
+	# print the name of the current branch
+	current-branch = symbolic_ref --short HEAD
+	# cherry-pick a commit and apply sign off
+	sign = cherry-pick --signoff
+	# use the short status
+	sstatus = status -sb
 [diff]
-    tool = araxis
-    # Use the slower but better patience diff algorithm
-    algorithm = patience
-    # Use new diff algorithm to make function diffs look better
-    compactionheuristic = true
-    mnemonicprefix = true
+	tool = araxis
+	# Use the slower but better patience diff algorithm
+	algorithm = patience
+	# Use new diff algorithm to make function diffs look better
+	compactionheuristic = true
+	# use mneomic prefixed (Index, Work tree, Commit, Object) instead of standard A and B notation
+	mnemonicprefix = true
 [merge]
-    tool = araxis
+	tool = araxis
 [mergetool]
-    # Don't prompt before opening the merge tool
-    prompt = false
-    # Don't keep backups of the merge tool inputs
-    keepBackup = false
-    # Don't keep the merge tool temporary input/output files
-    keepTemporaries = false
+	# Don't prompt before opening the merge tool
+	prompt = false
+	# Don't keep backups of the merge tool inputs
+	keepBackup = false
+	# Don't keep the merge tool temporary input/output files
+	keepTemporaries = false
 [apply]
-    # Cleanup whitespace by default when applying patches
-    whitespace = fix
+	# Cleanup whitespace by default when applying patches
+	whitespace = fix
 [rebase]
-    # Run 'git stash' if needed before a rebase
-    autoStash = true
+	# Run 'git stash' if needed before a rebase
+	autoStash = true
 [pull]
-    rebase = true
+	rebase = true
 [branch]
-    # Should new branches be set up to be rebased upon git pull?  Yes.
-    autosetuprebase = always
-    # Setup git checkout -b $branch to always track the current branch
-    autosetupmerge = always
+	# Should new branches be set up to be rebased upon git pull?  Yes.
+	autosetuprebase = always
+	# Setup git checkout -b $branch to always track the current branch
+	autosetupmerge = always
