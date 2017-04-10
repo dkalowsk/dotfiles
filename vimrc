@@ -135,6 +135,7 @@ set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 
+set tabpagemax=10	" Only show 10 tabs
 " }}}
 
 " {{{  FileType overrides
