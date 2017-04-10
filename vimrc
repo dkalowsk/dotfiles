@@ -567,6 +567,51 @@ if isdirectory(expand("~/.vim/bundle/vim-mucomplete"))
 endif
 " }}}
 
+" {{{  python-mode
+if isdirectory(expand("~/.vim/bundle/python-mode"))
+	"let g:pymode = 1
+	let g:pymode_python = 'python3'
+
+	" Enable code completion
+	let g:pymode_rope_completion = 1
+
+	" Turn on autocompletion when typing a period
+	let g:pymode_rope_complete_on_dot = 1
+
+	" Override go-to.definition key shortcut to Ctrl-]
+	let g:pymode_rope_goto_definition_bind = "<C-]>"
+	" Keymap for autocomplete
+	let g:pymode_rope_completion_bind = '<C-Space>'
+	let g:pymode_rope = 1
+
+	" Documentation
+	let g:pymode_doc = 1
+	let g:pymode_doc_key = 'K'
+
+	"Linting
+	let g:pymode_lint = 1
+	let g:pymode_lint_checker = ["pyflakes","pep8"]
+	" Auto check on save
+	let g:pymode_lint_write = 1
+
+	" Support virtualenv
+	let g:pymode_virtualenv = 1
+
+	" Enable breakpoints plugin
+	let g:pymode_breakpoint = 1
+	let g:pymode_breakpoint_bind = '<leader>b'
+
+	" syntax highlighting
+	let g:pymode_syntax = 1
+	let g:pymode_syntax_all = 1
+	let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+	let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+	" Don't autofold code
+	let g:pymode_folding = 0
+endif
+" }}}
+
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
