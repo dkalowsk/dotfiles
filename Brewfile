@@ -112,7 +112,7 @@ brew 'xz'
 brew 'the_silver_searcher'
 brew 'tmux'
 brew 'tmuxinator-completion'
-brew 'vim', args: ['with-lua']
+brew 'vim', args: ['with-lua', 'with-python3']
 brew 'wget'
 brew 'xmlto'
 brew 'zlib'
