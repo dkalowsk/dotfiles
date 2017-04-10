@@ -457,7 +457,7 @@ if filereadable(exists("~/.vim/bundle/youcompleteme/README.md"))
 
 	let g:ycm_complete_in_strings = 1
 	let g:ycm_collect_identifiers_from_tags_files = 0
-	let g:ycm_path_to_python_interpreter = ''
+	let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 
 	" These are to enable compatibility with syntastic
 	let g:ycm_warning_symbol = '>>'
