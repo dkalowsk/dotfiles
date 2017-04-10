@@ -1,6 +1,8 @@
 "
 " To start this whole thing off you'll need to go get vundle like so:
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"
+set nocompatible				" does not work with old original vi, only VIM
 
 " {{{ Vundle setup
 "autocmd FileType python NeoCompleteLock
@@ -13,7 +15,6 @@ if !filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
 endif
 
 " Vundle setup {{{
-set nocompatible				" does not work with old original vi, only VIM
 filetype off					" required for vundle to startup
 set rtp+=~/.vim/bundle/Vundle.vim
 " }}}
