@@ -90,7 +90,8 @@ set number
 "set norelativenumber
 "set relativenumber
 set wildmenu         " visual autocomplete for command menu
-"set wildmode=longest,list:longest " match to the longest string possible
+set wildmode=longest,list:full " match to the longest string possible
+set wildignore=*.o,*.obj,*~
 set lazyredraw       " redraw only when we need time_colon
 set timeoutlen=1000  " timeout mapping delays after 1000 ms
 set ttimeoutlen=50   " timeout key code delays after 50 ms
