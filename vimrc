@@ -47,28 +47,7 @@ filetype plugin on "load filetype plugins/indent settings
 "leader is a comma, because / is too hard to hit constantly
 let mapleader=","
 
-" C++ auto file configuration {{{
-augroup configgroup
-  autocmd!
-  autocmd VimEnter * highlight clear SignColumn
-"  autocmd BufWritePre *.cpp, *.h \:call <SID>StripTrailingWhitespaces()
-  autocmd FileType cpp setlocal tabstop=2
-  autocmd FileType cpp setlocal shiftwidth=2
-  autocmd FileType cpp setlocal softtabstop=2
-  autocmd FileType cpp setlocal expandtab
-  autocmd FileType cpp setlocal autoindent
-  autocmd FileType cpp setlocal copyindent
-
-augroup END
-" }}}
-
-" {{{ autocmd filetype overrides
-" Avoid doing all of this for the crontab!
-autocmd FileType crontab setlocal nowritebackup
-" }}}
-
 " {{{ vim UI settings
-"
 set number
 "set norelativenumber
 "set relativenumber
@@ -155,6 +134,47 @@ set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
+
+" }}}
+
+" {{{  FileType overrides
+" ============================================================================
+
+" filetype_cpp {{{
+augroup filetype_cpp
+  autocmd!
+  autocmd VimEnter * highlight clear SignColumn
+"  autocmd BufWritePre *.cpp, *.h \:call <SID>StripTrailingWhitespaces()
+  autocmd FileType cpp setlocal tabstop=2
+  autocmd FileType cpp setlocal shiftwidth=2
+  autocmd FileType cpp setlocal softtabstop=2
+  autocmd FileType cpp setlocal expandtab
+  autocmd FileType cpp setlocal autoindent
+  autocmd FileType cpp setlocal copyindent
+
+augroup END
+" }}}
+
+" filetype_text {{{
+augroup filetype_text
+  autocmd FileType text setlocal b:ycm_largefile=1  "disable autocompletion on text files
+  autocmd FileType text setlocal call youcompleteme#DisableCursorMovedAutocommands()
+augroup END
+" }}}
+
+" {{{ filetype_crontab
+augroup filetype_crontab
+  " Avoid doing all of this for the crontab!
+  autocmd FileType crontab setlocal nowritebackup
+augroup END
+" }}}
+
+" {{{ filetype_python 
+augroup filetype_python
+  au FileType python3 setlocal pymode=1
+  au FileType python3 setlocal autoindent
+  au FileType python3 setlocal smartindentaugroup END
+" }}}
 
 " {{{ filetype_gitcommit
 " Instead of reverting the cursor to the last position in the buffer, we
