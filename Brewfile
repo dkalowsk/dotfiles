@@ -1,3 +1,6 @@
+# Brewfile generated with the following command:
+# brew bundle dump
+#
 #Taps
 tap 'caskroom/cask'
 tap 'homebrew/boneyard'
