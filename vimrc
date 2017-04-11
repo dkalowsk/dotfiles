@@ -248,7 +248,7 @@ set noswapfile
 " {{{ AutotoComplPop
 if filereadable(expand("~/.vim/bundle/AutotoComplPop/README"))
 	" enable ACP
-	let g:acp_enableAtStartup = 1  
+	let g:acp_enableAtStartup = 0
 endif
 " }}}
 
