@@ -166,6 +166,14 @@ augroup filetype_text
 augroup END
 " }}}
 
+" filetype_vim {{{
+augroup filetype_vim
+  autocmd FileType vim let g:ycm_largefile=1  "disable autocompletion on text files
+  autocmd FileType vim let g:acp_enableAtStartup = 0
+  autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
+augroup END
+" }}}
+"
 " {{{ filetype_crontab
 augroup filetype_crontab
   " Avoid doing all of this for the crontab!
