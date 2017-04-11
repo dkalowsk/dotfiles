@@ -160,8 +160,8 @@ augroup END
 
 " filetype_text {{{
 augroup filetype_text
-  autocmd FileType text setlocal b:ycm_largefile=1  "disable autocompletion on text files
-  autocmd FileType text setlocal call youcompleteme#DisableCursorMovedAutocommands()
+  autocmd FileType text let g:ycm_largefile=1  "disable autocompletion on text files
+  autocmd FileType text let g:acp_enableAtStartup = 0
   autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
 augroup END
 " }}}
@@ -173,7 +173,7 @@ augroup filetype_vim
   autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
 augroup END
 " }}}
-"
+
 " {{{ filetype_crontab
 augroup filetype_crontab
   " Avoid doing all of this for the crontab!
