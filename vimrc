@@ -236,6 +236,13 @@ set nobackup
 set noswapfile
 " }}}
 
+" {{{ AutotoComplPop
+if filereadable(expand("~/.vim/bundle/AutotoComplPop/README"))
+	" enable ACP
+	let g:acp_enableAtStartup = 1  
+endif
+" }}}
+
 " clang-complete {{{
 if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
   "let s:clang_library_path='/Developer/usr/clang-ide/lib'
@@ -470,6 +477,7 @@ endif
 "-------------------------------------------
 " Use exuberant ctags to help speed up options
 if filereadable(exists("~/.vim/bundle/youcompleteme/README.md"))
+	" ACP and YCM don't play nice
 	let g:acp_enableAtStartup = 0
 	let g:ycm_collect_identifiers_from_tags_files = 1
 	let g:ycm_register_as_syntastic_checker = 1
