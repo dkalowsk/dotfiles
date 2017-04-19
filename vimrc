@@ -626,6 +626,15 @@ if isdirectory(expand("~/.vim/bundle/jedi-vim"))
 endif
 " }}}
 
+" {{{ emmet
+if isdirectory(expand("~/.vim/bundle/emmet-vim/"))
+	" Use emmet just for html/css
+	let g:user_emmet_install_global = 0
+	autocmd FileType html,css EmmetInstall
+endif
+
+"}}}
+
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
