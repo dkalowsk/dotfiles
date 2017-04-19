@@ -261,6 +261,7 @@ if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
     let g:clang_library_path=s:clang_library_path
   endif
   let g:clang_use_library=1
+  let g:clang_user_options = '-std=c++14'
   let g:clang_complete_auto = 1
   let g:clang_auto_select = 1
   let g:clang_hl_errors = 1
@@ -606,8 +607,6 @@ if isdirectory(expand("~/.vim/bundle/vim-mucomplete"))
 	set noshowmode shortmess+=c
 
 	" Enable mucomplete at startup
-	let g:clang_user_options = '-std=c++14'
-	let g:clang_complete_auto = 1
 	let g:mucomplete#enable_auto_at_startup = 1
 endif
 " }}}
