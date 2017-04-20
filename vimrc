@@ -2,7 +2,7 @@
 " To start this whole thing off you'll need to go get vundle like so:
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "
-set nocompatible				" does not work with old original vi, only VIM
+set nocompatible  " None of this works with old original vi, only VIM
 
 " {{{ Vundle setup
 "autocmd FileType python NeoCompleteLock
@@ -135,9 +135,15 @@ set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 
-set tabpagemax=10	" Only show 10 tabs
+set tabpagemax=10                   " Only show 10 tabs
 
-set completeopt=menu,preview,longest,noinsert,noselect
+set completeopt=menuone,longest,noinsert,noselect
+" enable vim to auto update a file if it has changes
+set autoread
+
+" disable the search highlight
+nmap <silent> <leader>/ :set invhlsearch<CR>
+
 " }}}
 
 " {{{  FileType overrides
@@ -603,7 +609,6 @@ endif
 " vim-mucomplete {{{
 if isdirectory(expand("~/.vim/bundle/vim-mucomplete"))
 	" For automatic completion, you most likely want this:
-	set completeopt+=menuone,noinsert,noselect
 	set noshowmode shortmess+=c
 
 	" Enable mucomplete at startup
