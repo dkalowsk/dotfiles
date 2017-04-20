@@ -234,11 +234,11 @@ endif
 " window shift keys {{{
 " Remap the standard VIM movement keys to also work for moving between window frames
 " while holding down Cntrl
-"map <C-J> <C-W>j<C-W>_
-"map <C-K> <C-W>k<C-W>_
-"map <C-L> <C-W>l<C-W>_
-"map <C-H> <C-W>h<C-W>_
-"map <C-K> <C-W>k<C-W>_
+map <C-J> <C-W><C-J>
+map <C-K> <C-W><C-K>
+map <C-L> <C-W><C-L>
+map <C-H> <C-W><C-H>
+"map <C-K> <C-W><C-W>
 " }}}
 
 " backup {{{
