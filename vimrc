@@ -527,7 +527,16 @@ if filereadable(exists("~/.vim/bundle/youcompleteme/README.md"))
 
 	let g:ycm_key_invoke_completion = '<C-Space>'
 	"map <C-]> :YouCompleter GoToImprecise<CR>
+
+	"YCM key bindings
 	nnoremap <F10> :YcmForceCompileAndDiagnostics <CR>
+	nnoremap <F11> :YcmDiags<CR>
+
+	nnoremap <silent> <Leader>yd :YcmCompleter GetDoc<CR>
+	nnoremap <silent> <Leader>yf :YcmCompleter FixIt<CR>
+	nnoremap <silent> <Leader>yg :YcmCompleter GoTo<CR>
+	nnoremap <silent> <Leader>yi :YcmCompleter GoToInclude<CR>
+	nnoremap <silent> <Leader>yt :YcmCompleter GetType<CR>
 endif
 " }}}
 
