@@ -19,7 +19,4 @@ command alias rwatch watchpoint set variable -w read
 # Return alias
 command alias return thread return
 
-# Voltron
-command script import /Users/dkalowsky/Library/Python/2.7/python/site-packages/voltron/entry.py
-
 command script import /usr/local/opt/chisel/libexec/fblldb.py
