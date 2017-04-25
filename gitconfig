@@ -33,7 +33,8 @@
 	# get the current number of commits ahead of source branch
 	count = "!f() { git rev-list --count HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u});  }; f"
 	# On an interactive add, work around the githooks adding back in the whole file at commit
-	icommit = !git stash save -q "original index" && git commit -s && git stash apply -q --index stash@{1}
+	#pcommit = !git stash save -q "original index" && git commit -s && git stash apply -q --index stash@{1}
+	pcommit = !git stash save -q --keep-index "current wd" && git commit -s && git stash apply -q --index stash@{0}
 	# unstage the changes in a given file
 	unstage = reset HEAD --
 	# view the current changes in the staging area
