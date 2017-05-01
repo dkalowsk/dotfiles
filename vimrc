@@ -489,6 +489,16 @@ if filereadable(expand("~/.vim/bundle/vim-indent-guides/README.markdown"))
 endif
 " }}}
 
+" {{{ cpp-enhanced-highlight
+if filereadable(exists("~/.vim/bundle/vim-cpp-enhanced-highlight/README.md"))
+	let g:cpp_class_scope_highlight=0
+	let g:cpp_member_variable_highlight=0
+	let g:cpp_experimental_simple_template_highlight=0
+	let g:cpp_experimental_template_highlight=0
+	let g:cpp_concepts_highlight=0
+endif
+"}}}
+
 " YouCompleteMe {{{
 "-------------------------------------------
 " Use exuberant ctags to help speed up options
