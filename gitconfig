@@ -5,6 +5,7 @@
 	# Don't prompt for commit messages on merge commits
 	mergeoptions = --no-edit
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	trustctime = false
 [fetch]
 	# always prune when fetching (and pulling)
 	prune = 1
