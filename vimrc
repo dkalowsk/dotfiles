@@ -665,6 +665,14 @@ endif
 
 "}}}
 
+" {{{ tig support
+if executable('tig')
+	nnoremap <leader>gb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
+	nnoremap <leader>go :silent !tig<CR>:silent redraw!<CR>
+	nnoremap <leader>gB :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
+endif
+" }}}
+"
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
