@@ -260,9 +260,11 @@ endif
 
 " clang-complete {{{
 if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
-  "let s:clang_library_path='/Developer/usr/clang-ide/lib'
-  "let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
-  let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+  if has('mac')
+    "let s:clang_library_path='/Developer/usr/clang-ide/lib'
+    "let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
+    let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+  endif
   if isdirectory(s:clang_library_path)
     let g:clang_library_path=s:clang_library_path
   endif
