@@ -588,6 +588,9 @@ endif
 
 " vim-ag {{{
 if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor\ --column
+	set grepformat=%f:%l:%c%m
+
 	let g:ags_agexe = 'ag --vimgrep'
 	let g:ags_agmaxcount = 2000
 	let g:ags_agcontext = 3
@@ -596,24 +599,24 @@ if executable('ag')
 	let g:ags_no_stats = 0
 	let g:ags_stats_max_ln = 5000
 	let g:ags_agargs = {
-									\ '--break'             : [ '', ''  ],
-									\ '--color'             : [ '', ''  ],
-  								\ '--color-line-number' : [ '"1;30"', ''  ],
-  								\ '--color-match'       : [ '"32;40"', ''  ],
-  								\ '--color-path'        : [ '"1;31"', ''  ],
-									\ '--column'            : [ '', ''  ],
-									\ '--context'           : [ 'g:ags_agcontext', '-C', '3' ],
-									\ '--filename'          : [ '', ''  ],
-									\ '--group'             : [ '', ''  ],
-									\ '--heading'           : [ '', '-H'  ],
-									\ '--max-count'         : [ 'g:ags_agmaxcount', '-m', '2000' ],
-									\ '--numbers'           : [ '', ''  ],
-									\ '--ignore-dir'        : [ '.git','' ]
-									\ }
+				\ '--break'             : [ '', ''  ],
+				\ '--color'             : [ '', ''  ],
+				\ '--color-line-number' : [ '"1;30"', ''  ],
+				\ '--color-match'       : [ '"32;40"', ''  ],
+				\ '--color-path'        : [ '"1;31"', ''  ],
+				\ '--column'            : [ '', ''  ],
+				\ '--context'           : [ 'g:ags_agcontext', '-C', '3' ],
+				\ '--filename'          : [ '', ''  ],
+				\ '--group'             : [ '', ''  ],
+				\ '--heading'           : [ '', '-H'  ],
+				\ '--max-count'         : [ 'g:ags_agmaxcount', '-m', '2000' ],
+				\ '--numbers'           : [ '', ''  ],
+				\ '--ignore-dir'        : [ '.git','' ]
+	\ }
 
 	set statusline+=%ags#get_status_string()
 	" search for the text under the cursor and show the results in a quickfix window
-	"nnoremap <leader>k :Ags! "\b<C-R><C-W>\b"<CR>:cw<CR>
+	nnoremap <leader>k :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 	"nnoremap <leader>k :Ag "def <cword>"
 	" bind the \ key to be an ags shortcut
 	command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
