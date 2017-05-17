@@ -332,40 +332,42 @@ endif
 "-----------------------------------------------------------
 if isdirectory(expand("~/.vim/bundle/tagbar/"))
 	nnoremap <silent> <leader>tt :TagbarToggle<CR>
+	let g_tagbar_foldlevel = 2
 endif
-let g_tagbar_foldlevel = 2
 
 " }}}
 
 " ctrl-p {{{
 "-----------------------------------------------------------
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_dont_split = 'nerdtree'
-let g:ctrlp_switch_buffer = 0
-" r = Search from the nearest ancestor that contains a .git, .svn, or .hg directory
-" a = the directory of the current file if there is no 'r' available
-let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_user_command = 'ag %s -l --nocolor --hideen -g ""'
-" The nearest ancestor that contains git or set to 0 for disable
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hi|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':    '\v[\/]\.(git|hg|svn)$',
-  \ 'file':   '\v\.(exe|so|dll|old)$',
-  \ }
-if executable('ag')
-	" Use ag in CtrlP for listing files.  Lightning fast and respects .gitignore
-	let g:ctrlp_user_command = 'ag %s --nocolor -l -g ""'
-	" Since ag is fast enough, CtrlP doesn't need to cache
-	let g:ctrlp_use_caching = 0
-endif
+if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
+	let g:ctrlp_map = '<c-p>'
+	let g:ctrlp_cmd = 'CtrlP'
+	let g:ctrlp_match_window = 'bottom,order:ttb'
+	let g:ctrlp_dont_split = 'nerdtree'
+	let g:ctrlp_switch_buffer = 0
+	" r = Search from the nearest ancestor that contains a .git, .svn, or .hg directory
+	" a = the directory of the current file if there is no 'r' available
+	let g:ctrlp_working_path_mode = 'ra'
+	"let g:ctrlp_user_command = 'ag %s -l --nocolor --hideen -g ""'
+	" The nearest ancestor that contains git or set to 0 for disable
+	"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hi|svn)$'
+	let g:ctrlp_custom_ignore = {
+	  \ 'dir':    '\v[\/]\.(git|hg|svn)$',
+	  \ 'file':   '\v\.(exe|so|dll|old)$',
+	  \ }
+	if executable('ag')
+		" Use ag in CtrlP for listing files.  Lightning fast and respects .gitignore
+		let g:ctrlp_user_command = 'ag %s --nocolor -l -g ""'
+		" Since ag is fast enough, CtrlP doesn't need to cache
+		let g:ctrlp_use_caching = 0
+	endif
 
-if filereadable(expand("~/.vim/bundle/vim-airline/README.md"))
-	let g:airline#extensions#ctrlp#color_template = 'insert'
-	"let g:airline#extensions#ctrlp#color_template = 'normal'
-	"let g:airline#extensions#ctrlp#color_template = 'visual'
-	"let g:airline#extensions#ctrlp#color_template = 'replace'
+	if filereadable(expand("~/.vim/bundle/vim-airline/README.md"))
+		let g:airline#extensions#ctrlp#color_template = 'insert'
+		"let g:airline#extensions#ctrlp#color_template = 'normal'
+		"let g:airline#extensions#ctrlp#color_template = 'visual'
+		"let g:airline#extensions#ctrlp#color_template = 'replace'
+	endif
 endif
 " }}}
 
