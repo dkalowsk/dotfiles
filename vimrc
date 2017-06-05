@@ -503,7 +503,7 @@ if filereadable(exists("~/.vim/bundle/vim-cpp-enhanced-highlight/README.md"))
 endif
 "}}}
 
-" YouCompleteMe {{{
+" {{{ YouCompleteMe
 "-------------------------------------------
 " Use exuberant ctags to help speed up options
 if filereadable(exists("~/.vim/bundle/youcompleteme/README.md"))
