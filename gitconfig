@@ -51,9 +51,12 @@
 	# Use the slower but better patience diff algorithm
 	algorithm = patience
 	# Use new diff algorithm to make function diffs look better
-	compactionheuristic = true
+	# Basically line up hunks to be part of the same grouping
+	compactionHeuristic = true
 	# use mneomic prefixed (Index, Work tree, Commit, Object) instead of standard A and B notation
 	mnemonicprefix = true
+	# use the experimental heuristics
+	indentHeuristic = on
 [merge]
 	tool = araxis
 [mergetool]
