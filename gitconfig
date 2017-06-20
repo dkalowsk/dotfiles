@@ -79,3 +79,11 @@
 	autosetuprebase = always
 	# Setup git checkout -b $branch to always track the current branch
 	autosetupmerge = always
+[mergetool "araxis"]
+	path = /Applications/Araxis Merge.app/Contents/Utilities/compare
+[pager]
+	#log = diff-highlight | less
+	#show = diff-highlight | less
+	#diff = diff-highlight | less
+[interactive]
+	#diffFilter = diff-highlight
