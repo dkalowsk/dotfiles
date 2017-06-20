@@ -483,6 +483,10 @@ if filereadable(expand("~/.vim/bundle/vim-gutentags/README.md"))
 	set statusline+=%{gutentags#statusline()}
 	map <silent> <leader>jd :CtrlPTag<cr><c-\>w
 endif
+
+if executable('ctags')
+	nnoremap <C-]> g<C-]>
+endif
 " }}}
 
 " indent_guides {{{
