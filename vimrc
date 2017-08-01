@@ -635,6 +635,16 @@ if isdirectory(expand("~/.vim/bundle/undotree/"))
 endif
 " }}}
 
+" quickmenu {{{
+if isdirectory(expand("~/.vim/bundle/quickmenu/"))
+  " choose a favorite key to show/hide quickmenu
+  noremap <silent><F12> :call quickmenu#toggle(0)<cr>
+
+  " enable cursorline (L) and cmdline help (H)
+  let g:quickmenu_options = "HL"
+endif
+" }}}
+
 " vim-mucomplete {{{
 if isdirectory(expand("~/.vim/bundle/vim-mucomplete"))
 	" For automatic completion, you most likely want this:
