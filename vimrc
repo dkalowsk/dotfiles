@@ -260,13 +260,12 @@ endif
 
 " clang-complete {{{
 if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
+  " disable clang complete, we're using YCM
+  let g:clang_complete_loaded=0
   if has('mac')
     "let s:clang_library_path='/Developer/usr/clang-ide/lib'
     "let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
-    let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-  endif
-  if isdirectory(s:clang_library_path)
-    let g:clang_library_path=s:clang_library_path
+    let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
   endif
   let g:clang_use_library=1
   let g:clang_user_options = '-std=c++14'
