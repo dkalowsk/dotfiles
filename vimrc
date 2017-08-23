@@ -590,6 +590,25 @@ endif
 
 " }}}
 
+" ack {{{
+if filereadable(expand("~/.vim/bundle/ack.vim/README.md"))
+	if executable('ag')
+	  let g:ackprg = 'ag --vimgrep'
+	endif
+	let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case --follow"
+	" Conduct searches in the background.  Hopefully this gets rid of the
+	" annoying flash
+	if exists(':Dispatch')
+	  " Set this to 1 to enable
+	  let g:ack_use_dispatch = 0
+	endif
+	" Allow empty searches to look for the word currently under the
+	" cursor
+	let g:ack_use_cword_for_empty_search = 1
+	nnoremap \ :Ack!<SPACE>
+endif
+" }}}
+
 " vim-ag {{{
 if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor\ --column
