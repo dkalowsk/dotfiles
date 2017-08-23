@@ -643,7 +643,14 @@ if executable('ag')
 	"nnoremap <leader>k :Ag "def <cword>"
 	" bind the \ key to be an ags shortcut
 	command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-	nnoremap \ :Ags<SPACE>
+endif
+" }}}
+
+" asyncrun {{{
+if filereadable(expand("~/.vim/bundle/asyncrun.vim/README.md"))
+	if exists(':Ack')
+	  let g:ack_use_asyncrun = 0
+	endif
 endif
 " }}}
 
