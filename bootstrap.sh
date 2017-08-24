@@ -179,3 +179,5 @@ else
         esac
     done
 fi
+
+# vim: tabstop=4 shiftwidth=4 expandtab
