@@ -1,9 +1,3 @@
-[user]
-	name = Dan Kalowsky
-	email = dkalowsky@esri.com
-[user "github.com"]
-	name = Dan Kalowsky
-	email = dank@deadmime.org
 [core]
 	editor = /usr/local/bin/vim
 	eol = lf
