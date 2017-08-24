@@ -4,6 +4,7 @@
 # https://github.com/JDevlieghere/dotfiles/blob/master/bootstrap.sh
 
 DOTFILES="~/dotfiles"
+PLATFORM=""
 
 info () {
     printf "\033[00;34m$@\033[0m\n"
@@ -97,33 +98,32 @@ doFonts() {
 		cd ..
 		rm -rf fonts
 	fi
-    #if [ "$(uname)" == "Darwin" ]; then
-		#fonts=~/Library/Fonts
-    #elif [ "$(uname)" == "Linux" ]; then
-        #fonts=~/.fonts
-        #mkdir -p "$fonts"
-    #fi
-
-    find "$DOTFILES/fonts/" -name "*.[o,t]tf" -type f | while read -r file; do
-        cp -v "$file" "$fonts"
-    done
+#    if [ "$(uname)" == "Darwin" ]; then
+#		fonts=~/Library/Fonts
+#    elif [ "$(uname)" == "Linux" ]; then
+#       fonts=~/.fonts
+#       mkdir -p "$fonts"
+#    fi
 }
 
 doConfig() {
     info "Configuring"
 
-    if [ "$(uname)" == "Darwin" ]; then
+    if [ ${PLATFORM} == "Darwin" ]; then
         echo "Configuring macOS"
-        ./os/macos.sh
-    elif [ "$(uname)" == "Linux" ]; then
+    if [ ${PLATFORM} == "Linux" ]; then
         echo "Configuring Linux"
-        ./os/linux.sh
+        if (($EUID != 0)); then
+            if [[ -t 1 ]]; then
+                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
+            fi
+        fi
     fi
 }
 
 doAll() {
     doUpdate
-    if [ "$(uname)" == "Darwin" ]; then
+    if [ ${PLATFORM} == "Darwin" ]; then
         # doBrew need to happen before doSync because there is no promise
         # that stow will be available on the system if it is macOS
         doBrew
@@ -149,6 +149,7 @@ doHelp() {
 if [ $# -eq 0 ]; then
     doHelp
 else
+    PLATFORM="$(uname)"
     for i in "$@"
     do
         case $i in
