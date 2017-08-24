@@ -72,12 +72,23 @@ doInstall() {
 doFonts() {
     info "Installing Fonts"
 
-    if [ "$(uname)" == "Darwin" ]; then
-        fonts=~/Library/Fonts
-    elif [ "$(uname)" == "Linux" ]; then
-        fonts=~/.fonts
-        mkdir -p "$fonts"
-    fi
+	git clone https://github.com/powerline/fonts.git --depth=1
+	#
+	# install only if the git command was successful
+	#
+	if [ -d "fonts" ]; then
+		cd fonts
+		./install.sh
+		# clean-up a bit
+		cd ..
+		rm -rf fonts
+	fi
+    #if [ "$(uname)" == "Darwin" ]; then
+		#fonts=~/Library/Fonts
+    #elif [ "$(uname)" == "Linux" ]; then
+        #fonts=~/.fonts
+        #mkdir -p "$fonts"
+    #fi
 
     find "$DOTFILES/fonts/" -name "*.[o,t]tf" -type f | while read -r file; do
         cp -v "$file" "$fonts"
