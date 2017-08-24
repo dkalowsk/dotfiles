@@ -93,6 +93,10 @@ doInstall() {
 doFonts() {
     info "Installing Fonts"
 
+    #
+    # install the power line fonts
+    # the install script already handles macOS vs linux installs
+    #
 	git clone https://github.com/powerline/fonts.git --depth=1
 	#
 	# install only if the git command was successful
