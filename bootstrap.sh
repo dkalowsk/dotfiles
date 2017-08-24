@@ -15,9 +15,9 @@ doUpdate() {
     # Now go clone the latest version of your dotfiles
     #
     if [ -d "${DOTFILES}" ]; then
-	pushd ${DOTFILES}
+		pushd ${DOTFILES}
         git pull origin master;
-	popd
+		popd
     else
         git clone https://github.com/dkalowsk/dotfiles ${DOTFILES}
     fi
