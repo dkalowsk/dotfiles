@@ -42,6 +42,10 @@ doSync() {
 
 doBrew() {
 
+    if [ ${PLATFORM} == "Darwin" ]; then
+        return
+    fi
+
 	#
 	# check if the system has brew installed, if so just go update it
 	# and the packages
