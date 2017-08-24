@@ -125,7 +125,8 @@ doConfig() {
         echo "Configuring Linux"
         if (($EUID != 0)); then
             if [[ -t 1 ]]; then
-                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
+#                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
+                xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y 
             fi
         fi
     fi
