@@ -85,7 +85,9 @@ doInstall() {
     vim +PluginInstall +qall
 
     # this may or may not work
-    xcode-select --install
+    if [ ${PLATFORM} == "Darwin" ]; then
+        xcode-select --install
+    fi
 }
 
 doFonts() {
