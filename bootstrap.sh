@@ -36,16 +36,26 @@ doSync() {
 }
 
 doBrew() {
-    # Install homebrew
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    #brew tap homebrew/bundle  # this most likely isn't needed anymore
+
+	#
+	# check if the system has brew installed, if so just go update it
+	# and the packages
+	#
+	if hash brew 2>/dev/null; then
+		brew update
+		brew upgrade
+	else
+		# Install homebrew
+		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		#brew tap homebrew/bundle  # this most likely isn't needed anymore
 
 
-    if [ -d "${DOTFILES}" ]; then
-        pushd ${DOTFILES}
-        brew bundle
-        popd
-    fi
+		if [ -d "${DOTFILES}" ]; then
+			pushd ${DOTFILES}
+			brew bundle
+			popd
+		fi
+	fi
 }
 
 doInstall() {
