@@ -3,6 +3,7 @@
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-bufferline'
 Plugin 'cespare/vim-toml'
+Plugin 'CoatiSoftware/vim-sourcetrail'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'elzr/vim-json'
