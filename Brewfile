@@ -3,14 +3,13 @@
 #
 # Taps
 tap 'caskroom/cask'
-tap 'facebook/fb'
+#tap 'facebook/fb'
 tap 'homebrew/boneyard'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'homebrew/dupes'
 tap 'homebrew/gui'
-tap 'homebrew/science'
-tap 'jasonmp85/iwyu'
+#tap 'jasonmp85/iwyu'
 tap 'universal-ctags/universal-ctags'
 
 # Install binaries
@@ -51,7 +50,7 @@ brew 'ctags'
 brew 'docbook-xsl'
 brew 'dwarfutils'
 brew 'isl'
-brew 'gcc'
+#brew 'gcc'
 brew 'jpeg'
 brew 'gd'
 brew 'gdb'
@@ -102,14 +101,10 @@ brew 'tmuxinator-completion'
 brew 'vim', args: ['with-lua', 'with-python3']
 brew 'xmlto'
 brew 'zlib'
-brew 'facebook/fb/buck', args: ['HEAD']
-brew 'homebrew/science/r'
-brew 'jasonmp85/iwyu/iwyu'
+#brew 'facebook/fb/buck', args: ['HEAD']
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 
 # Apps
-cask 'kdiff3'
-cask 'meld'
 cask 'shiftit'
 cask 'java'
 cask 'xquartz'
