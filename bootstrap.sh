@@ -25,8 +25,8 @@ doSync() {
             stow ${D}
         done
     else
-        echo "This process needs the `stow` command to work.  Install it first."
-        echo "On macOS this is done through brew, on linux through apt-get"
+        info "This process needs the `stow` command to work.  Install it first."
+        info "On macOS this is done through brew, on linux through apt-get"
     fi
 }
 
