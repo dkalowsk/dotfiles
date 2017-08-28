@@ -42,7 +42,7 @@ doSync() {
 
 doBrew() {
 
-    if [ ${PLATFORM} == "Darwin" ]; then
+    if [ ${PLATFORM} != "Darwin" ]; then
         return
     fi
 
