@@ -108,7 +108,7 @@ doConfig() {
 
     if [ ${PLATFORM} == "Darwin" ]; then
         echo "Configuring macOS"
-    if [ ${PLATFORM} == "Linux" ]; then
+    elif [ ${PLATFORM} == "Linux" ]; then
         echo "Configuring Linux"
         if (($EUID != 0)); then
             if [[ -t 1 ]]; then
