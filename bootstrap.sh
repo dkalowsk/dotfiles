@@ -4,7 +4,7 @@
 # https://github.com/JDevlieghere/dotfiles/blob/master/bootstrap.sh
 
 DOTFILES="~/dotfiles"
-PLATFORM=""
+PLATFORM="$(uname)"
 
 info () {
     printf "\033[00;34m$@\033[0m\n"
@@ -150,7 +150,6 @@ doHelp() {
 if [ $# -eq 0 ]; then
     doHelp
 else
-    PLATFORM="$(uname)"
     for i in "$@"
     do
         case $i in
