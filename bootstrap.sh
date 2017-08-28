@@ -15,19 +15,10 @@ doUpdate() {
     #
     # Now go clone the latest version of your dotfiles
     #
-    if [ -d "${DOTFILES}" ]; then
-		pushd ${DOTFILES}
-        git pull origin master;
-		popd
-    else
-        git clone https://github.com/dkalowsk/dotfiles ${DOTFILES}
-    fi
+    git pull origin master;
 }
 
 doSync() {
-    # Now go grab the configuration from our local area
-    pushd ${DOTFILES}
-
     if hash stow 2>/dev/null; then
         for D in `find . -type d`; do
             info "Syncing ${D}"
@@ -37,7 +28,6 @@ doSync() {
         echo "This process needs the `stow` command to work.  Install it first."
         echo "On macOS this is done through brew, on linux through apt-get"
     fi
-    popd
 }
 
 doBrew() {
