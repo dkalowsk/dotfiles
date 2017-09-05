@@ -63,7 +63,6 @@ brew 'gnuplot'
 brew 'libunistring'
 brew 'nettle'
 brew 'gnutls'
-brew 'gource'
 brew 'libtool'
 brew 'graphviz'
 brew 'grep', args: ['with-default-names']
