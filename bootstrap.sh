@@ -22,9 +22,10 @@ doUpdate() {
 
 doSync() {
     if hash stow 2>/dev/null; then
-        for D in `find . -type d`; do
-            info "Syncing ${D}"
-            stow ${D}
+        for D in `find . -name "[!.]*" ! -path . -type d -maxdepth 1`; do
+            mydir=${D##*/}
+            info "Syncing ${mydir}"
+            stow ${mydir}
         done
     else
         info "This process needs the `stow` command to work.  Install it first."
