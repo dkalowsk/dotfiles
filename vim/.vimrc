@@ -373,7 +373,9 @@ endif
 
 " vim-fugitive {{{
 "-----------------------------------------------------------
-set diffopt+=vertical " Set fugitive's Gdiff to vertical position instead of horizontal
+if isdirectory(expand("~/.vim/bundle/vim-fugitive"))
+	set diffopt+=vertical " Set fugitive's Gdiff to vertical position instead of horizontal
+endif
 " }}}
 
 " indent guides {{{
