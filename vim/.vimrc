@@ -73,7 +73,7 @@ set laststatus=2     " Enable lower status bar
 " Broken down into easily includeable segments
 set statusline=%<%f\                     " Filename
 set statusline+=%w%h%m%r                 " Options
-if !exists('g:override_spf13_bundles')
+if isdirectory(expand("~/.vim/bundle/vim-fugitive"))
     set statusline+=%{fugitive#statusline()} " Git Hotness
 endif
 set statusline+=\ [%{&ff}/%Y]            " Filetype
@@ -712,7 +712,7 @@ if executable('tig')
 	nnoremap <leader>gB :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
 endif
 " }}}
-"
+
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
