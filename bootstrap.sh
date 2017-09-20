@@ -72,7 +72,7 @@ doInstall() {
     #~/.fzf/install
 
     # Now that dotfiles are in place, make sure to run the Vundle installation
-    vim +PluginInstall +qall
+    vim --cmd "let vundle_install_needed=0" +qall
 
     # this may or may not work
     if [ ${PLATFORM} == "Darwin" ]; then
