@@ -60,17 +60,6 @@ doBrew() {
 doInstall() {
     info "Installing Extras"
 
-    # Go grab Vundle so we can do everything
-    mkdir -p ~/.vim/bundle
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-    # Tmux Plugin Manager
-    #git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-    # FZF
-    #git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    #~/.fzf/install
-
     # Now that dotfiles are in place, make sure to run the Vundle installation
     vim --cmd "let vundle_install_needed=0" +qall
 
