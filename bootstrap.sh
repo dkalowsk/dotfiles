@@ -28,7 +28,7 @@ doSync() {
             stow ${mydir}
         done
     else
-        info "This process needs the `stow` command to work.  Install it first."
+        info "This process needs the 'stow' command to work.  Install it first."
         info "On macOS this is done through brew, on linux through apt-get"
     fi
 }
