@@ -10,6 +10,7 @@ let vundle_install_needed=1
 if !filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
   echo "Installing Vundle..."
   echo ""
+  silent !mkdir -p ~/.vim/bundle
   silent git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
   let vundle_install_needed=0
 endif
