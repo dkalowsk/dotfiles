@@ -21,16 +21,21 @@ doUpdate() {
 }
 
 doSync() {
-    if hash stow 2>/dev/null; then
-        for D in `find . -name "[!.]*" ! -path . -type d -maxdepth 1`; do
-            mydir=${D##*/}
-            info "Syncing ${mydir}"
-            stow ${mydir}
-        done
-    else
-        info "This process needs the 'stow' command to work.  Install it first."
-        info "On macOS this is done through brew, on linux through apt-get"
+    if ! type -P "stow"; then
+	    if hash brew 2>/dev/null; then
+            brew install stow
+        else
+            info "This process needs the 'stow' command to work.  Install it first."
+            info "On macOS this is done through brew, on linux through apt-get"
+            exit 1
+        fi
     fi
+
+    for D in `find . -name "[!.]*" ! -path . -type d -maxdepth 1`; do
+        mydir=${D##*/}
+        info "Syncing ${mydir}"
+        stow ${mydir}
+    done
 }
 
 doBrew() {
