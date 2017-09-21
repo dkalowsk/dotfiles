@@ -1,3 +1,5 @@
+[user]
+	name = Dan Kalowsky
 [core]
 	editor = /usr/local/bin/vim
 	eol = lf
