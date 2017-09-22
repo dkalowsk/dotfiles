@@ -4,45 +4,30 @@
 "
 set nocompatible  " None of this works with old original vi, only VIM
 
-" {{{ Vundle setup
-"autocmd FileType python NeoCompleteLock
-let vundle_install_needed=1
-if !filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
-  echo "Installing Vundle..."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-  let vundle_install_needed=0
+" {{{ vim-plug setup
+let plugin_install_needed=0
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  plugin_install_needed=1
 endif
 
-" Vundle setup {{{
-filetype off					" required for vundle to startup
-set rtp+=~/.vim/bundle/Vundle.vim
-" }}}
+call plug#begin('~/.vim/bundle')
 
-" Vundle plugins {{{
-" The following commands help run stuff:
-" :PluginList    -- Lists the configured plugins
-" :PluginInstall -- installs the plugins
-" :PluginUpdate  -- updates the installed plugins
-" :PluginSearch  -- search for a plugin
-" :PluginClean   -- Removal of unused plugins
-
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
 if filereadable(expand("~/.vimrc.bundles.local"))
 	source ~/.vimrc.bundles.local
 endif
 
-if vundle_install_needed == 0
-	echo "Installing Vundle plugins"
-	echo ""
-	:PluginInstall
+if exists(plugin_install_needed)
+  if plugin_install_needed == 1
+    echo "Installing Vundle plugins"
+    echo ""
+    :PlugInstall
+  endif
 endif
 
-call vundle#end()
-filetype plugin on "load filetype plugins/indent settings
-" }}}
+call plug#end()
 " }}}
 
 "leader is a comma, because / is too hard to hit constantly

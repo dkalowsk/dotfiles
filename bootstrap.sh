@@ -66,7 +66,7 @@ doInstall() {
     info "Installing Extras"
 
     # Now that dotfiles are in place, make sure to run the Vundle installation
-    vim -i NONE --cmd "let vundle_install_needed=1" -c quitall
+    vim -i NONE --cmd "let plugin_install_needed=1" :PlugInstall -c quitall
 
     # this may or may not work
     if [ ${PLATFORM} == "Darwin" ]; then
