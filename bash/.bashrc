@@ -15,6 +15,8 @@
 # set the terminal line
 #
 export PS1="\\u@\\h \\w\\$ "
+[ "$PS1" ] && source ~/.bash_prompt
+PROMPT_COMMAND="history -a; prompt_function"
 
 #
 # add color ls output
