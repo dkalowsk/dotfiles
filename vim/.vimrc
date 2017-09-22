@@ -489,6 +489,7 @@ endif
 
 if executable('ctags')
 	nnoremap <C-]> g<C-]>
+	map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 endif
 " }}}
 
