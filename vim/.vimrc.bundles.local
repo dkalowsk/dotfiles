@@ -64,4 +64,4 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'vim-scripts/AutoComplPop'
 Plug 'vim-scripts/restore_view.vim'
 "Plug 'vim-scripts/sessionman.vim'
-Plug 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer' }
