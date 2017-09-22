@@ -9,7 +9,6 @@ let plugin_install_needed=0
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   plugin_install_needed=1
 endif
 
@@ -21,9 +20,9 @@ endif
 
 if exists(plugin_install_needed)
   if plugin_install_needed == 1
-    echo "Installing Vundle plugins"
+    echo "Installing vim plugins"
     echo ""
-    :PlugInstall
+    autocmd VimEnter * PlugInstall --sync
   endif
 endif
 
