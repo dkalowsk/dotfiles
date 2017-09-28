@@ -90,12 +90,16 @@ nnoremap <leader><space> :nohlsearch<CR>
 " {{{ enable mouse and clipboard
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
+
+let ssh_remote_env=$SSH_CLIENT
+if ssh_remote_env == ''
 if has('clipboard')
 	if has('unnamedplus')  " When possible use + register for copy-paste
             set clipboard=unnamed,unnamedplus
         else         " On mac and Windows, use * register for copy-paste
             set clipboard=unnamed
         endif
+endif
 endif
 " }}}
 
