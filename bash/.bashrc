@@ -84,4 +84,6 @@ export EDITOR='vim'
 export CCACHE_HOME=/usr/local/bin/ccache
 
 # private customizations
-[ -f "~/.bashrc-private" ] && . ~/.bashrc-private
+if [ -L "${HOME}/.bashrc-private" ]; then
+ . ${HOME}/.bashrc-private
+fi
