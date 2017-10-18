@@ -40,6 +40,11 @@ fi
 alias ffind='find . -name'
 
 #
+# For git repos, enable a quick return to the root directory
+#
+alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
+
+#
 # Enable grep for color
 # Do not use the GREG_OPTIONS as they are deprecated
 #
