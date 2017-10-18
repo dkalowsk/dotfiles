@@ -67,13 +67,10 @@ fi
 #
 if [ -d "$HOME/development/android/toolchains" ]; then
 	export ANDROID_TOOLCHAIN_ROOT="${HOME}/development/android/toolchains"
-	export ANDROID_ARMV7="${ANDROID_TOOLCHAIN_ROOT}/android-14_arm-linux-androideabi-4.9/bin"
-	export ANDROID_X86="${ANDROID_TOOLCHAIN_ROOT}/android-14_x86-4.9/bin"
-	export ANDROIDGLES3_ARMV7="${ANDROID_TOOLCHAIN_ROOT}/android-21_arm-linux-androideabi-4.9/bin"
-	export ANDROIDGLES3_ARMV8="${ANDROID_TOOLCHAIN_ROOT}/android-21_aarch64-linux-android-4.9/bin"
-	export ANDROIDGLES3_X86="${ANDROID_TOOLCHAIN_ROOT}/android-21_x86-4.9/bin"
-	export ANDROIDGLES3_X64="${ANDROID_TOOLCHAIN_ROOT}/android-21_x86_64-4.9/bin"
-	export PATH=${PATH}:${ANDROIDGLES3_ARMV7}:${ANDROIDGLES3_ARMV8}:${ANDROIDGLES3_X86}:${ANDROIDGLES3_X64}
+	export ANDROID_ARMV7="${ANDROID_TOOLCHAIN_ROOT}/android-16_arm_gnustl/bin"
+	export ANDROID_X86="${ANDROID_TOOLCHAIN_ROOT}/android-16_x86_gnustl/bin"
+	export ANDROIDGLES3_ARMV8="${ANDROID_TOOLCHAIN_ROOT}/android-21_arm64_gnustl/bin"
+	export PATH=${PATH}:${ANDROID_ARMV7}:${ANDROIDGLES3_ARMV8}:${ANDROID_X86}
 fi
 
 #
