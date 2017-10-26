@@ -699,9 +699,11 @@ endif
 
 " {{{ tig support
 if executable('tig')
-	nnoremap <leader>gb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
-	nnoremap <leader>go :silent !tig<CR>:silent redraw!<CR>
-	nnoremap <leader>gB :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
+	nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
+	nnoremap <leader>to :silent !tig<CR>:silent redraw!<CR>
+	nnoremap <leader>tB :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
+	nnoremap <leader>ts :silent !tig status<CR>:silent redraw!<CR>
+	
 endif
 " }}}
 
