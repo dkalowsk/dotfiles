@@ -100,6 +100,32 @@ doFonts() {
 #    fi
 }
 
+doPython2() {
+
+    # Check if pip is installed
+    if ! type -P "pip2"; then
+        #if not do the following:
+        curl https://bootstrap.pypa.io/get-pip.py | python3
+
+    pip2 install jedi --user
+    pip2 install meson --user
+    pip2 install parso --user
+    pip2 install voltron --user
+}
+
+doPython3() {
+
+    # Check if pip is installed
+    if ! type -P "pip3"; then
+        #if not do the following:
+        curl https://bootstrap.pypa.io/get-pip.py | python3
+
+    pip3 install jedi --user
+    pip3 install meson --user
+    pip3 install parso --user
+    pip3 install voltron --user
+}
+
 doConfig() {
     info "Configuring"
 
