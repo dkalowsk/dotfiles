@@ -179,9 +179,10 @@ augroup END
 
 " {{{ filetype_python 
 augroup filetype_python
-  au FileType python3 setlocal pymode=1
-  au FileType python3 setlocal autoindent
-  au FileType python3 setlocal smartindentaugroup END
+  au FileType python setlocal autoindent
+  autocmd FileType python set shiftwidth=4
+  autocmd FileType python set tabstop=4
+  autocmd FileType python set softtabstop=4
 " }}}
 
 " {{{ filetype_gitcommit
