@@ -180,9 +180,11 @@ augroup END
 " {{{ filetype_python 
 augroup filetype_python
   au FileType python setlocal autoindent
-  autocmd FileType python set shiftwidth=4
-  autocmd FileType python set tabstop=4
-  autocmd FileType python set softtabstop=4
+  au FileType python setlocal smartindent
+  au FileType python setlocal textwidth=79 " Keep things PEP-8 friendly
+  autocmd FileType python setlocal shiftwidth=4
+  autocmd FileType python setlocal tabstop=4
+  autocmd FileType python setlocal softtabstop=4
 " }}}
 
 " {{{ filetype_gitcommit
@@ -672,20 +674,6 @@ if isdirectory(expand("~/.vim/bundle/vim-mucomplete"))
 
 	" Enable mucomplete at startup
 	let g:mucomplete#enable_auto_at_startup = 0
-endif
-" }}}
-
-" {{{  jedi-vim (replaces python-mode)
-if isdirectory(expand("~/.vim/bundle/jedi-vim"))
-	" always enable
-	let g:jedi#auto_initialization=1
-	" don't take over the completeopt options
-	let g:jedi#auto_vim_configuration=0
-	" start the autocompletion upon typing a dot
-	let g:jedi#popup_on_dot=1
-	" jump to the first autocompletion set to 1
-	let g:jedi#popup_select_first=0
-
 endif
 " }}}
 
