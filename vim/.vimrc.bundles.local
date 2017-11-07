@@ -1,6 +1,7 @@
 "
 " plug-ins to add
 Plug 'altercation/vim-colors-solarized'
+Plug 'bagrat/vim-workspace'
 Plug 'benjifisher/matchit.zip'
 Plug 'bling/vim-bufferline'
 Plug 'cespare/vim-toml'
@@ -50,7 +51,7 @@ Plug 'spf13/vim-preview', { 'on': 'Preview' }
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tlib_vim'
-Plug 'tpope/vim-abolish.git'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-haml'
