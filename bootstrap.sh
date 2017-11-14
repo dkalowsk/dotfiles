@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-
-# borrowed heavily from:
+#
+# Originally inspired heavily from:
 # https://github.com/JDevlieghere/dotfiles/blob/master/bootstrap.sh
+# for the different sections.
+#
+# Many edits later, it's become it's own beast of a mistake
+#
 
 DOTFILES="~/dotfiles"
 PLATFORM="$(uname)"
