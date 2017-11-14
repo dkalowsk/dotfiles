@@ -87,6 +87,21 @@ export EDITOR='vim'
 
 export CCACHE_HOME=/usr/local/bin/ccache
 
+if [ -e $(brew --prefix)/opt/fzf/shell/completion.bash ]; then
+	source $(brew --prefix)/opt/fzf/shell/key-bindings.bash
+	source $(brew --prefix)/opt/fzf/shell/completion.bash
+fi
+
+if [[ -x "$(command -v fzf)" ]] && [[ -x "$(command -v ag)" ]]; then
+  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_DEFAULT_OPTS='
+  --color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
+  --color info:108,prompt:109,spinner:108,pointer:168,marker:168
+  '
+fi
+
 # private customizations
 if [ -L "${HOME}/.bashrc-private" ]; then
  . ${HOME}/.bashrc-private
