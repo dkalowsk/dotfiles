@@ -687,6 +687,18 @@ endif
 
 "}}}
 
+" {{{ fzf
+if isdirectory(expand("~/.vim/bundle/fzf.vim/"))
+	set rtp+=/usr/local/opt/fzf
+	set rtp+=~/.fzf
+	nmap ; :Buffers<CR>
+	nmap <Leader>r :Tags<CR>
+	nmap <Leader>t :Files<CR>
+	nmap <Leader>a :Ag<CR>
+endif
+
+"}}}
+
 " {{{ vim-workspace support
 if isdirectory(expand("~/.vim/bundle/vim-workspace/"))
 	noremap <Tab> :WSNext<CR>
