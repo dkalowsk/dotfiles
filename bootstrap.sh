@@ -71,11 +71,6 @@ doInstall() {
 
     # Now that dotfiles are in place, make sure to run the Vundle installation
     vim -i NONE --cmd "let plugin_install_needed=1" :PlugInstall -c quitall
-
-    # this may or may not work
-    if [ ${PLATFORM} == "Darwin" ]; then
-        xcode-select --install
-    fi
 }
 
 doFonts() {
@@ -148,34 +143,53 @@ doPython3() {
     doPipInstall "pip3"
 }
 
+doMacOSConfig() {
+    # Fix Visual Code key repeat issue
+    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+    # Show all File Extensions
+    defaults write -g AppleShowAllExtensions -bool true
+
+    # Don't create metadata files on network and USB devices
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+    # Enable ssh login
+    #sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+
+    # this may or may not work
+    xcode-select --install > /dev/null 2>&1
+}
+
+doLinuxConfig() {
+    if (($EUID != 0)); then
+        if [[ -t 1 ]]; then
+#                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
+            xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y 
+        fi
+    fi
+}
+
 
 doConfig() {
     info "Configuring"
 
     if [ ${PLATFORM} == "Darwin" ]; then
         echo "Configuring macOS"
+        doMacOSConfig
     elif [ ${PLATFORM} == "Linux" ]; then
         echo "Configuring Linux"
-        if (($EUID != 0)); then
-            if [[ -t 1 ]]; then
-#                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
-                xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y 
-            fi
-        fi
+        doLinuxConfig
     fi
 }
 
 doAll() {
     doUpdate
-    if [ ${PLATFORM} == "Darwin" ]; then
-        # doBrew need to happen before doSync because there is no promise
-        # that stow will be available on the system if it is macOS
-        doBrew
-    fi
+    doBrew
     doSync
     doInstall
     doFonts
-#    doConfig
+    doConfig
 }
 
 doHelp() {
