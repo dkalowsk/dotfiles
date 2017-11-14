@@ -81,27 +81,41 @@ doInstall() {
 doFonts() {
     info "Installing Fonts"
 
+    if [ "$(uname)" == "Darwin" ]; then
+		fonts_dir=~/Library/Fonts
+    elif [ "$(uname)" == "Linux" ]; then
+       fonts_dir=~/.local/share/fonts
+       mkdir -p "${fonts_dir}"
+    fi
+
     #
     # install the power line fonts
     # the install script already handles macOS vs linux installs
     #
 	git clone https://github.com/powerline/fonts.git --depth=1
+
+    curl -OL https://github.com/chrissimpkins/codeface/releases/download/font-collection/codeface-fonts.zip
+    if [ -f "codeface-fonts.zip" ]; then
+        # this will expand out to a directory called "fonts" which will
+        # in turn add the extra fonts to the already existing fonts directory
+        # generated from the code check out
+        unzip "codeface-fonts.zip"
+    fi
+
 	#
 	# install only if the git command was successful
 	#
 	if [ -d "fonts" ]; then
 		cd fonts
+        # We can exploit this already provided script to install the additional
+        # font pieces we need as it
 		./install.sh
 		# clean-up a bit
 		cd ..
 		rm -rf fonts
 	fi
-#    if [ "$(uname)" == "Darwin" ]; then
-#		fonts=~/Library/Fonts
-#    elif [ "$(uname)" == "Linux" ]; then
-#       fonts=~/.fonts
-#       mkdir -p "$fonts"
-#    fi
+
+    rm -Rf ${codeface}.zip
 }
 
 doPipInstall() {
