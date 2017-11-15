@@ -255,14 +255,6 @@ if has('persistent_undo')
 endif
 " }}}
 
-
-" {{{ AutotoComplPop
-if filereadable(expand("~/.vim/bundle/AutotoComplPop/README"))
-	" enable ACP
-	let g:acp_enableAtStartup = 0
-endif
-" }}}
-
 " clang-complete {{{
 if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
   " disable clang complete, we're using YCM
