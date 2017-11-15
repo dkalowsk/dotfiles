@@ -255,6 +255,36 @@ if has('persistent_undo')
 endif
 " }}}
 
+" {{{ visual block configurations
+
+" Visual Block mode is far more useful that Visual mode (so swap the commands)...
+nnoremap v <C-V>
+nnoremap <C-V> v
+
+vnoremap v <C-V>
+vnoremap <C-V> v
+
+"Square up visual selections...
+set virtualedit=block
+
+" Make BS/DEL work as expected in visual modes (i.e. delete the selected text)...
+vmap <BS> x
+
+" Make vaa select the entire file...
+vmap aa VGo1G
+
+
+"=====[ Make arrow keys move visual blocks around ]======================
+
+vmap <up>    <Plug>SchleppUp
+vmap <down>  <Plug>SchleppDown
+vmap <left>  <Plug>SchleppLeft
+vmap <right> <Plug>SchleppRight
+
+vmap D       <Plug>SchleppDupLeft
+vmap <C-D>   <Plug>SchleppDupLeft
+"}}}
+
 " clang-complete {{{
 if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
   " disable clang complete, we're using YCM
