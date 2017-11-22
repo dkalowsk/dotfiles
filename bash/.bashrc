@@ -2,7 +2,6 @@
 # Add in local path directories
 #
 [ -d "${HOME}/bin" ] && export PATH="${HOME}/bin:${PATH}"
-[ -d "${HOME}/development/hackhack" ] && export PATH="${HOME}/development/hackhack:${PATH}"
 [ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
 
 #
