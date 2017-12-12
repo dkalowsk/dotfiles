@@ -732,6 +732,7 @@ if isdirectory(expand("~/.vim/bundle/fzf.vim/"))
 	nmap <Leader>r :Tags<CR>
 	nmap <Leader>t :Files<CR>
 	nmap <Leader>a :Ag<CR>
+	nmap <C-p> :Files<CR>
 endif
 
 "}}}
