@@ -48,6 +48,7 @@
 	sign = cherry-pick --signoff
 	# use the short status
 	sstatus = status -sb
+	master = pull origin master
 [diff]
 	tool = araxis
 	# Use the slower but better patience diff algorithm
