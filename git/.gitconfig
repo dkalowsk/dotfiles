@@ -89,7 +89,7 @@
 	show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 	diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [interactive]
-	diffFilter = diff-highlight
+	diffFilter = diff-highlight --color-words
 [color]
 	ui = always
 [color "diff-highlight"]
