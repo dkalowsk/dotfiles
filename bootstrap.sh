@@ -26,7 +26,7 @@ doUpdate() {
 
 doSync() {
     if ! type -P "stow"; then
-	    if hash brew 2>/dev/null; then
+	if hash brew 2>/dev/null; then
             brew install stow
         else
             info "This process needs the 'stow' command to work.  Install it first."
