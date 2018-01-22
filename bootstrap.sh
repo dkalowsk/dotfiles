@@ -24,13 +24,44 @@ doUpdate() {
     git stash pop --quiet
 }
 
+_installStow() {
+    if [ ${PLATFORM} == "Darwin" ]; then
+        if hash brew 2>/dev/null; then
+            brew install stow
+            return 0
+        fi
+    fi
+
+    if [ ${PLATFORM} == "Linux" ]; then
+        if hash apt-get 2>/dev/null; then
+            if (($EUID != 0)); then
+                sudo apt-get -y install stow
+            else
+                apt-get -y install stow
+            fi
+            return 0
+        fi
+
+        if hash dnf 2>/dev/null; then
+            if (($EUID != 0)); then
+                sudo dnf -y install stow
+            else
+                dnf -y install stow
+            fi
+            return 0
+        fi
+    fi
+
+    return 1
+}
+
 doSync() {
     if ! type -P "stow"; then
-	if hash brew 2>/dev/null; then
-            brew install stow
+        if _installStow; then
+            info "Installed stow"
         else
             info "This process needs the 'stow' command to work.  Install it first."
-            info "On macOS this is done through brew, on linux through apt-get"
+            info "On macOS this is done through brew, on linux through apt-get or dnf"
             exit 1
         fi
     fi
