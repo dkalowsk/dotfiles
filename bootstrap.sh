@@ -19,9 +19,9 @@ doUpdate() {
     #
     # Now go clone the latest version of your dotfiles
     #
-    git stash
+    git stash --quiet
     git pull --rebase
-    git stash pop
+    git stash pop --quiet
 }
 
 doSync() {
