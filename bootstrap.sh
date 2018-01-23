@@ -193,6 +193,8 @@ doMacOSConfig() {
 }
 
 doLinuxConfig() {
+
+    info "Installing from aptgets"
     if (($EUID != 0)); then
         if [[ -t 1 ]]; then
 #                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
