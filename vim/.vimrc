@@ -5,7 +5,7 @@
 set nocompatible  " None of this works with old original vi, only VIM
 
 " {{{ vim-plug setup
-let plugin_install_needed=0
+"let plugin_install_needed=0
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -309,12 +309,16 @@ endif
 syntax enable
 set t_Co=256
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_style="dark"
-let g:solarized_termtrans=1
-let g:solarized_constract = "normal"
-let g:solarized_visibility = "normal"
-colorscheme solarized
+if isdirectory(expand("~/.vim/bundle/vim-colors-solarized.vim/"))
+	let g:solarized_termcolors=256
+	let g:solarized_style="dark"
+	let g:solarized_termtrans=1
+	let g:solarized_constract = "normal"
+	let g:solarized_visibility = "normal"
+	colorscheme solarized
+else
+	colorscheme slate
+endif
 "color solarized
 " }}}
 
