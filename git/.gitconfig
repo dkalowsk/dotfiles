@@ -8,6 +8,8 @@
 	mergeoptions = --no-edit
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	trustctime = false
+	pager = colordiff | less
+	page = colordiff | less -RFX
 [fetch]
 	# always prune when fetching (and pulling)
 	prune = 1
@@ -85,9 +87,9 @@
 [mergetool "araxis"]
 	path = /Applications/Araxis Merge.app/Contents/Utilities/compare
 [pager]
-	log  = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
-	show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
-	diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+#	log  = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+#	show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+#	diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [interactive]
 	diffFilter = diff-highlight --color-words
 [color]
