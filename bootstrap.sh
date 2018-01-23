@@ -232,7 +232,7 @@ doHelp() {
     echo "   -i, --install          Install (extra) software"
     echo "   -b, --brew             Install and update Homebrew"
     echo "   -f, --fonts            Copies font files"
-#    echo "   -c, --config           Configures your system"
+    echo "   -c, --config           Configures your system"
     echo "   -a, --all              Does all of the above"
     echo
     exit 1
@@ -259,10 +259,10 @@ else
                 doFonts
                 shift
                 ;;
-#            -c|--config)
-#                doConfig
-#                shift
-#                ;;
+            -c|--config)
+                doConfig
+                shift
+                ;;
             -a|--all)
                 doAll
                 shift
