@@ -103,6 +103,14 @@ if [[ -x "$(command -v fzf)" ]] && [[ -x "$(command -v ag)" ]]; then
   '
 fi
 
+#
+# Only do the following for Windows Subsystem Linux installs
+#
+#if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+if [[ $(uname -r) =~ Microsoft$ ]]; then
+    export DISPLAY=localhost:0.0
+fi
+
 # private customizations
 if [ -L "${HOME}/.bashrc-private" ]; then
  . ${HOME}/.bashrc-private
