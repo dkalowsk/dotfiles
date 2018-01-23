@@ -205,6 +205,8 @@ doLinuxConfig() {
 doConfig() {
     info "Configuring"
 
+    mkdir -p ~/bin
+
     if [ ${PLATFORM} == "Darwin" ]; then
         echo "Configuring macOS"
         doMacOSConfig
