@@ -78,9 +78,6 @@ export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
 export EDITOR='vim'
 
-export CCACHE_HOME=/usr/local/bin/ccache
-
-
 if [ "$OSTYPE" == "darwin17" ]; then
 	if [ -e $(brew --prefix)/opt/fzf/shell/completion.bash ]; then
 		source $(brew --prefix)/opt/fzf/shell/key-bindings.bash
