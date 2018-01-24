@@ -79,9 +79,12 @@ export EDITOR='vim'
 
 export CCACHE_HOME=/usr/local/bin/ccache
 
-if [ -e $(brew --prefix)/opt/fzf/shell/completion.bash ]; then
-	source $(brew --prefix)/opt/fzf/shell/key-bindings.bash
-	source $(brew --prefix)/opt/fzf/shell/completion.bash
+
+if [ "$OSTYPE" == "darwin17" ]; then
+	if [ -e $(brew --prefix)/opt/fzf/shell/completion.bash ]; then
+		source $(brew --prefix)/opt/fzf/shell/key-bindings.bash
+		source $(brew --prefix)/opt/fzf/shell/completion.bash
+	fi
 fi
 
 if [[ -x "$(command -v fzf)" ]] && [[ -x "$(command -v ag)" ]]; then
