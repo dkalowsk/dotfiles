@@ -53,15 +53,6 @@ alias ggrep="grep --color=auto -rnw './' -e"
 alias grep="grep --color=auto --exclude=tags --exclude=TAGS"
 
 #
-# Add the git bash completion option
-#
-if [ "Darwin" == "$(uname)" ]; then
-	if [ -f $(brew --prefix)/etc/bash_completion  ]; then
-	    . $(brew --prefix)/etc/bash_completion
-	fi
-fi
-
-#
 # Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
 #
 if [ -f ./.stgit-completion.bash ]; then
