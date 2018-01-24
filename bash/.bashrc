@@ -115,3 +115,5 @@ fi
 if [ -L "${HOME}/.bashrc-private" ]; then
  . ${HOME}/.bashrc-private
 fi
+
+[ -f ${HOME}/.fzf.bash ] && source ${HOME}/.fzf.bash
