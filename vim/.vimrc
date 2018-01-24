@@ -5,7 +5,7 @@
 set nocompatible  " None of this works with old original vi, only VIM
 
 " {{{ vim-plug setup
-"let plugin_install_needed=0
+let plugin_install_needed=0
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
