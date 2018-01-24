@@ -201,6 +201,17 @@ doLinuxConfig() {
             xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y 
         fi
     fi
+
+    # use universal ctags if possible instead
+    git clone https://github.com/universal-ctags/ctags.git
+    if [ -d ctags ]; then
+        cd ctags
+        ./autogen.sh
+        ./configure --prefix=$HOME
+        make && make install
+        cd ..
+        rm -Rf ctags
+    fi
 }
 
 
