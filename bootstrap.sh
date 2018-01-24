@@ -101,7 +101,7 @@ doInstall() {
     info "Installing Extras"
 
     # Now that dotfiles are in place, make sure to run the Vundle installation
-    vim -i NONE --cmd "let plugin_install_needed=1" :PlugInstall -c quitall
+    vim -i NONE -c PlugInstall -c PlugClean -c quitall
 }
 
 doFonts() {
@@ -203,14 +203,23 @@ doLinuxConfig() {
     fi
 
     # use universal ctags if possible instead
-    git clone https://github.com/universal-ctags/ctags.git
-    if [ -d ctags ]; then
-        cd ctags
-        ./autogen.sh
-        ./configure --prefix=$HOME
-        make && make install
-        cd ..
-        rm -Rf ctags
+    if [ ! -f "${HOME}/bin/ctags" ]; then
+        info "Installing universal-ctags"
+        git clone https://github.com/universal-ctags/ctags.git
+        if [ -d ctags ]; then
+            cd ctags
+            ./autogen.sh
+            ./configure --prefix=$HOME
+            make && make install
+            cd ..
+            rm -Rf ctags
+        fi
+    fi
+
+    if [ ! -d "${HOME}/.fzf" ]; then
+        info "Installing fzf"
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
     fi
 }
 
