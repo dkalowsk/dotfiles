@@ -3,6 +3,7 @@
 #
 [ -d "${HOME}/bin" ] && export PATH="${HOME}/bin:${PATH}"
 [ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
+[ -d "/opt/usr/bin" ] && export PATH="/opt/usr/bin:${PATH}"
 
 #
 # Setup the QT home directory
