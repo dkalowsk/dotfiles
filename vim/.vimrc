@@ -309,7 +309,7 @@ endif
 syntax enable
 set t_Co=256
 set background=dark
-if isdirectory(expand("~/.vim/bundle/vim-colors-solarized.vim/"))
+if isdirectory(expand("~/.vim/bundle/vim-colors-solarized/"))
 	let g:solarized_termcolors=256
 	let g:solarized_style="dark"
 	let g:solarized_termtrans=1
