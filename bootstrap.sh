@@ -221,6 +221,13 @@ doLinuxConfig() {
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
     fi
+
+    if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
+        info "Installing diff-so-fancy"
+        curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+        mv diff-so-fancy ${HOME}/bin/
+        chmod +x ${HOME}/bin/diff-so-fancy
+    fi
 }
 
 
