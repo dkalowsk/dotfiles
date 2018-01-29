@@ -54,6 +54,17 @@ alias ggrep="grep --color=auto -rnw './' -e"
 alias grep="grep --color=auto --exclude=tags --exclude=TAGS"
 
 #
+# Enable less to output raw characters
+#
+alias less="less -R"
+
+#
+# Force AG to use consistent colors on all platforms
+#
+alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
+
+
+#
 # Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
 #
 if [ -f ./.stgit-completion.bash ]; then
