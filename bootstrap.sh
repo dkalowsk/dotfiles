@@ -228,6 +228,13 @@ doLinuxConfig() {
         mv diff-so-fancy ${HOME}/bin/
         chmod +x ${HOME}/bin/diff-so-fancy
     fi
+
+    if [ ! -f "${HOME}/.dircolors" ]; then
+        info "Installing solarized dircolors"
+        git clone --quiet https://github.com/seebi/dircolors-solarized
+        cp dircolors-solarized/dircolors.256dark ~/.dircolors
+        rm -Rf dircolors-solarized
+    fi
 }
 
 
