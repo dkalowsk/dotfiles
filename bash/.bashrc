@@ -104,8 +104,6 @@ if [[ $(uname -r) =~ Microsoft$ ]]; then
 fi
 
 # private customizations
-if [ -f "${HOME}/.bashrc-private" ]; then
- . ${HOME}/.bashrc-private
-fi
+[ -f "${HOME}/.bashrc-private" ] && source ${HOME}/.bashrc-private
 
 [ -f ${HOME}/.fzf.bash ] && source ${HOME}/.fzf.bash
