@@ -1,6 +1,7 @@
-autoconf
 apt-listdifferences
-exuberant-ctags
-silversearcher-ag
+autoconf
 ccache
+exuberant-ctags
+python-optcomplete
+silversearcher-ag
 stow
