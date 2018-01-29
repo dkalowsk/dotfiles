@@ -118,3 +118,4 @@ fi
 [ -f "${HOME}/.bashrc-private" ] && source ${HOME}/.bashrc-private
 
 [ -f ${HOME}/.fzf.bash ] && source ${HOME}/.fzf.bash
+[ -f ${HOME}/.git-completion.bash ] && source ${HOME}/.git-completion.bash
