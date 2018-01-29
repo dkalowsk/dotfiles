@@ -235,6 +235,7 @@ doLinuxConfig() {
         cp dircolors-solarized/dircolors.256dark ~/.dircolors
         rm -Rf dircolors-solarized
     fi
+
 }
 
 
@@ -249,6 +250,10 @@ doConfig() {
     elif [ ${PLATFORM} == "Linux" ]; then
         echo "Configuring Linux"
         doLinuxConfig
+    fi
+
+    if [ ! -f ${HOME}/.git-completion.bash ]; then
+        curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ${HOME}/.git-completion.bash
     fi
 }
 
