@@ -104,7 +104,7 @@ if [[ $(uname -r) =~ Microsoft$ ]]; then
 fi
 
 # private customizations
-if [ -L "${HOME}/.bashrc-private" ]; then
+if [ -f "${HOME}/.bashrc-private" ]; then
  . ${HOME}/.bashrc-private
 fi
 
