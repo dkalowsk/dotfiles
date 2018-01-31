@@ -14,6 +14,28 @@ info () {
     printf "\033[00;34m$@\033[0m\n"
 }
 
+
+doStow() {
+    if hash stow 2>/dev/null; then
+        stow ${1}
+    else
+        #
+        # This is bash on windows, and there is no stow, so let's fake it... grrr...
+        #
+        if [ -d "${1}" ]; then
+            shopt -s dotglob
+            for F in ${1}/*; do
+                if [ ! -f ${F} ]; then
+                    ln -s ${F} ${HOME}/${F##*/}
+                else
+                    info "File already exists ${F}"
+                fi
+            done
+            shopt -u dotglob
+        fi
+    fi
+}
+
 doUpdate() {
     info "Updating... "
     #
@@ -56,20 +78,10 @@ _installStow() {
 }
 
 doSync() {
-    if ! type -P "stow"; then
-        if _installStow; then
-            info "Installed stow"
-        else
-            info "This process needs the 'stow' command to work.  Install it first."
-            info "On macOS this is done through brew, on linux through apt-get or dnf"
-            exit 1
-        fi
-    fi
-
     for D in `find . -name "[!.]*" ! -path . -type d -maxdepth 1`; do
         mydir=${D##*/}
         info "Syncing ${mydir}"
-        stow ${mydir}
+        doStow ${mydir}
     done
 }
 
