@@ -78,7 +78,11 @@ _installStow() {
 }
 
 doSync() {
-    for D in `find . -name "[!.]*" ! -path . -type d -maxdepth 1`; do
+    for D in *; do
+        if [ ! -d "${D}" ]; then
+            continue
+        fi
+
         mydir=${D##*/}
         info "Syncing ${mydir}"
         doStow ${mydir}
