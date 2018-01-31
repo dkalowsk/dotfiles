@@ -123,9 +123,9 @@ doInstall() {
 doFonts() {
     info "Installing Fonts"
 
-    if [ "$(uname)" == "Darwin" ]; then
+    if [ ${PLATFORM} == "Darwin" ]; then
 		fonts_dir=~/Library/Fonts
-    elif [ "$(uname)" == "Linux" ]; then
+    elif [ ${PLATFORM} == "Linux" ]; then
        fonts_dir=~/.local/share/fonts
        mkdir -p "${fonts_dir}"
     fi
