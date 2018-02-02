@@ -733,9 +733,9 @@ if isdirectory(expand("~/.vim/bundle/fzf.vim/"))
 	set rtp+=/usr/local/opt/fzf
 	set rtp+=~/.fzf
 	nmap ; :Buffers<CR>
-	nmap <Leader>r :Tags<CR>
-	nmap <Leader>t :Files<CR>
-	nmap <Leader>a :Ag<CR>
+	nmap <Leader>fr :Tags<CR>
+	nmap <Leader>ft :Files<CR>
+	nmap <Leader>fa :Ag<CR>
 	nmap <C-p> :Files<CR>
 
 	" Have fzf colors match color scheme
