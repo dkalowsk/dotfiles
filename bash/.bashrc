@@ -6,13 +6,6 @@
 [ -d "/opt/usr/bin" ] && export PATH="/opt/usr/bin:${PATH}"
 
 #
-# Setup the QT home directory
-#
-[ -d "/usr/local/opt/qt" ] && export QT_HOME="/usr/local/opt/qt"
-[ -d "${HOME}/Qt/5.10" ] && export QT_HOME="${HOME}/Qt/5.10"
-
-
-#
 # Simple prompt: show user, host, path
 # set the terminal line
 #
