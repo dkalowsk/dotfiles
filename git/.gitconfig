@@ -114,3 +114,5 @@
 	changeHunkIndicators = true
 [tig "bind"]
 	generic = D !git difftool --tool=vimdiff --no-prompt --trust-exit-code %(commit)^!
+[push]
+	default = matching
