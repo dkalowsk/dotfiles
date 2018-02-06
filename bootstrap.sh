@@ -206,6 +206,23 @@ doMacOSConfig() {
 
     # this may or may not work
     xcode-select --install > /dev/null 2>&1
+
+    #
+    # disable the annoying "Try the new Safari" pop-up.  Requires re-logging in
+    # to take effect
+    #
+    defaults write com.apple.coreservices.uiagent CSUIHasSafariBeenLaunched -bool YES
+    defaults write com.apple.coreservices.uiagent CSUIRecommendSafariNextNotificationDate -date 2050-01-01T00:00:00Z
+    defaults write com.apple.coreservices.uiagent CSUILastOSVersionWhereSafariRecommendationWasMade -float 10.99
+
+    #
+    # disable Safari from trying to become the default browser.  Requires
+    # re-logging in to take effect.
+    #
+    defaults write com.apple.Safari DefaultBrowserDateOfLastPrompt -date '2050-01-01T00:00:00Z'
+    defaults write com.apple.Safari DefaultBrowserPromptingState -int 2
+
+    info "For full changes to take effect, log out and re-login (or reboot your choice)."
 }
 
 doLinuxConfig() {
