@@ -47,6 +47,10 @@
 	current-branch = symbolic_ref --short HEAD
 	# cherry-pick a commit and apply sign off
 	sign = cherry-pick --signoff
+	# edit all the unmerged/conflict files
+	edit-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; vim `f`"
+	# now just add the unmerged/conflict files
+	add-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`"
 	# use the short status
 	sstatus = status -sb
 	master = pull origin master
