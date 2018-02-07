@@ -26,7 +26,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an >> %cn>%Creset' --abbrev-commit
 	graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
 	# list the top commiters to a repo
-	names = shortlog -n -s
+	names = shortlog -nse --no-merges
 	# assume the file is unchanged to stop changes being seen by git
 	hide = update-index --assume-unchanged
 	# stop assuming the file is unchanged
