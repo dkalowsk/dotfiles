@@ -11,7 +11,7 @@
 	pager = diff-so-fancy | less -RFX
 [fetch]
 	# always prune when fetching (and pulling)
-	prune = 1
+	prune = true
 [rerere]
 	enabled = true
 [alias]
