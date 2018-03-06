@@ -167,6 +167,7 @@ doPipInstall() {
     ${pip_version} install meson --user
     ${pip_version} install parso --user
     ${pip_version} install voltron --user
+    ${pip_version} install powerline-status --user
 }
 
 doPython2() {
