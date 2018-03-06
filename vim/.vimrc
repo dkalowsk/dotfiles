@@ -31,6 +31,7 @@ call plug#end()
 
 "leader is a comma, because / is too hard to hit constantly
 let mapleader=","
+set encoding=utf-8
 
 " {{{ vim UI settings
 set number
