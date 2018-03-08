@@ -276,6 +276,12 @@ doLinuxConfig() {
 doConfig() {
     info "Configuring"
 
+    local update=
+
+    if [ "$#" -eq 1 ]; then
+        update=true
+    fi
+
     mkdir -p ~/bin
 
     if [ ${PLATFORM} == "Darwin" ]; then
@@ -286,12 +292,24 @@ doConfig() {
         doLinuxConfig
     fi
 
-    if [ ! -f ${HOME}/.git-prompt.sh ]; then
+    if [ ! -f ${HOME}/.git-prompt.sh || ${update} == true ]; then
         curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ${HOME}/.git-prompt.sh
     fi
 
-    if [ ! -f ${HOME}/.git-completion.bash ]; then
+    if [ ! -f ${HOME}/.git-completion.bash || ${update} == true ]; then
         curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ${HOME}/.git-completion.bash
+    fi
+
+    if [ ! -d ${HOME}/git-quick-stats ]; then
+        git clone https://github.com/arzzen/git-quick-stats.git
+    fi
+    if [ -d git-quick-stats ]; then
+        cd git-quick-stats
+        #
+        # The makefile is broken and appends bin to any PREFIX, so don't add in the full path
+        #
+        make install PREFIX=${HOME}
+        cd ..
     fi
 }
 
@@ -312,10 +330,12 @@ doHelp() {
     echo "   -b, --brew             Install and update Homebrew"
     echo "   -f, --fonts            Copies font files"
     echo "   -c, --config           Configures your system"
+    echo "   -u, --update           Updates the configured files for your system"
     echo "   -a, --all              Does all of the above"
     echo
     exit 1
 }
+
 if [ $# -eq 0 ]; then
     doHelp
 else
@@ -340,6 +360,10 @@ else
                 ;;
             -c|--config)
                 doConfig
+                shift
+                ;;
+            -c|--config)
+                doConfig "update"
                 shift
                 ;;
             -a|--all)

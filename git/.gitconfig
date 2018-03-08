@@ -55,6 +55,7 @@
 	# use the short status
 	sstatus = status -sb
 	master = pull origin master
+	quick-stats = ! /Users/dkalowsky/bin/git-quick-stats
 [diff]
 	tool = araxis
 	# Use the slower but better patience diff algorithm
