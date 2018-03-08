@@ -286,6 +286,10 @@ doConfig() {
         doLinuxConfig
     fi
 
+    if [ ! -f ${HOME}/.git-prompt.sh ]; then
+        curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ${HOME}/.git-prompt.sh
+    fi
+
     if [ ! -f ${HOME}/.git-completion.bash ]; then
         curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ${HOME}/.git-completion.bash
     fi
