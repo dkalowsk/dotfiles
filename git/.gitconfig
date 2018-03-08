@@ -13,7 +13,7 @@
 	# always prune when fetching (and pulling)
 	prune = true
 [rerere]
-	enabled = true
+	enabled = false
 [alias]
 	# show short one line commit info with both author and commiter names
 	ls = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an >> %cn>%Creset' --abbrev-commit
