@@ -9,6 +9,7 @@
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	trustctime = false
 	pager = diff-so-fancy | less -RFX
+	exludesFile = /Users/dkalowsky/.gitignore
 [fetch]
 	# always prune when fetching (and pulling)
 	prune = true
