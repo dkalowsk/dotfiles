@@ -20,7 +20,7 @@
 	# show commits with list of files per each commit
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --numstat
 	f = "!git ls-files | grep -i"
-	grep = grep -Ii
+	grep = grep -Iin
 	gr = grep -Ii
 	# show the commit history with a graph of merge timelines
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an >> %cn>%Creset' --abbrev-commit
@@ -121,3 +121,5 @@
 	generic = D !git difftool --tool=vimdiff --no-prompt --trust-exit-code %(commit)^!
 [push]
 	default = matching
+[grep]
+	lineNumber = true
