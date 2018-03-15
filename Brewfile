@@ -99,7 +99,7 @@ brew 'the_silver_searcher'
 brew 'tig'
 brew 'tmux'
 brew 'tmuxinator-completion'
-brew 'vim', args: ['with-lua', 'with-python3', 'with-override-system-vi']
+brew 'vim', args: ['with-lua', 'with-python3', 'with-client-server', 'with-override-system-vi']
 brew 'xmlto'
 brew 'zlib'
 #brew 'facebook/fb/buck', args: ['HEAD']
