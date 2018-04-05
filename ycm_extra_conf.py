@@ -10,14 +10,19 @@ def FlagsForFile(filename, **kwargs):
     '-isystem',
     '/usr/include',
     '-isystem',
-    '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
-    '-isystem',
-    '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include',
-    '-isystem',
     '/usr/local/include',
     '-isystem',
-    '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1',
   ]
+
+  if platform == "darwin":
+    flags.extend([
+    '-isystem',
+    '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
+    '-isystem',
+    '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1',
+    '-isystem',
+    '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include',
+    ])
 
   data = kwargs['client_data']
   filetype = data['&filetype']
