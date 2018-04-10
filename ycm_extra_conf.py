@@ -1,3 +1,5 @@
+import platform
+
 def FlagsForFile(filename, **kwargs):
 
   flags = [
@@ -11,18 +13,17 @@ def FlagsForFile(filename, **kwargs):
     '/usr/include',
     '-isystem',
     '/usr/local/include',
-    '-isystem',
   ]
 
-  if platform == "darwin":
-    flags.extend([
+  if platform.system() == "Darwin":
+    flags += [
     '-isystem',
     '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
     '-isystem',
     '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1',
     '-isystem',
     '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include',
-    ])
+    ]
 
   data = kwargs['client_data']
   filetype = data['&filetype']
@@ -30,8 +31,10 @@ def FlagsForFile(filename, **kwargs):
   if filetype == 'c':
     flags += ['-xc']
   elif filetype == 'cpp':
-    flags += ['-xc++']
-    flags += ['-std=c++14']
+    flags += [
+        '-xc++',
+        '-std=c++14',
+    ]
   elif filetype == 'objc':
     flags += ['-ObjC']
   else:
