@@ -4,7 +4,7 @@
 "
 set nocompatible  " None of this works with old original vi, only VIM
 
-" {{{ vim-plug setup
+" vim-plug setup {{{
 let plugin_install_needed=0
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -33,7 +33,7 @@ call plug#end()
 let mapleader=","
 set encoding=utf-8
 
-" {{{ vim UI settings
+" vim UI settings {{{
 set number
 "set norelativenumber
 "set relativenumber
@@ -134,7 +134,7 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " }}}
 
-" {{{  FileType overrides
+"  FileType overrides {{{
 " ============================================================================
 
 " filetype_cpp {{{
@@ -507,7 +507,7 @@ if exists('g:plugs["vim-indent-guides"]')
 endif
 " }}}
 
-" {{{ cpp-enhanced-highlight
+" cpp-enhanced-highlight {{{
 if exists('g:plugs["vim-cpp-enhanced-highlight"]')
 	let g:cpp_class_scope_highlight=0
 	let g:cpp_member_variable_highlight=0
@@ -517,7 +517,7 @@ if exists('g:plugs["vim-cpp-enhanced-highlight"]')
 endif
 "}}}
 
-" {{{ YouCompleteMe
+" YouCompleteMe {{{
 "-------------------------------------------
 " Use exuberant ctags to help speed up options
 if exists('g:plugs["youcompleteme"]')
@@ -692,7 +692,7 @@ if exists('g:plug["vim-mucomplete"]')
 endif
 " }}}
 
-" {{{ emmet
+" emmet {{{
 if exists('g:plugs["emmet-vim"]')
 	" Use emmet just for html/css
 	let g:user_emmet_install_global = 0
@@ -701,7 +701,7 @@ endif
 
 "}}}
 
-" {{{ tig support
+"  tig support {{{
 if executable('tig')
 	nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
 	nnoremap <leader>to :silent !tig<CR>:silent redraw!<CR>
@@ -711,7 +711,7 @@ if executable('tig')
 endif
 " }}}
 
-" {{{ ale
+" ale {{{
 if exists('g:plugs["ale"]')
 	let g:airline#extensions#ale#enabled = 1
 	nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -729,7 +729,7 @@ endif
 
 "}}}
 
-" {{{ fzf
+" fzf {{{
 if exists('g:plugs["fzf.vim"]')
 	set rtp+=/usr/local/opt/fzf
 	set rtp+=~/.fzf
@@ -760,7 +760,7 @@ endif
 
 "}}}
 
-" {{{ vim-workspace support
+"  vim-workspace support {{{
 if exists('g:plugs["vim-workspace"]')
 	noremap <Tab> :WSNext<CR>
 	noremap <S-Tab> :WSPrev<CR>
