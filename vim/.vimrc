@@ -64,7 +64,7 @@ set statusline+=\ [%{getcwd()}]          " Current dir
 set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 " }}}
 
-" code folding {{{ 
+" code folding {{{
 "
 set foldenable        " enable the folding option
 set foldlevelstart=10 " open most folds by default
@@ -73,7 +73,7 @@ nnoremap <space> za   " use space to open/close a fold
 set foldmethod=indent " try using the indent method
 " }}}
 
-" {{{ search 
+" {{{ search
 "
 set showmatch   " highlight matching [{()}]
 set incsearch   " search as characters are entered
@@ -287,7 +287,7 @@ vmap <C-D>   <Plug>SchleppDupLeft
 "}}}
 
 " clang-complete {{{
-if filereadable(expand("~/.vim/bundle/clang_complete/README.md"))
+if exists('g:plugs["clang_complete"]')
   " disable clang complete, we're using YCM
   let g:clang_complete_loaded=0
   if has('mac')
@@ -310,7 +310,7 @@ endif
 syntax enable
 set t_Co=256
 set background=dark
-if isdirectory(expand("~/.vim/bundle/vim-colors-solarized/"))
+if exists('g:plugs["vim-colors-solarized"]')
 	let g:solarized_termcolors=256
 	let g:solarized_style="dark"
 	let g:solarized_termtrans=1
@@ -325,7 +325,7 @@ endif
 
 " Session List {{{
 set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-if isdirectory(expand("~/.vim/bundle/sessionman.vim/"))
+if exists('g:plugs["sessionman"]')
 	nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
         nmap <leader>sc :SessionClose<CR>
@@ -334,16 +334,15 @@ endif
 
 " vim-airline {{{
 "-----------------------------------------------------------
-if filereadable(expand("~/.vim/bundle/vim-airline/README.md"))
+if exists('g:plugs["vim-airline"]')
 
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline_detect_modified=1
 
-if isdirectory(expand("~/.vim/bundle/vim-airline-themes/"))
-	let g:airline_theme = 'luna'
-endif
-	if !exists('g:airline_theme')
-	  let g:airline_theme='solarized'
+	if exists('g:plugs["vim-airline-themes"]')
+		let g:airline_theme = 'luna'
+	else
+		let g:airline_theme='solarized'
 	endif
 
 	let g:airline_powerline_fonts = 1
@@ -361,7 +360,7 @@ endif
 
 " tagbar {{{
 "-----------------------------------------------------------
-if isdirectory(expand("~/.vim/bundle/tagbar/"))
+if exists('g:plugs["tagbar"]')
 	nnoremap <silent> <leader>tt :TagbarToggle<CR>
 	let g_tagbar_foldlevel = 2
 endif
@@ -370,7 +369,7 @@ endif
 
 " ctrl-p {{{
 "-----------------------------------------------------------
-if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
+if exists('g:plugs["ctrlp"]')
 	let g:ctrlp_map = '<c-p>'
 	let g:ctrlp_cmd = 'CtrlP'
 	let g:ctrlp_match_window = 'bottom,order:ttb'
@@ -415,7 +414,7 @@ let g:indent_guides_auto_colors = 1
 
 " syntastic {{{
 "-----------------------------------------------------------
-if exists(":SyntasticCheck")
+if exists('g:plugs["syntastic"]')
 	set statusline+=%#warningmsg#
 	set statusline+=%{SyntasticStatuslineFlag()}
 	set statusline+=%*
@@ -431,35 +430,36 @@ endif
 
 " NERDtree {{{
 "-----------------------------------------------------------
-map <F2> :NERDTreeToggle<CR>  " set F2 to be the key to open NERDTree
-" Configure to open NERDTree if no file is given
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+if exists('g:plugs["nerdtree"]')
+	map <F2> :NERDTreeToggle<CR>  " set F2 to be the key to open NERDTree
+	" Configure to open NERDTree if no file is given
+	"autocmd StdinReadPre * let s:std_in=1
+	"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+	"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-let g:nerdtree_tabs_open_on_console_startup = 0
-let g:nerdtree_tabs_open_on_gui_startup=0
-let g:nerdtree_tabs_meaningful_tab_names = 1
-let g_nerdtree_tabs_autoclose = 1
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-
+	let g:nerdtree_tabs_open_on_console_startup = 0
+	let g:nerdtree_tabs_open_on_gui_startup=0
+	let g:nerdtree_tabs_meaningful_tab_names = 1
+	let g_nerdtree_tabs_autoclose = 1
+	let g:NERDTreeIndicatorMapCustom = {
+	    \ "Modified"  : "✹",
+	    \ "Staged"    : "✚",
+	    \ "Untracked" : "✭",
+	    \ "Renamed"   : "➜",
+	    \ "Unmerged"  : "═",
+	    \ "Deleted"   : "✖",
+	    \ "Dirty"     : "✗",
+	    \ "Clean"     : "✔︎",
+	    \ "Unknown"   : "?"
+	    \ }
+	let NERDTreeShowBookmarks=1
+	let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+	let NERDTreeChDirMode=0
+	let NERDTreeQuitOnOpen=1
+	let NERDTreeMouseMode=2
+	let NERDTreeShowHidden=1
+	let NERDTreeKeepTreeInNewTab=1
+endif
 " }}}
 
 " gundo {{{
@@ -477,7 +477,7 @@ if gitroot != ''
 	let &tags = &tags . ',' . gitroot . '/.git/tags'
 endif
 
-if filereadable(expand("~/.vim/bundle/vim-gutentags/README.md"))
+if exists('g:plugs["vim-gutentags"]')
 	let g:gutentags_enabled=1
 	let g:gutentags_generate_on_new=1
 	let g:gutentags_generate_on_missing=1
@@ -500,7 +500,7 @@ endif
 " }}}
 
 " indent_guides {{{
-if filereadable(expand("~/.vim/bundle/vim-indent-guides/README.markdown"))
+if exists('g:plugs["vim-indent-guides"]')
 	let g:indent_guides_start_level=2
 	let g:indent_guides_guide_size=1
 	let g:indent_guides_enable_on_vim_startup=1
@@ -508,7 +508,7 @@ endif
 " }}}
 
 " {{{ cpp-enhanced-highlight
-if filereadable(exists("~/.vim/bundle/vim-cpp-enhanced-highlight/README.md"))
+if exists('g:plugs["vim-cpp-enhanced-highlight"]')
 	let g:cpp_class_scope_highlight=0
 	let g:cpp_member_variable_highlight=0
 	let g:cpp_experimental_simple_template_highlight=0
@@ -520,7 +520,7 @@ endif
 " {{{ YouCompleteMe
 "-------------------------------------------
 " Use exuberant ctags to help speed up options
-if filereadable(exists("~/.vim/bundle/youcompleteme/README.md"))
+if exists('g:plugs["youcompleteme"]')
 	" ACP and YCM don't play nice
 	let g:acp_enableAtStartup = 0
 	let g:ycm_collect_identifiers_from_tags_files = 1
@@ -569,7 +569,7 @@ endif
 " }}}
 
 " rainbow parens {{{
-if filereadable(expand("~/.vim/bundle/rainbow/README.md"))
+if exists('g:plugs["rainbow"]')
 	let g:rainbow_active = 1
 	let g:rainbow_conf = {
 	\   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -601,7 +601,7 @@ endif
 " }}}
 
 " ack {{{
-if isdirectory(expand("~/.vim/bundle/ack.vim"))
+if exists('g:plugs["ack.vim"]')
 	if executable('ag')
 	  let g:ackprg = 'ag --vimgrep'
 	endif
@@ -657,7 +657,7 @@ endif
 " }}}
 
 " asyncrun {{{
-if filereadable(expand("~/.vim/bundle/asyncrun.vim/README.md"))
+if exists('g:plugs["asyncrun"]')
 	if exists(':Ack')
 	  let g:ack_use_asyncrun = 0
 	endif
@@ -665,7 +665,7 @@ endif
 " }}}
 
 " UndoTree {{{
-if isdirectory(expand("~/.vim/bundle/undotree/"))
+if exists('g:plugs["undotree"]')
       nnoremap <Leader>u :UndotreeToggle<CR>
       " If undotree is opened, it is likely one wants to interact with it.
       let g:undotree_SetFocusWhenToggle=1
@@ -673,7 +673,7 @@ endif
 " }}}
 
 " quickmenu {{{
-if isdirectory(expand("~/.vim/bundle/quickmenu/"))
+if exists('g:plugs["quickmenu"]')
   " choose a favorite key to show/hide quickmenu
   noremap <silent><F12> :call quickmenu#toggle(0)<cr>
 
@@ -683,7 +683,7 @@ endif
 " }}}
 
 " vim-mucomplete {{{
-if isdirectory(expand("~/.vim/bundle/vim-mucomplete"))
+if exists('g:plug["vim-mucomplete"]')
 	" For automatic completion, you most likely want this:
 	set noshowmode shortmess+=c
 
@@ -693,7 +693,7 @@ endif
 " }}}
 
 " {{{ emmet
-if isdirectory(expand("~/.vim/bundle/emmet-vim/"))
+if exists('g:plugs["emmet-vim"]')
 	" Use emmet just for html/css
 	let g:user_emmet_install_global = 0
 	autocmd FileType html,css EmmetInstall
@@ -712,7 +712,7 @@ endif
 " }}}
 
 " {{{ ale
-if isdirectory(expand("~/.vim/bundle/ale/"))
+if exists('g:plugs["ale"]')
 	let g:airline#extensions#ale#enabled = 1
 	nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 	nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -730,7 +730,7 @@ endif
 "}}}
 
 " {{{ fzf
-if isdirectory(expand("~/.vim/bundle/fzf.vim/"))
+if exists('g:plugs["fzf.vim"]')
 	set rtp+=/usr/local/opt/fzf
 	set rtp+=~/.fzf
 	nmap ; :Buffers<CR>
@@ -761,7 +761,7 @@ endif
 "}}}
 
 " {{{ vim-workspace support
-if isdirectory(expand("~/.vim/bundle/vim-workspace/"))
+if exists('g:plugs["vim-workspace"]')
 	noremap <Tab> :WSNext<CR>
 	noremap <S-Tab> :WSPrev<CR>
 	noremap <Leader><Tab> :WSClose<CR>
