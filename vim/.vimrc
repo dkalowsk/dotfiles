@@ -731,8 +731,6 @@ endif
 
 " fzf {{{
 if exists('g:plugs["fzf.vim"]')
-	set rtp+=/usr/local/opt/fzf
-	set rtp+=~/.fzf
 	nmap ; :Buffers<CR>
 	nmap <Leader>fr :Tags<CR>
 	nmap <Leader>ft :Files<CR>
