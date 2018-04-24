@@ -250,12 +250,6 @@ doLinuxConfig() {
         fi
     fi
 
-    if [ ! -d "${HOME}/.fzf" ]; then
-        info "Installing fzf"
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-        ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
-    fi
-
     if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
         info "Installing diff-so-fancy"
         curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
@@ -290,6 +284,12 @@ doConfig() {
     elif [ ${PLATFORM} == "Linux" ]; then
         echo "Configuring Linux"
         doLinuxConfig
+    fi
+
+    if [ ! -d "${HOME}/.fzf" ]; then
+        info "Installing fzf"
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
     fi
 
     if [ ! -f ${HOME}/.git-prompt.sh || ${update} == true ]; then
