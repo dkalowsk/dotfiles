@@ -574,11 +574,15 @@ if exists('g:plugs["youcompleteme"]')
 
 	let g:ycm_server_use_vim_stdout = 0
 	let g:ycm_server_log_level = 'info'
+	" apparently the server is being built with python2, and thus needs to
+	" be set to a python2 install.  On my mac, I have an explicit python3,
+	" but by default python is python2.
+	let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 	"let g:ycm_filetype_whitelist = {'cpp': 1}
 	let g:ycm_filetype_whitelist = {'*': 1}
 	let g:ycm_confirm_extra_conf = 0
-	let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"	let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 	let g:ycm_extra_conf_globlist = []
 
 	let g:ycm_key_invoke_completion = '<C-Space>'
