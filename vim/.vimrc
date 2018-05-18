@@ -769,7 +769,7 @@ if exists('g:plugs["fzf.vim"]')
 	nmap <Leader>fr :Tags<CR>
 	nmap <Leader>ft :Files<CR>
 	nmap <Leader>fa :Ag<CR>
-	nmap <C-p> :Files<CR>
+	nnoremap <C-p> :Files<CR>
 
 	" Have fzf colors match color scheme
 	let g:fzf_colors =
