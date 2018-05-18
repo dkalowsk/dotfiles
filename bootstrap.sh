@@ -300,6 +300,10 @@ doConfig() {
         curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ${HOME}/.git-completion.bash
     fi
 
+    if [ ! -f ${HOME}/.tigrc.vim || ${update} == true ]; then
+        curl -L https://raw.githubusercontent.com/jonas/tig/master/contrib/vim.tigrc -o ${HOME}/.tigrc.vim
+    fi
+
     if [ ! -d ${HOME}/git-quick-stats ]; then
         git clone https://github.com/arzzen/git-quick-stats.git
     fi

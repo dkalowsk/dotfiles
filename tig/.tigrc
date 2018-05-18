@@ -76,3 +76,5 @@ set line-graphics		= default	# Enum: ascii, default, utf-8
 set truncation-delimiter	= ~		# Character drawn for truncations, or "utf-8"
 
 bind status	C	!git commit --signoff
+
+source ~/.tigrc.vim
