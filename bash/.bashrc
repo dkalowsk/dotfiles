@@ -90,17 +90,17 @@ if [[ $(uname -r) =~ Microsoft$ ]]; then
     export DISPLAY=localhost:0.0
 fi
 
-vim () {
-    # stolen shamelessly from Spencer Krum
-    # https://github.com/nibalizer/bash-tricks/blob/master/bash_tricks.sh
-    last_command=$(history | tail -n 2 | head -n 1)
-    if [[ $last_command =~ 'git grep' ]] && [[ "$*" =~ :[0-9]+:$ ]]; then
-        line_number=$(echo $* | awk -F: '{print $(NF-1)}')
-        /usr/bin/vim +${line_number} ${*%:${line_number}:}
-    else
-        /usr/bin/vim "$@"
-    fi
-}
+#vim () {
+    ## stolen shamelessly from Spencer Krum
+    ## https://github.com/nibalizer/bash-tricks/blob/master/bash_tricks.sh
+    #last_command=$(history | tail -n 2 | head -n 1)
+    #if [[ $last_command =~ 'git grep' ]] && [[ "$*" =~ :[0-9]+:$ ]]; then
+        #line_number=$(echo $* | awk -F: '{print $(NF-1)}')
+        #${EDITOR} +${line_number} ${*%:${line_number}:}
+    #else
+        #${EDITOR} "$@"
+    #fi
+#}
 
 # private customizations
 [ -f "${HOME}/.bashrc-private" ] && source ${HOME}/.bashrc-private
