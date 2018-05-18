@@ -367,7 +367,7 @@ if exists('g:plugs["lightline"]')
 	" Exploring this as a possible replacement for airline so I don't need
 	" hacked up fonts
 	let g:lightline = {
-	\ 'colorscheme': 'wombat',
+	\ 'colorscheme': 'jellybeans',
 	\ 'active': {
 	\   'left': [['mode', 'paste'], ['filename', 'modified']],
 	\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
