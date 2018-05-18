@@ -67,6 +67,8 @@
 	mnemonicprefix = true
 	# use the experimental heuristics
 	indentHeuristic = on
+	# enable the new color moved to show moved code in a different shade
+	colorMoved = zebra
 [merge]
 	tool = araxis
 [mergetool]
