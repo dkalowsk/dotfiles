@@ -186,12 +186,14 @@ augroup END
 
 " {{{ filetype_python 
 augroup filetype_python
-  au FileType python setlocal autoindent
-  au FileType python setlocal smartindent
-  au FileType python setlocal textwidth=79 " Keep things PEP-8 friendly
+  autocmd!
+  autocmd FileType python setlocal autoindent
+  autocmd FileType python setlocal smartindent
+  autocmd FileType python setlocal textwidth=79 " Keep things PEP-8 friendly
   autocmd FileType python setlocal shiftwidth=4
   autocmd FileType python setlocal tabstop=4
   autocmd FileType python setlocal softtabstop=4
+augroup END
 " }}}
 
 " {{{ filetype_gitcommit
