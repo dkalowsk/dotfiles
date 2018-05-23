@@ -162,9 +162,18 @@ augroup END
 
 " filetype_vim {{{
 augroup filetype_vim
+  autocmd!
   autocmd FileType vim let g:ycm_largefile=1  "disable autocompletion on text files
   autocmd FileType vim let g:acp_enableAtStartup = 0
   autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
+  autocmd FileType vim setlocal expandtab
+  autocmd FileType vim setlocal tabstop=2
+  autocmd FileType vim setlocal shiftwidth=2
+  autocmd FileType vim setlocal softtabstop=2
+  autocmd FileType vim setlocal number
+  autocmd FileType vim setlocal ruler
+  " Enable code folding for vimscript files
+  autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
 
