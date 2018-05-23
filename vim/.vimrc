@@ -383,6 +383,19 @@ if exists('g:plugs["lightline"]')
 	\   'linter_errors': 'error'
 	\ },
 	\ }
+
+	let g:lightline.tabline = {
+	\    'left': [ ['tabs'] ],
+	\    'right': [ ['close'] ]
+	\ }
+
+	let g:lightline.enable = {
+	\ 'statusline': 1,
+	\ 'tabline': 1
+	\ }
+
+	set showtabline=2 " show tabline
+	set guioptions-=e " don't use GUI tabline
 endif
 " }}}
 
