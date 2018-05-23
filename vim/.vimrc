@@ -179,6 +179,7 @@ augroup END
 
 " {{{ filetype_crontab
 augroup filetype_crontab
+  autocmd!
   " Avoid doing all of this for the crontab!
   autocmd FileType crontab setlocal nowritebackup
 augroup END
