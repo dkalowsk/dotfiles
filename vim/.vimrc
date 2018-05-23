@@ -433,7 +433,7 @@ if exists('g:plugs["ctrlp"]')
 		let g:ctrlp_use_caching = 0
 	endif
 
-	if filereadable(expand("~/.vim/bundle/vim-airline/README.md"))
+	if exists('g:plugs["vim-airline"]')
 		let g:airline#extensions#ctrlp#color_template = 'insert'
 		"let g:airline#extensions#ctrlp#color_template = 'normal'
 		"let g:airline#extensions#ctrlp#color_template = 'visual'
@@ -760,7 +760,9 @@ endif
 
 " ale {{{
 if exists('g:plugs["ale"]')
-	let g:airline#extensions#ale#enabled = 1
+	if exists('g:plugs["vim-airline"]')
+		let g:airline#extensions#ale#enabled = 1
+	endif
 	nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 	nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
