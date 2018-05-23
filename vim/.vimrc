@@ -451,17 +451,6 @@ if exists('g:plugs["ctrlp"]')
 endif
 " }}}
 
-" indent guides {{{
-"-----------------------------------------------------------
-let g:indent_guides_auto_colors = 1
-"if 
-"hi IndentGuidesOdd   ctermbg=black
-"hi IndentGuidesEven  ctermbg=darkgrey
-" When using background=light use these settings:
-"hi IndentGuidesOdd   ctermbg=white
-"hi IndentGuidesEvent ctermbg=lightgrey
-" }}}
-
 " syntastic {{{
 "-----------------------------------------------------------
 if exists('g:plugs["syntastic"]')
@@ -551,9 +540,15 @@ endif
 
 " indent_guides {{{
 if exists('g:plugs["vim-indent-guides"]')
+	let g:indent_guides_auto_colors = 1
 	let g:indent_guides_start_level=2
 	let g:indent_guides_guide_size=1
 	let g:indent_guides_enable_on_vim_startup=1
+"hi IndentGuidesOdd   ctermbg=black
+"hi IndentGuidesEven  ctermbg=darkgrey
+" When using background=light use these settings:
+"hi IndentGuidesOdd   ctermbg=white
+"hi IndentGuidesEvent ctermbg=lightgrey
 endif
 " }}}
 
