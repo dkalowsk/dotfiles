@@ -33,6 +33,7 @@ elif [ "Linux" == "$(uname)" ]; then
 fi
 
 alias ffind='find . -name'
+alias telnet=nc
 
 #
 # For git repos, enable a quick return to the root directory
