@@ -79,7 +79,9 @@ fi
 #
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
-export EDITOR='vim'
+export EDITOR='/usr/local/bin/nvim'
+alias vim='/usr/local/bin/nvim'
+
 
 #
 # Only do the following for Windows Subsystem Linux installs
