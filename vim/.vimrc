@@ -820,7 +820,14 @@ if exists('g:plugs["fzf.vim"]')
 	  \ 'spinner': ['fg', 'Label'],
 	  \ 'header':  ['fg', 'Comment']
 	\ }
-endif
+
+	if has('nvim')
+	  aug fzf_setup
+	    au!
+	    au TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
+	  aug END
+	end
+	endif
 
 "}}}
 
