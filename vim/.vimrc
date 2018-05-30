@@ -159,7 +159,10 @@ augroup END
 augroup filetype_text
   autocmd FileType text let g:ycm_largefile=1  "disable autocompletion on text files
   autocmd FileType text let g:acp_enableAtStartup = 0
-  autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
+  " Source of the commented out line: https://stackoverflow.com/a/11068175
+  "autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
+  autocmd WinEnter README,*.txt :DisableAcp
+  autocmd WinLeave README,*.txt :EnableAcp
 augroup END
 " }}}
 
