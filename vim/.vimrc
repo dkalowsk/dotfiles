@@ -389,6 +389,7 @@ if exists('g:plugs["lightline"]')
 	" hacked up fonts
 	let g:lightline = {
 	\ 'colorscheme': 'jellybeans',
+	\ 'subseparator': { 'left': '', 'right': '' },
 	\ 'active': {
 	\   'left': [['mode', 'paste'], ['filename', 'modified']],
 	\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
