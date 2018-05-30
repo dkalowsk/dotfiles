@@ -141,6 +141,9 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 augroup filetype_cpp
   autocmd!
   autocmd VimEnter * highlight clear SignColumn
+  autocmd BufEnter *.cpp setlocal filetype=cpp
+  autocmd BufEnter *.h setlocal filetype=cpp
+  autocmd BufEnter *.hpp setlocal filetype=cpp
 "  autocmd BufWritePre *.cpp, *.h \:call <SID>StripTrailingWhitespaces()
   autocmd FileType cpp setlocal tabstop=2
   autocmd FileType cpp setlocal shiftwidth=2
