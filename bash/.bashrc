@@ -61,9 +61,7 @@ alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
 #
 # Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
 #
-if [ -f ./.stgit-completion.bash ]; then
-    . ~/.stgit-completion.bash
-fi
+[ -f ${HOME}/.stgit-completion.bash ] && source ${HOME}/.stgit-completion.bash
 
 #
 # Add the Android build tool paths
