@@ -61,7 +61,7 @@ alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
 #
 # Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
 #
-if [ -f ./.stgit-completion.bash ]; then
+if [ -f ~/.stgit-completion.bash ]; then
     . ~/.stgit-completion.bash
 fi
 
