@@ -542,7 +542,9 @@ if exists('g:plugs["vim-gutentags"]')
 				\  },
 				\}
 	set statusline+=%{gutentags#statusline()}
-	map <silent> <leader>jd :CtrlPTag<cr><c-\>w
+	if exists('g:plugs["ctrlp"]')
+		map <silent> <leader>jd :CtrlPTag<cr><c-\>w
+	endif
 endif
 
 if executable('ctags')
