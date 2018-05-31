@@ -612,8 +612,11 @@ if exists('g:plugs["youcompleteme"]')
 	" but by default python is python2.
 	let g:ycm_server_python_interpreter = '/usr/bin/python'
 
-	"let g:ycm_filetype_whitelist = {'cpp': 1}
-	let g:ycm_filetype_whitelist = {'*': 1}
+	let g:ycm_filetype_whitelist = {
+	\ 	'c': 1,
+	\ 	'cpp': 1,
+	\	'python': 1,
+	\}
 	let g:ycm_confirm_extra_conf = 0
 "	let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 	let g:ycm_extra_conf_globlist = []
