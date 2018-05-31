@@ -536,6 +536,7 @@ if exists('g:plugs["vim-gutentags"]')
 	let g:gutentags_generate_on_write=1
 	let g:gutentags_background_update=1
 	let g:gutentags_cache_dir = '~/.vimtags'
+	let g:gutentags_ctags_exclude = ["output", ".git", "*.vim/bundle/*"]
 	let g:gutentags_file_list_command = {
 				\'markers': {
 				\  '.git': 'git ls-files',
