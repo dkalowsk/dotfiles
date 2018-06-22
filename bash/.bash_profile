@@ -8,7 +8,4 @@ if [ -f "${completion_prefix}/etc/bash_completion" ]; then
 . "${completion_prefix}/etc/bash_completion"
 fi
 
-
-if [ -f ~/.bashrc  ]; then
-    . ~/.bashrc;
-fi
+[ -f "${HOME}/.bashrc" ] && . ${HOME}/.bashrc
