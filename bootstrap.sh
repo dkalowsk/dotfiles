@@ -276,7 +276,7 @@ doConfig() {
         update=true
     fi
 
-    mkdir -p ~/bin
+    mkdir -p ${HOME}/bin
 
     if [ ${PLATFORM} == "Darwin" ]; then
         echo "Configuring macOS"
@@ -291,21 +291,21 @@ doConfig() {
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
     else
-        if [ ${update} = true ]; then
+        if [[ ${update} == true ]]; then
             cd ${HOME}/.fzf
             git pull --prune
         fi
     fi
 
-    if [ ! -f ${HOME}/.git-prompt.sh || ${update} = true ]; then
+    if [[ ! -f ${HOME}/.git-prompt.sh || ${update} == true ]]; then
         curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ${HOME}/.git-prompt.sh
     fi
 
-    if [ ! -f ${HOME}/.git-completion.bash || ${update} = true ]; then
+    if [[ ! -f ${HOME}/.git-completion.bash || ${update} == true ]]; then
         curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ${HOME}/.git-completion.bash
     fi
 
-    if [ ! -f ${HOME}/.tigrc.vim || ${update} = true ]; then
+    if [[ ! -f ${HOME}/.tigrc.vim || ${update} == true ]]; then
         curl -L https://raw.githubusercontent.com/jonas/tig/master/contrib/vim.tigrc -o ${HOME}/.tigrc.vim
     fi
 
