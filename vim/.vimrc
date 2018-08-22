@@ -166,8 +166,8 @@ augroup filetype_text
   autocmd FileType text let g:acp_enableAtStartup = 0
   " Source of the commented out line: https://stackoverflow.com/a/11068175
   "autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
-  autocmd WinEnter README,*.txt :DisableAcp
-  autocmd WinLeave README,*.txt :EnableAcp
+  "autocmd WinEnter README,*.txt :DisableAcp
+  "autocmd WinLeave README,*.txt :EnableAcp
 augroup END
 " }}}
 
@@ -176,7 +176,6 @@ augroup filetype_vim
   autocmd!
   autocmd FileType vim let g:ycm_largefile=1  "disable autocompletion on text files
   autocmd FileType vim let g:acp_enableAtStartup = 0
-  autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
   autocmd FileType vim setlocal expandtab
   autocmd FileType vim setlocal tabstop=2
   autocmd FileType vim setlocal shiftwidth=2
@@ -346,7 +345,6 @@ if exists('g:plugs["vim-colors-solarized"]')
 else
 	colorscheme slate
 endif
-"color solarized
 " }}}
 
 " Session List {{{
@@ -431,6 +429,39 @@ endif
 if exists('g:plugs["tagbar"]')
 	nnoremap <silent> <leader>tt :TagbarToggle<CR>
 	let g_tagbar_foldlevel = 2
+
+	let g:tagbar_type_cpp = {
+            \ 'ctagstype' : 'c++',
+            \ 'kinds'     : [
+                \ 'd:macros:1:0',
+                \ 'p:prototypes:1:0',
+                \ 'g:enums',
+                \ 'e:enumerators:0:0',
+                \ 't:typedefs:0:0',
+                \ 'n:namespaces',
+                \ 'c:classes',
+                \ 's:structs',
+                \ 'u:unions',
+                \ 'f:functions',
+                \ 'm:members:0:0',
+                \ 'v:variables:0:0'
+            \ ],
+            \ 'sro'        : '::',
+            \ 'kind2scope' : {
+                \ 'g' : 'enum',
+                \ 'n' : 'namespace',
+                \ 'c' : 'class',
+                \ 's' : 'struct',
+                \ 'u' : 'union'
+            \ },
+            \ 'scope2kind' : {
+                \ 'enum'      : 'g',
+                \ 'namespace' : 'n',
+                \ 'class'     : 'c',
+                \ 'struct'    : 's',
+                \ 'union'     : 'u'
+            \ }
+        \ }
 endif
 
 " }}}
@@ -576,8 +607,8 @@ endif
 
 " cpp-enhanced-highlight {{{
 if exists('g:plugs["vim-cpp-enhanced-highlight"]')
-	let g:cpp_class_scope_highlight=0
-	let g:cpp_member_variable_highlight=0
+	let g:cpp_class_scope_highlight=1
+	let g:cpp_member_variable_highlight=1
 	let g:cpp_experimental_simple_template_highlight=0
 	let g:cpp_experimental_template_highlight=0
 	let g:cpp_concepts_highlight=0
@@ -603,7 +634,8 @@ if exists('g:plugs["youcompleteme"]')
 	let g:ycm_complete_in_comments = 0
 
 	let g:ycm_complete_in_strings = 1
-	let g:ycm_collect_identifiers_from_tags_files = 0
+	let g:ycm_collect_identifiers_from_tags_files = 1
+	let g:ycm_seed_identifiers_with_syntax = 1
 	let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 
 	" These are to enable compatibility with syntastic
@@ -792,8 +824,8 @@ if exists('g:plugs["ale"]')
 	if exists('g:plugs["vim-airline"]')
 		let g:airline#extensions#ale#enabled = 1
 	endif
-	nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-	nmap <silent> <C-j> <Plug>(ale_next_wrap)
+	"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+	"nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 	" Only run the linter when saving the file
 	"let g:ale_lint_on_text_changed = 'never'
@@ -833,14 +865,27 @@ if exists('g:plugs["fzf.vim"]')
 	  \ 'header':  ['fg', 'Comment']
 	\ }
 
+	" Default fzf layout
+	" - down / up / left / right
+	let g:fzf_layout = { 'down': '~40%' }
+
 	if has('nvim')
 	  aug fzf_setup
 	    au!
 	    au TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
 	  aug END
+	  " In Neovim, you can set up fzf window using a Vim command
+	  let g:fzf_layout = { 'window': 'enew' }
+	  let g:fzf_layout = { 'window': '-tabnew' }
+	  let g:fzf_layout = { 'window': '10split enew' }
 	end
-	endif
 
+	" Override Colors command. You can safely do this in your .vimrc as fzf.vim
+	" will not override existing commands.
+	command! -bang Colors
+	  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+
+	endif
 "}}}
 
 "  vim-workspace support {{{
