@@ -290,6 +290,11 @@ doConfig() {
         info "Installing fzf"
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
+    else
+        if [ ${update} = true ]; then
+            cd ${HOME}/.fzf
+            git pull --prune
+        fi
     fi
 
     if [ ! -f ${HOME}/.git-prompt.sh || ${update} = true ]; then
