@@ -310,12 +310,13 @@ doConfig() {
     fi
 
     if [ ! -d ${HOME}/git-quick-stats ]; then
-        git clone https://github.com/arzzen/git-quick-stats.git
+        git clone https://github.com/arzzen/git-quick-stats.git ${HOME}/git-quick-stats
     fi
-    if [ -d git-quick-stats ]; then
-        cd git-quick-stats
+    if [ -d ${HOME}/git-quick-stats ]; then
+        cd ${HOME}/git-quick-stats
         #
-        # The makefile is broken and appends bin to any PREFIX, so don't add in the full path
+        # The makefile is broken and appends bin to any PREFIX, so don't add in
+        # the full path
         #
         make install PREFIX=${HOME}
         cd ..
