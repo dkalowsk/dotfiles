@@ -320,6 +320,8 @@ doConfig() {
         #
         make install PREFIX=${HOME}
         cd ..
+    else
+        echo "${HOME}/git-quick-stats exists, but is not a directory, skipping"
     fi
 }
 
