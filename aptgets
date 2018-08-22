@@ -1,6 +1,7 @@
 apt-listdifferences
 autoconf
 ccache
+curl
 exuberant-ctags
 neovim
 python-optcomplete
