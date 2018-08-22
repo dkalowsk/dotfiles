@@ -239,14 +239,14 @@ doLinuxConfig() {
     # use universal ctags if possible instead
     if [ ! -f "${HOME}/bin/ctags" ]; then
         info "Installing universal-ctags"
-        git clone https://github.com/universal-ctags/ctags.git
-        if [ -d ctags ]; then
-            cd ctags
+        git clone https://github.com/universal-ctags/ctags.git universal_ctags
+        if [ -d universal_ctags ]; then
+            cd universal_ctags
             ./autogen.sh
             ./configure --prefix=$HOME
             make && make install
             cd ..
-            rm -Rf ctags
+            rm -Rf universal_ctags
         fi
     fi
 
