@@ -2,6 +2,7 @@ apt-listdifferences
 autoconf
 ccache
 exuberant-ctags
+neovim
 python-optcomplete
 silversearcher-ag
 stow
