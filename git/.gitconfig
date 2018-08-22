@@ -93,6 +93,8 @@
 	autosetupmerge = always
 [mergetool "araxis"]
 	path = /Applications/Araxis Merge.app/Contents/Utilities/compare
+[mergetool "diff3"]
+	path = /usr/bin/diff3
 [pager]
 #	log  = diff-so-fancy | less -RFX
 #	show = diff-so-fancy | less -RFX
