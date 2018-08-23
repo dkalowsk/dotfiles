@@ -8,8 +8,7 @@ HISTFILESIZE=2000
 
 #
 # Add in local path directories
-#
-[ -d "${HOME}/bin" ] && export PATH="${HOME}/bin:${PATH}"
+# [ -d "${HOME}/bin" ] && export PATH="${HOME}/bin:${PATH}"
 [ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
 [ -d "/opt/usr/bin" ] && export PATH="/opt/usr/bin:${PATH}"
 [ -d "/opt/bin" ] && export PATH="/opt/bin:${PATH}"
@@ -18,27 +17,46 @@ HISTFILESIZE=2000
 # Simple prompt: show user, host, path
 # set the terminal line
 #
-export PS1="\\u@\\h \\w\\$ "
-if [ -L "~/.bash_prompt" ]; then
-  [ "$PS1" ] && source ~/.bash_prompt
-  PROMPT_COMMAND="history -a; prompt_function"
-fi
 
+GGREP_FLAGS="-rnw './' -e"
+GREP_FLAGS="--exclude=tags --exclude=TAGS"
+#
+# check if the term supports color
+#
+case "${TERM}" in
+	xterm-color|*-256color) color_support=yes;;
+esac
 #
 # add color ls output
 #
-if [ "Darwin" == "$(uname)" ]; then
-	#export LSCOLORS="GxGxBxDxCxEgEdxbxgxcxd"
-	export LSCOLORS="ExFxBxDxCxegedabagacad"
-	export CLICOLOR=true
-	export CLICOLOR=1
-	alias ls='ls -GFh'
-elif [ "Linux" == "$(uname)" ]; then
-	if [ -x /usr/bin/dircolors ]; then
-	    # use ~/.dircolors if user has specified one
-	    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	    alias ls='ls --color=auto'
+if [ ${color_support} = yes ]; then
+	export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+	if [ -L "~/.bash_prompt" ]; then
+	  [ "$PS1" ] && source ${HOME}/.bash_prompt && prompt_fuction
+	  PROMPT_COMMAND="history -a; prompt_function"
 	fi
+
+	if [ "Darwin" == "$(uname)" ]; then
+		#export LSCOLORS="GxGxBxDxCxEgEdxbxgxcxd"
+		export LSCOLORS="ExFxBxDxCxegedabagacad"
+		export CLICOLOR=true
+		export CLICOLOR=1
+		alias ls='ls -GFh'
+	elif [ "Linux" == "$(uname)" ]; then
+		if [ -x /usr/bin/dircolors ]; then
+		    # use ~/.dircolors if user has specified one
+		    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+		    alias ls='ls --color=auto'
+		fi
+	fi
+	GGREP_FLAGS="--color=auto ${GGREP_FLAGS}"
+	GREP_FLAGS="--color=auto ${GREP_FLAGS}"
+
+	#
+	# Force AG to use consistent colors on all platforms
+	#
+	alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
+
 fi
 
 alias ffind='find . -name'
@@ -53,19 +71,13 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 # Enable grep for color
 # Do not use the GREG_OPTIONS as they are deprecated
 #
-alias ggrep="grep --color=auto -rnw './' -e"
-alias grep="grep --color=auto --exclude=tags --exclude=TAGS"
+alias ggrep="grep ${GGREP_FLAGS}"
+alias grep="grep ${GREP_FLAGS}"
 
 #
 # Enable less to output raw characters
 #
 alias less="less -R"
-
-#
-# Force AG to use consistent colors on all platforms
-#
-alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
-
 
 #
 # Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
