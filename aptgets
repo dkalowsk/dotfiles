@@ -6,5 +6,6 @@ exuberant-ctags
 neovim
 python-optcomplete
 silversearcher-ag
+ssh-askpass
 stow
 tig
