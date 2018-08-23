@@ -14,6 +14,7 @@ tap 'universal-ctags/universal-ctags'
 
 # Install binaries
 brew 'ack'
+brew 'bashdb'
 brew 'docbook'
 brew 'asciidoc'
 brew 'freetype'
