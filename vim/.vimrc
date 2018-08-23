@@ -207,6 +207,20 @@ augroup filetype_python
 augroup END
 " }}}
 
+" filetype_bash {{{
+augroup filetype_bash
+  autocmd!
+  autocmd BufEnter *.sh setlocal filetype=sh
+  autocmd FileType sh setlocal autoindent
+  autocmd FileType sh setlocal smartindent
+  autocmd FileType sh setlocal copyindent
+  autocmd FileType sh setlocal shiftwidth=2
+  autocmd FileType sh setlocal tabstop=2
+  autocmd FileType sh setlocal expandtab
+  autocmd FileType sh setlocal softtabstop=2
+augroup END
+" }}}
+"
 " {{{ filetype_gitcommit
 " Instead of reverting the cursor to the last position in the buffer, we
 " set it to the first line when editing a git commit message
