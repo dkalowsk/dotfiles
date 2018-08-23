@@ -309,17 +309,18 @@ doConfig() {
         curl -L https://raw.githubusercontent.com/jonas/tig/master/contrib/vim.tigrc -o ${HOME}/.tigrc.vim
     fi
 
-    if [ ! -d ${HOME}/git-quick-stats ]; then
+    if [[ ! -f ${HOME}/bin/git-quick-stats  || ${update} == true ]]; then
         git clone https://github.com/arzzen/git-quick-stats.git ${HOME}/git-quick-stats
     fi
     if [ -d ${HOME}/git-quick-stats ]; then
-        cd ${HOME}/git-quick-stats
+        pushd ${HOME}/git-quick-stats > /dev/null
         #
         # The makefile is broken and appends bin to any PREFIX, so don't add in
         # the full path
         #
         make install PREFIX=${HOME}
-        cd ..
+        popd > /dev/null
+        rm -Rf ${HOME}/git-quick-stats
     else
         echo "${HOME}/git-quick-stats exists, but is not a directory, skipping"
     fi
