@@ -270,7 +270,7 @@ doLinuxConfig() {
 doConfig() {
     info "Configuring"
 
-    local update=
+    local update=false
 
     if [ "$#" -eq 1 ]; then
         update=true
