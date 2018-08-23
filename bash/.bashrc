@@ -1,8 +1,17 @@
 #
+# Append to history file, don't over write it
+# And limit the size it can grow to
+#
+shopt -s histappend
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+#
 # Add in local path directories
 #
 [ -d "${HOME}/bin" ] && export PATH="${HOME}/bin:${PATH}"
 [ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
+[ -d "/opt/usr/bin" ] && export PATH="/opt/usr/bin:${PATH}"
 [ -d "/opt/bin" ] && export PATH="/opt/bin:${PATH}"
 [ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${HOME}/Library/Python/3.6/bin:${PATH}"
 #
