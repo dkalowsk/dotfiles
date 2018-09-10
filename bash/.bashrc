@@ -13,6 +13,8 @@ HISTFILESIZE=2000
 [ -d "/opt/usr/bin" ] && export PATH="/opt/usr/bin:${PATH}"
 [ -d "/opt/bin" ] && export PATH="/opt/bin:${PATH}"
 [ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${HOME}/Library/Python/3.6/bin:${PATH}"
+[ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${HOME}/Library/Python/3.7/bin:${PATH}"
+[ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${HOME}/Library/Python/2.7/bin:${PATH}"
 #
 # Simple prompt: show user, host, path
 # set the terminal line
