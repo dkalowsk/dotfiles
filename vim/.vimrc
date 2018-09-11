@@ -376,9 +376,9 @@ if exists('g:plugs["vim-airline"]')
 	let g:airline_detect_modified=1
 
 	if exists('g:plugs["vim-airline-themes"]')
-		let g:airline_theme = 'luna'
+	let g:airline_theme = 'luna'
 	else
-		let g:airline_theme='solarized'
+	  let g:airline_theme='solarized'
 	endif
 
 	let g:airline_powerline_fonts = 1
@@ -542,16 +542,16 @@ if exists('g:plugs["nerdtree"]')
 	let g:nerdtree_tabs_meaningful_tab_names = 1
 	let g_nerdtree_tabs_autoclose = 1
 	let g:NERDTreeIndicatorMapCustom = {
-	    \ "Modified"  : "✹",
-	    \ "Staged"    : "✚",
-	    \ "Untracked" : "✭",
-	    \ "Renamed"   : "➜",
-	    \ "Unmerged"  : "═",
-	    \ "Deleted"   : "✖",
-	    \ "Dirty"     : "✗",
-	    \ "Clean"     : "✔︎",
-	    \ "Unknown"   : "?"
-	    \ }
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 	let NERDTreeShowBookmarks=1
 	let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 	let NERDTreeChDirMode=0
@@ -593,7 +593,7 @@ if exists('g:plugs["vim-gutentags"]')
 				\}
 	set statusline+=%{gutentags#statusline()}
 	if exists('g:plugs["ctrlp"]')
-		map <silent> <leader>jd :CtrlPTag<cr><c-\>w
+	map <silent> <leader>jd :CtrlPTag<cr><c-\>w
 	endif
 endif
 
@@ -834,7 +834,7 @@ endif
 " ale {{{
 if exists('g:plugs["ale"]')
 	if exists('g:plugs["vim-airline"]')
-		let g:airline#extensions#ale#enabled = 1
+	  let g:airline#extensions#ale#enabled = 1
 	endif
 	"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 	"nmap <silent> <C-j> <Plug>(ale_next_wrap)
