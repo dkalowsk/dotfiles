@@ -901,6 +901,12 @@ if exists('g:plugs["fzf.vim"]')
 
 	endif
 "}}}
+"
+" vim-which-key {{{
+if exists('g:plugs["which-key.vim"]')
+  nnoremap <silent> <leader> :WhichKey '<,>'<CR>
+endif
+" }}}
 
 "  vim-workspace support {{{
 if exists('g:plugs["vim-workspace"]')
