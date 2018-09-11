@@ -54,7 +54,7 @@ set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set scrolloff=3
 
-" {{{ status line contents
+" status line contents {{{
 set laststatus=2     " Enable lower status bar
 " Broken down into easily includeable segments
 set statusline=%<%f\                     " Filename
@@ -65,7 +65,6 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 " }}}
 
 " code folding {{{
-"
 set foldenable        " enable the folding option
 set foldlevelstart=10 " open most folds by default
 set foldnestmax=10    " 10 nested folds maximum
@@ -73,8 +72,7 @@ nnoremap <space> za   " use space to open/close a fold
 set foldmethod=indent " try using the indent method
 " }}}
 
-" {{{ search
-"
+" search {{{
 set showmatch   " highlight matching [{()}]
 set incsearch   " search as characters are entered
 set hlsearch    " enable highlight of matches
