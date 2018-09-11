@@ -330,7 +330,7 @@ if exists('g:plugs["clang_complete"]')
   if has('mac')
     "let s:clang_library_path='/Developer/usr/clang-ide/lib'
     "let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
-    let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+    let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
   endif
   let g:clang_use_library=1
   let g:clang_user_options = '-std=c++14'
