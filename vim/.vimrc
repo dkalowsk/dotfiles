@@ -107,9 +107,9 @@ set colorcolumn=120
 
 " local buffer remap keys {{{
 " set ctrl-tab to be next buffer
-nnoremap <C-Tab> :bn<CR>
+"nnoremap <C-Tab> :bn<CR>
 " set ctrl-shift-tab to be back one buffer
-nnoremap <C-S-Tab> :bp<CR>
+"noremap <C-S-Tab> :bp<CR>
 " }}}
 
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
