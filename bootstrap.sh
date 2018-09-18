@@ -135,9 +135,14 @@ doFonts() {
   # install the power line fonts
   # the install script already handles macOS vs linux installs
   #
-  git clone https://github.com/powerline/fonts.git --depth=1
+  if [ ! -d "fonts" ]; then
+    git clone https://github.com/powerline/fonts.git --depth=1
+  fi
 
-  curl -OL https://github.com/chrissimpkins/codeface/releases/download/font-collection/codeface-fonts.zip
+  if [ ! -f "codeface-fonts.zip" ]; then
+    curl -OL https://github.com/chrissimpkins/codeface/releases/download/font-collection/codeface-fonts.zip
+  fi
+
   if [ -f "codeface-fonts.zip" ]; then
     # this will expand out to a directory called "fonts" which will
     # in turn add the extra fonts to the already existing fonts directory
@@ -158,7 +163,7 @@ doFonts() {
     rm -rf fonts
   fi
 
-  rm -Rf ${codeface}.zip
+  rm -Rf codeface-fonts.zip
 }
 
 doPipInstall() {
