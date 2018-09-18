@@ -237,6 +237,63 @@ doMacOSConfig() {
   unzip Peppermint.1.2.terminal.zip
   # Installation will need to be manual as disabling gatekeeper isn't going to happen here
 
+  # Next several lines were borrowed from:
+  # https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+  # -------
+  # Automatically quit printer app once the print jobs complete
+  defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+  # Disable the “Are you sure you want to open this application?” dialog
+  defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+  # Set sidebar icon size to medium
+  defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+  # Save to disk (not to iCloud) by default
+  defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+  # Restart automatically if the computer freezes
+  sudo systemsetup -setrestartfreeze on
+  # Require password immediately after sleep or screen saver begins
+  defaults write com.apple.screensaver askForPassword -int 1
+  defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+  # Keep folders on top when sorting by name
+  defaults write com.apple.finder _FXSortFoldersFirst -bool true
+  # Disable the warning when changing a file extension
+  defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+  # Show the ~/Library folder
+  chflags nohidden ~/Library
+
+  # Automatically hide and show the Dock
+  defaults write com.apple.dock autohide -bool true
+
+  # Set the icon size of Dock items to 36 pixels
+  defaults write com.apple.dock tilesize -int 36
+
+  # Hot corners
+  # Possible values:
+  #  0: no-op
+  #  2: Mission Control
+  #  3: Show application windows
+  #  4: Desktop
+  #  5: Start screen saver
+  #  6: Disable screen saver
+  #  7: Dashboard
+  # 10: Put display to sleep
+  # 11: Launchpad
+  # 12: Notification Center
+  # Top left screen corner → Mission Control
+  defaults write com.apple.dock wvous-tl-corner -int 2
+  defaults write com.apple.dock wvous-tl-modifier -int 0
+  # Top right screen corner → Start screen saver
+  defaults write com.apple.dock wvous-tr-corner -int 5
+  defaults write com.apple.dock wvous-tr-modifier -int 0
+  # Bottom left screen corner → Desktop
+  defaults write com.apple.dock wvous-bl-corner -int 4
+  defaults write com.apple.dock wvous-bl-modifier -int 0
+  # --- end copy
+
+
   info "For full changes to take effect, log out and re-login (or reboot your choice)."
 }
 
