@@ -199,6 +199,7 @@ doPython3() {
 
 doMacOSConfig() {
   # Fix Visual Code key repeat issue
+  # Pulled from: https://github.com/VSCodeVim/Vim#mac-setup
   defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
   # Show all File Extensions
@@ -256,13 +257,6 @@ doLinuxConfig() {
     fi
   fi
 
-  if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
-    info "Installing diff-so-fancy"
-    curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-    mv diff-so-fancy ${HOME}/bin/
-    chmod +x ${HOME}/bin/diff-so-fancy
-  fi
-
   if [ ! -f "${HOME}/.dircolors" ]; then
     info "Installing solarized dircolors"
     git clone --quiet https://github.com/seebi/dircolors-solarized
@@ -313,6 +307,7 @@ doConfig() {
     rm ${HOME}/.git-completion.bash
     rm ${HOME}/.tigrc.vim
     rm ${HOME}/bin/git-quick-stats
+    rm ${HOME}/bin/diff-so-fancy
   fi
 
   if [ ! -f ${HOME}/.git-prompt.sh ]; then
@@ -327,6 +322,7 @@ doConfig() {
     curl -L https://raw.githubusercontent.com/jonas/tig/master/contrib/vim.tigrc -o ${HOME}/.tigrc.vim
   fi
 
+  info "Installing git-quick-stats"
   if [ ! -f ${HOME}/bin/git-quick-stats ]; then
     git clone https://github.com/arzzen/git-quick-stats.git ${HOME}/git-quick-stats
   fi
@@ -339,6 +335,12 @@ doConfig() {
     make install PREFIX=${HOME}
     popd > /dev/null
     rm -Rf ${HOME}/git-quick-stats
+  fi
+
+  info "Installing diff-so-fancy"
+  if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
+    curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ${HOME}/bin/diff-so-fancy
+    chmod +x ${HOME}/bin/diff-so-fancy
   fi
 }
 
