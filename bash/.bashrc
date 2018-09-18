@@ -40,7 +40,9 @@ if [ ${color_support} = yes ]; then
 
 	if [ "Darwin" == "$(uname)" ]; then
 		#export LSCOLORS="GxGxBxDxCxEgEdxbxgxcxd"
-		export LSCOLORS="ExFxBxDxCxegedabagacad"
+		#export LSCOLORS="ExFxBxDxCxegedabagacad"
+		# Value from: https://github.com/seebi/dircolors-solarized/issues/10#issuecomment-381545995
+		export LSCOLORS="exfxfeaeBxxehehbadacea"
 		export CLICOLOR=true
 		export CLICOLOR=1
 		alias ls='ls -GFh'
