@@ -290,26 +290,38 @@ doConfig() {
     info "Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
-  else
-    if [[ ${update} == true ]]; then
+  fi
+
+  if [[ ${update} == true ]]; then
+    if [ -d "${HOME}/.fzf" ]; then
       cd ${HOME}/.fzf
       git pull --prune
     fi
+    #
+    # Since we're doing an update, just blow away the old version of these
+    # files as we'll be able to replace them in a moment.
+    #
+    # This is a destructive process meaning we can't roll back.
+    #
+    rm ${HOME}/.git-prompt.sh
+    rm ${HOME}/.git-completion.bash
+    rm ${HOME}/.tigrc.vim
+    rm ${HOME}/bin/git-quick-stats
   fi
 
-  if [[ ! -f ${HOME}/.git-prompt.sh || ${update} == true ]]; then
+  if [ ! -f ${HOME}/.git-prompt.sh ]; then
     curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ${HOME}/.git-prompt.sh
   fi
 
-  if [[ ! -f ${HOME}/.git-completion.bash || ${update} == true ]]; then
+  if [ ! -f ${HOME}/.git-completion.bash ]; then
     curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ${HOME}/.git-completion.bash
   fi
 
-  if [[ ! -f ${HOME}/.tigrc.vim || ${update} == true ]]; then
+  if [ ! -f ${HOME}/.tigrc.vim ]; then
     curl -L https://raw.githubusercontent.com/jonas/tig/master/contrib/vim.tigrc -o ${HOME}/.tigrc.vim
   fi
 
-  if [[ ! -f ${HOME}/bin/git-quick-stats  || ${update} == true ]]; then
+  if [ ! -f ${HOME}/bin/git-quick-stats ]; then
     git clone https://github.com/arzzen/git-quick-stats.git ${HOME}/git-quick-stats
   fi
   if [ -d ${HOME}/git-quick-stats ]; then
@@ -321,8 +333,6 @@ doConfig() {
     make install PREFIX=${HOME}
     popd > /dev/null
     rm -Rf ${HOME}/git-quick-stats
-  else
-    echo "${HOME}/git-quick-stats exists, but is not a directory, skipping"
   fi
 }
 
