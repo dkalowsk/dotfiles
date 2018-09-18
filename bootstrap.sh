@@ -261,6 +261,7 @@ doLinuxConfig() {
     info "Installing solarized dircolors"
     git clone --quiet https://github.com/seebi/dircolors-solarized
     cp dircolors-solarized/dircolors.256dark ~/.dircolors
+    eval `dircolors ${HOME}/.dircolors`
     rm -Rf dircolors-solarized
   fi
 
