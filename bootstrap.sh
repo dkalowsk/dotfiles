@@ -230,6 +230,13 @@ doMacOSConfig() {
   defaults write com.apple.Safari DefaultBrowserDateOfLastPrompt -date '2050-01-01T00:00:00Z'
   defaults write com.apple.Safari DefaultBrowserPromptingState -int 2
 
+  #
+  # Grab the Peppermint theme for the Terminal
+  #
+  curl https://noahfrederick.com/get/Peppermint.1.2.terminal.zip
+  unzip Peppermint.1.2.terminal.zip
+  # Installation will need to be manual as disabling gatekeeper isn't going to happen here
+
   info "For full changes to take effect, log out and re-login (or reboot your choice)."
 }
 
