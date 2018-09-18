@@ -127,8 +127,9 @@ doFonts() {
     fonts_dir=~/Library/Fonts
   elif [ ${PLATFORM} == "Linux" ]; then
     fonts_dir=~/.local/share/fonts
-    mkdir -p "${fonts_dir}"
   fi
+
+  mkdir -p "${fonts_dir}"
 
   #
   # install the power line fonts
