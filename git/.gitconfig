@@ -56,6 +56,7 @@
 	sstatus = status -sb
 	master = pull origin master
 	quick-stats = ! /Users/dkalowsky/bin/git-quick-stats
+	dad = !curl -w \"\\n\" https://icanhazdadjoke.com/
 [diff]
 	tool = araxis
 	# Use the slower but better patience diff algorithm
