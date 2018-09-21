@@ -119,7 +119,7 @@ doFonts() {
     # this will expand out to a directory called "fonts" which will
     # in turn add the extra fonts to the already existing fonts directory
     # generated from the code check out
-    unzip -o "codeface-fonts.zip"
+    unzip -o -q "codeface-fonts.zip"
   fi
 
   #
