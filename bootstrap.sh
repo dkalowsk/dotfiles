@@ -20,7 +20,10 @@ doStow() {
     stow ${1}
   else
     #
-    # This is bash on windows, and there is no stow, so let's fake it... grrr...
+    # This is primarily bash on windows, and there is no stow, so let's fake
+    # it... and sometimes on completely new systems.  We can't depend upon the
+    # previous _installStow function as we may not have compiling tools
+    # installed yet.  grrr...
     #
     if [ -d "${1}" ]; then
       shopt -s dotglob
@@ -44,37 +47,6 @@ doUpdate() {
   git stash --quiet
   git pull --rebase
   git stash pop --quiet
-}
-
-_installStow() {
-  if [ ${PLATFORM} == "Darwin" ]; then
-    if hash brew 2>/dev/null; then
-      brew install stow
-      return 0
-    fi
-  fi
-
-  if [ ${PLATFORM} == "Linux" ]; then
-    if hash apt-get 2>/dev/null; then
-      if (($EUID != 0)); then
-        sudo apt-get -y install stow
-      else
-        apt-get -y install stow
-      fi
-      return 0
-    fi
-
-    if hash dnf 2>/dev/null; then
-      if (($EUID != 0)); then
-        sudo dnf -y install stow
-      else
-        dnf -y install stow
-      fi
-      return 0
-    fi
-  fi
-
-  return 1
 }
 
 doSync() {
