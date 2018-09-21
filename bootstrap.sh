@@ -198,6 +198,11 @@ doPython3() {
 }
 
 doMacOSConfig() {
+
+  if [ ${PLATFORM} != "Darwin" ]; then
+    return
+  fi
+
   # Fix Visual Code key repeat issue
   # Pulled from: https://github.com/VSCodeVim/Vim#mac-setup
   defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
