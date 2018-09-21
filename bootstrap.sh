@@ -212,8 +212,8 @@ doMacOSConfig() {
   #
   # Grab the Peppermint theme for the Terminal
   #
-  curl https://noahfrederick.com/get/Peppermint.1.2.terminal.zip
-  unzip Peppermint.1.2.terminal.zip
+  curl https://noahfrederick.com/get/Peppermint.1.2.terminal.zip --output peppermint.zip --silent
+  unzip peppermint.zip
   # Installation will need to be manual as disabling gatekeeper isn't going to happen here
 
   # Next several lines were borrowed from:
