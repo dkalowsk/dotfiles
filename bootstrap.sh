@@ -313,6 +313,9 @@ doMacOSConfig() {
 }
 
 doLinuxConfig() {
+  if [ ${PLATFORM} != "Linux" ]; then
+    return
+  fi
 
   info "Installing from aptgets"
   if (($EUID != 0)); then
