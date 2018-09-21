@@ -213,7 +213,9 @@ doMacOSConfig() {
   #sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 
   # this may or may not work
-  xcode-select --install > /dev/null 2>&1
+  if hash xcode-select 2>/dev/null; then
+    xcode-select --install > /dev/null 2>&1
+  fi
 
   #
   # disable the annoying "Try the new Safari" pop-up.  Requires re-logging in
@@ -295,7 +297,14 @@ doMacOSConfig() {
 
   info "For full changes to take effect, log out and re-login (or reboot your choice)."
 
-  doBrew
+  if hash xcode-select 2>/dev/null; then
+    xcode_status = $(xcode-select -p)
+    # a value of 2 means CLI not installed
+    # a value of 0 means installed + returns the path
+    # brew can only be run if Xcode's CLI tools have been installed.
+    #
+    [ -d ${xcode_status} ] && doBrew
+  fi
 }
 
 doLinuxConfig() {
