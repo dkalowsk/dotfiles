@@ -293,8 +293,9 @@ doMacOSConfig() {
   defaults write com.apple.dock wvous-bl-modifier -int 0
   # --- end copy
 
-
   info "For full changes to take effect, log out and re-login (or reboot your choice)."
+
+  doBrew
 }
 
 doLinuxConfig() {
@@ -411,7 +412,6 @@ doConfig() {
 
 doAll() {
   doUpdate
-  doBrew
   doSync
   doInstall
   doFonts
@@ -423,7 +423,6 @@ doHelp() {
   echo
   echo "   -s, --sync             Synchronizes dotfiles to home directory"
   echo "   -i, --install          Install (extra) software"
-  echo "   -b, --brew             Install and update Homebrew"
   echo "   -f, --fonts            Copies font files"
   echo "   -c, --config           Configures your system"
   echo "   -u, --update           Updates the configured files for your system"
@@ -444,10 +443,6 @@ else
         ;;
       -i|--install)
         doInstall
-        shift
-        ;;
-      -b|--brew)
-        doBrew
         shift
         ;;
       -f|--fonts)
