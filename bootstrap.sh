@@ -126,12 +126,12 @@ doFonts() {
   # install only if the git command was successful
   #
   if [ -d "fonts" ]; then
-    cd fonts
+    pushd fonts > /dev/null
     # We can exploit this already provided script to install the additional
     # font pieces we need as it
     ./install.sh
     # clean-up a bit
-    cd ..
+    popd > /dev/null
     rm -rf fonts
   fi
 
@@ -303,11 +303,11 @@ doLinuxConfig() {
     info "Installing universal-ctags"
     git clone https://github.com/universal-ctags/ctags.git universal_ctags
     if [ -d universal_ctags ]; then
-      cd universal_ctags
+      pushd universal_ctags > /dev/null
       ./autogen.sh
       ./configure --prefix=$HOME
       make && make install
-      cd ..
+      popd > /dev/null
       rm -Rf universal_ctags
     fi
   fi
@@ -350,8 +350,9 @@ doConfig() {
 
   if [[ ${update} == true ]]; then
     if [ -d "${HOME}/.fzf" ]; then
-      cd ${HOME}/.fzf
+      pushd ${HOME}/.fzf > /dev/null
       git pull --prune
+      popd > /dev/null
     fi
     #
     # Since we're doing an update, just blow away the old version of these
