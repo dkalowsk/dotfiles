@@ -139,27 +139,34 @@ doFonts() {
 }
 
 doPipInstall() {
-  pip_version=${1}
+  local pip_version=${1}
+  local update=false
 
-  ${pip_version} install jedi --user
-  ${pip_version} install meson --user
-  ${pip_version} install neovim --user
-  ${pip_version} install parso --user
-  ${pip_version} install voltron --user
-  ${pip_version} install powerline-status --user
+  if [[ ${2} == true ]]; then
+    update="--upgrade"
+
+  ${pip_version} install jedi --user ${update}
+  ${pip_version} install meson --user ${update}
+  ${pip_version} install neovim --user ${update}
+  ${pip_version} install parso --user ${update}
+  ${pip_version} install voltron --user ${update}
+  ${pip_version} install powerline-status --user ${update}
 }
 
 doPython2() {
+  local update=${1}
+
   # Check if pip is installed
   if ! type -P "pip2"; then
     #if not do the following:
     curl https://bootstrap.pypa.io/get-pip.py | python2
   fi
 
-  doPipInstall "pip2"
+  doPipInstall "pip2" ${update}
 }
 
 doPython3() {
+  local update=${1}
 
   # Check if pip is installed
   if ! type -P "pip3"; then
@@ -167,7 +174,7 @@ doPython3() {
     curl https://bootstrap.pypa.io/get-pip.py | python3
   fi
 
-  doPipInstall "pip3"
+  doPipInstall "pip3" ${update}
 }
 
 doMacOSConfig() {
