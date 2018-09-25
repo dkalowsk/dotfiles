@@ -171,11 +171,11 @@ doPython3() {
 }
 
 doMacOSConfig() {
-
   if [ ${PLATFORM} != "Darwin" ]; then
     return
   fi
 
+  info "Configuring macOS..."
   # Fix Visual Code key repeat issue
   # Pulled from: https://github.com/VSCodeVim/Vim#mac-setup
   defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
@@ -290,6 +290,8 @@ doLinuxConfig() {
     return
   fi
 
+  info "Configuring Linux..."
+
   info "Installing from aptgets"
   if (($EUID != 0)); then
     if [[ -t 1 ]]; then
@@ -324,7 +326,7 @@ doLinuxConfig() {
 
 
 doConfig() {
-  info "Configuring"
+  info "Running platform configurations"
 
   local update=false
 
@@ -334,13 +336,8 @@ doConfig() {
 
   mkdir -p ${HOME}/bin
 
-  if [ ${PLATFORM} == "Darwin" ]; then
-    echo "Configuring macOS"
-    doMacOSConfig
-  elif [ ${PLATFORM} == "Linux" ]; then
-    echo "Configuring Linux"
-    doLinuxConfig
-  fi
+  doMacOSConfig
+  doLinuxConfig
 
   if [ ! -d "${HOME}/.fzf" ]; then
     info "Installing fzf"
