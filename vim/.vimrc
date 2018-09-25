@@ -9,7 +9,7 @@ let plugin_install_needed=0
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  plugin_install_needed=1
+  let plugin_install_needed=1
 endif
 
 call plug#begin('~/.vim/bundle')
