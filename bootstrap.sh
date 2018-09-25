@@ -90,6 +90,9 @@ doInstall() {
 
   # Now that dotfiles are in place, make sure to run the Vundle installation
   vim -i NONE -c PlugInstall -c PlugClean -c quitall
+
+  doPython2 ${update}
+  doPython3 ${update}
 }
 
 doFonts() {
