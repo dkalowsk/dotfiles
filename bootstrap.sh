@@ -200,8 +200,8 @@ doMacOSConfig() {
   # Enable ssh login
   #sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 
-  # this may or may not work
   if hash xcode-select 2>/dev/null; then
+    # this may or may not work
     xcode-select --install > /dev/null 2>&1
   fi
 
