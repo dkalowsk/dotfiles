@@ -828,11 +828,19 @@ endif
 "  tig support {{{
 if executable('tig')
 
-	" Apdated from: https://news.ycombinator.com/item?id=14306217
-	"nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
-	nnoremap <leader>to :silent !tig<CR>:silent redraw!<CR>
-	nnoremap <leader>tb :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
-	nnoremap <leader>ts :silent !tig status<CR>:silent redraw!<CR>
+	if has('nvim')
+	  " Apdated from: https://news.ycombinator.com/item?id=14306217
+	  "nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
+	  nnoremap <leader>to :silent term tig<CR>:silent redraw!<CR>
+	  nnoremap <leader>tb :silent term tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
+	  nnoremap <leader>ts :silent term tig status<CR>:silent redraw!<CR>
+	else
+	  " Apdated from: https://news.ycombinator.com/item?id=14306217
+	  "nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
+	  nnoremap <leader>to :silent !tig<CR>:silent redraw!<CR>
+	  nnoremap <leader>tb :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
+	  nnoremap <leader>ts :silent !tig status<CR>:silent redraw!<CR>
+	end
 	
 endif
 " }}}
