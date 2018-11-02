@@ -418,7 +418,7 @@ doConfig() {
 
   info "Installing diff-so-fancy"
   if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
-    curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ${HOME}/bin/diff-so-fancy
+    curl -L https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ${HOME}/bin/diff-so-fancy
     chmod +x ${HOME}/bin/diff-so-fancy
   fi
 }
