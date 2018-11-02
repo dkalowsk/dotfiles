@@ -294,7 +294,7 @@ doMacOSConfig() {
   info "For full changes to take effect, log out and re-login (or reboot your choice)."
 
   if hash xcode-select 2>/dev/null; then
-    xcode_status = $(xcode-select -p)
+    xcode_status=$(xcode-select -p)
     # a value of 2 means CLI not installed
     # a value of 0 means installed + returns the path
     # brew can only be run if Xcode's CLI tools have been installed.
