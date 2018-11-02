@@ -299,7 +299,7 @@ doMacOSConfig() {
     # a value of 0 means installed + returns the path
     # brew can only be run if Xcode's CLI tools have been installed.
     #
-    [ ${xcode_status} -ne 2 ] && doBrew
+    [ ${xcode_status:=2} -ne 2 ] && doBrew
   fi
 }
 
