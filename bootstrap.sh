@@ -147,6 +147,7 @@ doPipInstall() {
 
   if [[ ${2} == true ]]; then
     update="--upgrade"
+  fi
 
   ${pip_version} install jedi --user ${update}
   ${pip_version} install meson --user ${update}
