@@ -164,6 +164,8 @@ doPython2() {
   if ! type -P "pip2"; then
     #if not do the following:
     curl https://bootstrap.pypa.io/get-pip.py | python2
+  else
+    python2 -m pip2 install -upgrade pip2
   fi
 
   doPipInstall "pip2" ${update}
@@ -176,6 +178,8 @@ doPython3() {
   if ! type -P "pip3"; then
     #if not do the following:
     curl https://bootstrap.pypa.io/get-pip.py | python3
+  else
+    python3 -m pip3 install -upgrade pip3
   fi
 
   doPipInstall "pip3" ${update}
