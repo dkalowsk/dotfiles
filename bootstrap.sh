@@ -230,7 +230,7 @@ doMacOSConfig() {
   #
   curl https://noahfrederick.com/get/Peppermint.1.2.terminal.zip --output peppermint.zip --silent
   if [  -f "peppermint.zip" ]; then
-    unzip peppermint.zip
+    unzip -o peppermint.zip
     rm peppermint.zip
   fi
   # Installation will need to be manual as disabling gatekeeper isn't going to happen here
