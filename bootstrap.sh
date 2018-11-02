@@ -165,7 +165,7 @@ doPython2() {
     #if not do the following:
     curl https://bootstrap.pypa.io/get-pip.py | python2
   else
-    python2 -m pip2 install -upgrade pip2
+    pip2 install --upgrade pip
   fi
 
   doPipInstall "pip2" ${update}
@@ -179,7 +179,7 @@ doPython3() {
     #if not do the following:
     curl https://bootstrap.pypa.io/get-pip.py | python3
   else
-    python3 -m pip3 install -upgrade pip3
+    pip3 install --upgrade pip
   fi
 
   doPipInstall "pip3" ${update}
