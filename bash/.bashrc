@@ -8,13 +8,13 @@ HISTFILESIZE=2000
 
 #
 # Add in local path directories
-# [ -d "${HOME}/bin" ] && export PATH="${HOME}/bin:${PATH}"
+[ -d "${HOME}/bin" ] && export PATH="${PATH}:${HOME}/bin"
 [ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
-[ -d "/opt/usr/bin" ] && export PATH="/opt/usr/bin:${PATH}"
-[ -d "/opt/bin" ] && export PATH="/opt/bin:${PATH}"
-[ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${HOME}/Library/Python/3.6/bin:${PATH}"
-[ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${HOME}/Library/Python/3.7/bin:${PATH}"
-[ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${HOME}/Library/Python/2.7/bin:${PATH}"
+[ -d "/opt/usr/bin" ] && export PATH="${PATH}:/opt/usr/bin"
+[ -d "/opt/bin" ] && export PATH="${PATH}:/opt/bin"
+[ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.6/bin"
+[ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.7/bin"
+[ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/2.7/bin"
 #
 # Simple prompt: show user, host, path
 # set the terminal line
