@@ -93,9 +93,9 @@ alias less="less -R"
 #
 if [ -d "$HOME/development/android/toolchains" ]; then
 	export ANDROID_TOOLCHAIN_ROOT="${HOME}/development/android/toolchains"
-	export ANDROID_ARMV7="${ANDROID_TOOLCHAIN_ROOT}/android-16_arm_gnustl/bin"
-	export ANDROID_X86="${ANDROID_TOOLCHAIN_ROOT}/android-16_x86_gnustl/bin"
-	export ANDROIDGLES3_ARMV8="${ANDROID_TOOLCHAIN_ROOT}/android-21_arm64_gnustl/bin"
+	export ANDROID_ARMV7="${ANDROID_TOOLCHAIN_ROOT}/android-19_arm_r18b/bin"
+	export ANDROID_X86="${ANDROID_TOOLCHAIN_ROOT}/android-19_x86_r18b/bin"
+	export ANDROID_ARM64="${ANDROID_TOOLCHAIN_ROOT}/android-21_arm64_r18b/bin"
 	export PATH=${PATH}:${ANDROID_ARMV7}:${ANDROIDGLES3_ARMV8}:${ANDROID_X86}
 fi
 
