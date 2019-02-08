@@ -1,3 +1,9 @@
+
+# Simple function to check if a command exists
+command_exists() {
+	type "$1" &> /dev/null ;
+}
+
 #
 # Append to history file, don't over write it
 # And limit the size it can grow to
