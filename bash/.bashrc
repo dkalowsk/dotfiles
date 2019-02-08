@@ -110,8 +110,17 @@ fi
 #
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
-export EDITOR='nvim'
-alias vim='nvim'
+
+if command_exists /opt/bin/nvim ; then
+	export EDITOR='/opt/bin/nvim'
+	alias vim='/opt/bin/nvim'
+	alias nvim='/opt/bin/nvim'
+elif command_exists nvim ; then
+	export EDITOR='nvim'
+	alias vim='nvim'
+else
+	export EDITOR='vim'
+fi
 
 
 #
