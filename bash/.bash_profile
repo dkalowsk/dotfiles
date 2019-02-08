@@ -1,6 +1,6 @@
 completion_prefix=""
 
-if [ "$OSTYPE" == "darwin17" ]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   completion_prefix=$(brew --prefix)
 fi
 
