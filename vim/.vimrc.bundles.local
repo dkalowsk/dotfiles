@@ -46,7 +46,7 @@ Plug 'rhysd/conflict-marker.vim'
 "Plug 'Rip-Rip/clang_complete'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 Plug 'sjl/gundo.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/quickmenu.vim'
