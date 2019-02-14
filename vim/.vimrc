@@ -336,7 +336,7 @@ vmap <C-D>   <Plug>SchleppDupLeft
 if exists('g:plugs["clang_complete"]')
   " disable clang complete, we're using YCM
   let g:clang_complete_loaded=0
-  if has('mac')
+  if has('macunix')
     "let s:clang_library_path='/Developer/usr/clang-ide/lib'
     "let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
     let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
