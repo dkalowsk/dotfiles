@@ -4,6 +4,29 @@
 "
 set nocompatible  " None of this works with old original vi, only VIM
 
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!"
+  "
+  " This function needs to be at the top of the file, or at least BEFORE the
+  " parsing of the vimrc.local.bundles files to be properly parse
+  if a:info.status == 'installed' || a:info.force
+    if has("unix")
+      let s:uname = system("uname -s")
+      if s:uname == "Darwin"
+        " On macOS this is needed as Apple ships an old version of python, and pretty
+        " much every install of any tool updates to python3 and puts it in
+        " /usr/local/bin, but using that version causes vim to crash. 
+        !/usr/bin/python install.py --clang-completer
+      else
+        !./install.py --clang-completer
+      endif
+    endif
+  endif
+endfunction
+
 " vim-plug setup {{{
 let plugin_install_needed=0
 if has('nvim')
@@ -1011,6 +1034,5 @@ function! s:MaybeUpdateLightline()
     call lightline#update()
   end
 endfunction
-
 
 " vim:foldmethod=marker:foldlevel=0

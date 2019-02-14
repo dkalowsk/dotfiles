@@ -67,11 +67,5 @@ Plug 'tpope/vim-surround'
 "Plug 'vim-scripts/AutoComplPop'
 Plug 'vim-scripts/restore_view.vim'
 "Plug 'vim-scripts/sessionman.vim'
-" On macOS this is needed as Apple ships an old version of python, and pretty
-" much every install of any tool updates to python3 and puts it in
-" /usr/local/bin, but using that version causes vim to crash.  I'm not aware
-" of how to make this macOS specific for vim-plug, so leaving this comment in
-" here as documentation for the future.
-"Plug 'valloric/youcompleteme', { 'do': '/usr/bin/python install.py --clang-completer' }
-Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer' }
+Plug 'valloric/youcompleteme', { 'do': function('BuildYCM') }
 Plug 'w0rp/ale'
