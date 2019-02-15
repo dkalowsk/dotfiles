@@ -1026,13 +1026,26 @@ function! LightlineLinterOK() abort
   return l:counts.total == 0 ? '✓ ' : ''
 endfunction
 
-autocmd User ALELint call s:MaybeUpdateLightline()
-
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
-  if exists('#lightline')
+  if exists(g:plugs["lightline"])
     call lightline#update()
-  end
+  endif
 endfunction
+
+" Update the lightline scheme from the colorscheme. Hopefully.
+function! s:UpdateLightlineColorScheme()
+  if exists(g:plugs["lightline"])
+    let g:lightline.colorscheme = g:colors_name
+    call lightline#init()
+  endif
+endfunction
+
+augroup _lightline
+  autocmd!
+  autocmd User ALELint call s:MaybeUpdateLightline()
+  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+augroup END
+
 
 " vim:foldmethod=marker:foldlevel=0
