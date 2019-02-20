@@ -608,6 +608,47 @@ if exists('g:plugs["asyncrun.vim"]')
 endif
 " }}}
 
+" coc {{{
+if exists('g:plugs["coc"]')
+
+	let g:coc_global_extensions = [ 'coc-yaml' ]
+
+	set cmdheight = 2
+	set updatetime = 300
+	set shortmess += c
+	set signcolumn = yes
+
+	nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
+	nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+
+	nmap <silent> <leader>ld <Plug>(coc-definition)
+	nmap <silent> <leader>lt <Plug>(coc-type-definition)
+	nmap <silent> <leader>li <Plug>(coc-implementation)
+	nmap <silent> <leader>lf <Plug>(coc-references)
+
+	nmap <leader>lr <Plug>(coc-rename)
+
+
+	function! s:show_documentation()
+		if &filetype == 'vim'
+			execute 'h '.expanded('<cword>')
+		else
+			call CocAction('doHover')
+		endif
+	endfunction
+
+	autocmd CursorHold * silent call CocActionAsync('highlight')
+
+	languageserver" : {
+	\	"clangd" : {
+	\	"command": "/Users/dkalowsky/clang/clang_8/bin/clangd",
+	\	"rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/"],
+	\	"filetypes": ["c", "cpp" ]
+	\}
+	\}
+endif
+" }}}
+
 " quickmenu {{{
 if exists('g:plugs["quickmenu.vim"]')
   " choose a favorite key to show/hide quickmenu
