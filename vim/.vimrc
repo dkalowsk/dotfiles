@@ -163,7 +163,11 @@ set autoread
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
 if has('nvim')
-  let g:python_host_prog = '/usr/bin/python'
+  if s:uname == "Darwin"
+    let g:python_host_prog = '/usr/bin/python'
+  else
+    let g:python_host_prog = '/usr/local/bin/python'
+  endif
   let g:python3_host_prog = '/usr/local/bin/python3'
 end
 
