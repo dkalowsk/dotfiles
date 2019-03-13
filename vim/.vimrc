@@ -4,6 +4,10 @@
 "
 set nocompatible  " None of this works with old original vi, only VIM
 
+if has("unix")
+let s:uname = substitute(system("uname -s"), '\n', '', '') " remove the trailing \n
+endif
+
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -13,16 +17,13 @@ function! BuildYCM(info)
   " This function needs to be at the top of the file, or at least BEFORE the
   " parsing of the vimrc.local.bundles files to be properly parse
   if a:info.status == 'installed' || a:info.force
-    if has("unix")
-      let s:uname = system("uname -s")
-      if s:uname == "Darwin"
-        " On macOS this is needed as Apple ships an old version of python, and pretty
-        " much every install of any tool updates to python3 and puts it in
-        " /usr/local/bin, but using that version causes vim to crash. 
-        !/usr/bin/python install.py --clang-completer
-      else
-        !./install.py --clang-completer
-      endif
+    if s:uname == "Darwin"
+      " On macOS this is needed as Apple ships an old version of python, and pretty
+      " much every install of any tool updates to python3 and puts it in
+      " /usr/local/bin, but using that version causes vim to crash.
+      !/usr/bin/python install.py --clang-completer
+    else
+      !./install.py --clang-completer
     endif
   endif
 endfunction
