@@ -44,7 +44,7 @@ Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-wordy'
 Plug 'rhysd/conflict-marker.vim'
 "Plug 'Rip-Rip/clang_complete'
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter', { 'on' : '<Plug>NERDCommenterToggle' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree-git-plugin', { 'on' : 'NERDTreeToggle' }
 Plug 'sjl/gundo.vim'
