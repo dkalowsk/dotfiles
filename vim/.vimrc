@@ -162,7 +162,7 @@ set autoread
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
 if has('nvim')
-  let g:python2_host_prog = '/usr/local/bin/python'
+  let g:python_host_prog = '/usr/bin/python'
   let g:python3_host_prog = '/usr/local/bin/python3'
 end
 
