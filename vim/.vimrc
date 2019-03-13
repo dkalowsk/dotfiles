@@ -895,6 +895,7 @@ if exists('g:plugs["ale"]')
 	let g:ale_c_parse_compile_commands = 1
 	"let g:ale_linters = { 'cpp' : ['clangd'] }
 	let g:ale_completion_max_suggestions = 100
+	let g:ale_completion_enabled = 1
 
 	let g:ale_sign_warning = '▲'
 	let g:ale_sign_error = '✗'
