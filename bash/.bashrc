@@ -71,6 +71,7 @@ fi
 
 alias ffind='find . -name'
 alias telnet=nc
+alias top="top -o cpu"
 
 #
 # For git repos, enable a quick return to the root directory
