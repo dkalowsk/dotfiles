@@ -686,8 +686,8 @@ if exists('g:plugs["youcompleteme"]')
 	let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 
 	" These are to enable compatibility with syntastic
-	let g:ycm_warning_symbol = '>>'
-	let g:ycm_error_symbol = '>>'
+	let g:ycm_warning_symbol = '▲'
+	let g:ycm_error_symbol = '✗'
 	let g:ycm_enable_diagnostic_highlighting = 1
 
 	let g:ycm_server_use_vim_stdout = 0
