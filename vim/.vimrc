@@ -873,8 +873,6 @@ if exists('g:plugs["ale"]')
 	if exists('g:plugs["vim-airline"]')
 	  let g:airline#extensions#ale#enabled = 1
 	endif
-	"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-	"nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 	" Only run the linter when saving the file
 	"let g:ale_lint_on_text_changed = 'never'
@@ -903,7 +901,7 @@ if exists('g:plugs["ale"]')
 	highlight link ALEErrorSign Title
 	nmap ]w :ALENextWrap<CR>
 	nmap [w :ALEPreviousWrap<CR>
-	nmap <Leader>f <Plug>(ale_fix)
+	nmap <Leader>af <Plug>(ale_fix)
 endif
 
 "}}}
