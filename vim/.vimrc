@@ -897,11 +897,16 @@ endif
 " fzf {{{
 if exists('g:plugs["fzf.vim"]')
 	nmap ; :Buffers<CR>
-	nmap <Leader>fT :Tags<CR>  " Search all tags
-	nmap <Leader>ft :BTags<CR> " Search only the local buffer for the specific tag
-	nmap <Leader>fa :Ag<Space> " Use AG for some fuzzy find
-	nnoremap <C-p> :GFiles<CR> " Search only for git tracked files
-	nnoremap <C-P> :Files<CR>  " Search for non-git tracked files
+	" Search all tags
+	nmap <Leader>fT :Tags<CR>
+	" Search only the local buffer for the specific tag
+	nmap <Leader>ft :BTags<CR>
+	" Use AG for some fuzzy find
+	nmap <Leader>fa :Ag<Space>
+	" Search only for git tracked files
+	nnoremap <C-p> :GFiles<CR>
+	" Search for non-git tracked files
+	nnoremap <C-P> :Files<CR>
 
 	" Have fzf colors match color scheme
 	let g:fzf_colors =
