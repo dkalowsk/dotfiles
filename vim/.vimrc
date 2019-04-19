@@ -8,26 +8,6 @@ if has("unix")
 let s:uname = substitute(system("uname -s"), '\n', '', '') " remove the trailing \n
 endif
 
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!"
-  "
-  " This function needs to be at the top of the file, or at least BEFORE the
-  " parsing of the vimrc.local.bundles files to be properly parse
-  if a:info.status == 'installed' || a:info.force
-    if s:uname == "Darwin"
-      " On macOS this is needed as Apple ships an old version of python, and pretty
-      " much every install of any tool updates to python3 and puts it in
-      " /usr/local/bin, but using that version causes vim to crash.
-      !/usr/bin/python install.py --clang-completer
-    else
-      !./install.py --clang-completer
-    endif
-  endif
-endfunction
-
 " vim-plug setup {{{
 let plugin_install_needed=0
 if has('nvim')
@@ -196,7 +176,6 @@ augroup END
 
 " filetype_text {{{
 augroup filetype_text
-  autocmd FileType text let g:ycm_largefile=1  "disable autocompletion on text files
   autocmd FileType text let g:acp_enableAtStartup = 0
   " Source of the commented out line: https://stackoverflow.com/a/11068175
   "autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
@@ -208,7 +187,6 @@ augroup END
 " filetype_vim {{{
 augroup filetype_vim
   autocmd!
-  autocmd FileType vim let g:ycm_largefile=1  "disable autocompletion on text files
   autocmd FileType vim let g:acp_enableAtStartup = 0
   autocmd FileType vim setlocal expandtab
   autocmd FileType vim setlocal tabstop=2
@@ -364,7 +342,6 @@ vmap <C-D>   <Plug>SchleppDupLeft
 
 " clang-complete {{{
 if exists('g:plugs["clang_complete"]')
-  " disable clang complete, we're using YCM
   let g:clang_complete_loaded=0
   if has('macunix')
     "let s:clang_library_path='/Developer/usr/clang-ide/lib'
@@ -664,65 +641,6 @@ if exists('g:plugs["vim-cpp-enhanced-highlight"]')
 	let g:cpp_concepts_highlight=0
 endif
 "}}}
-
-" YouCompleteMe {{{
-"-------------------------------------------
-" Use exuberant ctags to help speed up options
-if exists('g:plugs["youcompleteme"]')
-	" ACP and YCM don't play nice
-	let g:acp_enableAtStartup = 0
-	let g:ycm_collect_identifiers_from_tags_files = 1
-	let g:ycm_register_as_syntastic_checker = 1
-	let g:Show_diagnostics_ui = 1
-
-	" Put icons in vim's gutter on lines that have a diagnostic
-	let g:ycm_enable_diagnostic_signs = 1
-	let g:ycm_always_populate_location_list = 1
-	let g:ycm_open_loclist_on_ycm_diags = 1
-	let g:ycm_autoclose_preview_window_after_insertion = 1
-	" Don't enable pop up window in comments
-	let g:ycm_complete_in_comments = 0
-
-	let g:ycm_complete_in_strings = 1
-	let g:ycm_collect_identifiers_from_tags_files = 1
-	let g:ycm_seed_identifiers_with_syntax = 1
-	let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
-
-	" These are to enable compatibility with syntastic
-	let g:ycm_warning_symbol = '▲'
-	let g:ycm_error_symbol = '✗'
-	let g:ycm_enable_diagnostic_highlighting = 1
-
-	let g:ycm_server_use_vim_stdout = 0
-	let g:ycm_server_log_level = 'info'
-	" apparently the server is being built with python2, and thus needs to
-	" be set to a python2 install.  On my mac, I have an explicit python3,
-	" but by default python is python2.
-	let g:ycm_server_python_interpreter = '/usr/bin/python'
-
-	let g:ycm_filetype_whitelist = {
-	\ 	'c': 1,
-	\ 	'cpp': 1,
-	\	'python': 1,
-	\}
-	let g:ycm_confirm_extra_conf = 0
-"	let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-	let g:ycm_extra_conf_globlist = []
-
-	let g:ycm_key_invoke_completion = '<C-Space>'
-	"map <C-]> :YouCompleter GoToImprecise<CR>
-
-	"YCM key bindings
-	nnoremap <F10> :YcmForceCompileAndDiagnostics <CR>
-	nnoremap <F11> :YcmDiags<CR>
-
-	nnoremap <silent> <Leader>yd :YcmCompleter GetDoc<CR>
-	nnoremap <silent> <Leader>yf :YcmCompleter FixIt<CR>
-	nnoremap <silent> <Leader>yg :YcmCompleter GoTo<CR>
-	nnoremap <silent> <Leader>yi :YcmCompleter GoToInclude<CR>
-	nnoremap <silent> <Leader>yt :YcmCompleter GetType<CR>
-endif
-" }}}
 
 " rainbow parens {{{
 if exists('g:plugs["rainbow"]')
