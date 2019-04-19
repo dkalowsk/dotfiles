@@ -915,7 +915,7 @@ if exists('g:plugs["fzf.vim"]')
 	" Search only the local buffer for the specific tag
 	nmap <Leader>ft :BTags<CR>
 	" Use AG for some fuzzy find
-	nmap <Leader>fa :Ag<Space>
+	nmap <Leader>fa :Ag --ignore tags<Space>
 	" Search only for git tracked files
 	nnoremap <C-p> :GFiles<CR>
 	" Search for non-git tracked files
