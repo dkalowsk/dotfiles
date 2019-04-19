@@ -68,5 +68,4 @@ Plug 'tpope/vim-surround'
 "Plug 'vim-scripts/AutoComplPop'
 Plug 'vim-scripts/restore_view.vim'
 "Plug 'vim-scripts/sessionman.vim'
-Plug 'valloric/youcompleteme', { 'do': function('BuildYCM') }
 Plug 'w0rp/ale'
