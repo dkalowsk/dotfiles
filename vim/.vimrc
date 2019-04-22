@@ -949,23 +949,21 @@ if exists('g:plugs["which-key.vim"]')
 endif
 " }}}
 
-"  vim-workspace support {{{
-if exists('g:plugs["vim-workspace"]')
-	noremap <Tab> :WSNext<CR>
-	noremap <S-Tab> :WSPrev<CR>
-	noremap <Leader><Tab> :WSClose<CR>
-	noremap <Leader><S-Tab> :WSClose!<CR>
+"  vim-buffet support {{{
+if exists('g:plugs["vim-buffet"]')
+	noremap <Leader><Tab> :Bw<CR>
+	noremap <Leader><S-Tab> :Bw!<CR>
 	"noremap <C-t> :WSTabNew<CR>
 
 	cabbrev bonly WSBufOnly
 
-	let g:workspace_powerline_separators = 1
+	let g:buffet_powerline_separators = 0
 	" To get these special icons to work install vim-devicons:
 	" https://github.com/ryanoasis/vim-devicons
 	" not done here as macOS install wasn't working for me
-	"let g:workspace_tab_icon = "\uf00a"
-	"let g:workspace_left_trunc_icon = "\uf0a8"
-	"let g:workspace_right_trunc_icon = "\uf0a9"
+	let g:buffet_tab_icon = "\uf00a"
+	let g:buffet_left_trunc_icon = "\uf0a8"
+	let g:buffet_right_trunc_icon = "\uf0a9"
 endif
 " }}}
 

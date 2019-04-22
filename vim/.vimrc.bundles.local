@@ -1,7 +1,7 @@
 "
 " plug-ins to add
 Plug 'altercation/vim-colors-solarized'
-Plug 'bagrat/vim-workspace'
+Plug 'bagrat/vim-buffet'
 Plug 'benjifisher/matchit.zip'
 Plug 'bling/vim-bufferline'
 Plug 'cespare/vim-toml'
