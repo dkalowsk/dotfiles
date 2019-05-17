@@ -882,7 +882,16 @@ if exists('g:plugs["ale"]')
 	let g:ale_lint_on_enter = 0
 	let g:ale_sign_column_always = 1
 	let g:ale_c_parse_compile_commands = 1
-	let g:ale_linters = { 'cpp' : ['clangd'] }
+	let g:ale_clangformat_executable= '/Users/dkalowsk/clang/clang_8/bin/clang-format'
+	let g:ale_clangtidy_executable = '/Users/dkalowsky/clang/clang_8/bin/clang-tidy'
+	let g:ale_linters = {
+	\ 'c'   : ['clangd', 'clang-tidy'],
+	\ 'cpp' : ['clangd', 'clang-tidy'],
+	\}
+	let g:ale_fixers = {
+	\ 'c'   : ['clang-format'],
+	\ 'cpp' : ['clang-format'],
+	\}
 	let g:ale_completion_max_suggestions = 100
 	let g:ale_completion_enabled = 1
 
