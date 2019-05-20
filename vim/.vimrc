@@ -646,6 +646,7 @@ if exists('g:plugs["ale"]')
 	let g:ale_linters = {
 	\ 'c'   : ['clangd', 'clang-tidy'],
 	\ 'cpp' : ['clangd', 'clang-tidy'],
+	\ 'sh'  : ['bash-language-server'],
 	\}
 	let g:ale_fixers = {
 	\ 'c'   : ['clang-format'],
