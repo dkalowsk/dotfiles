@@ -628,7 +628,6 @@ if exists('g:plugs["coc"]')
 
 	nmap <leader>lr <Plug>(coc-rename)
 
-
 	function! s:show_documentation()
 		if &filetype == 'vim'
 			execute 'h '.expanded('<cword>')
@@ -641,11 +640,18 @@ if exists('g:plugs["coc"]')
 
 	languageserver" : {
 	\	"clangd" : {
-	\	"command": "/Users/dkalowsky/clang/clang_8/bin/clangd",
-	\	"rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/"],
-	\	"filetypes": ["c", "cpp" ]
+	\	  "command": "/Users/dkalowsky/clang/clang_8/bin/clangd",
+	\	  "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/"],
+	\	  "filetypes": ["c", "cpp" ]
+	\ },
+	\ "bash": {
+	\   "command" : "bash-language-server",
+	\   "args" : ["start"],
+	\   "filetypes" : ["sh"],
+	\   "ignoredRootPaths" : ["~"]
+	\ },
 	\}
-	\}
+
 endif
 " }}}
 
