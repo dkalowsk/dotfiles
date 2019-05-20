@@ -639,17 +639,17 @@ if exists('g:plugs["coc"]')
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 
 	languageserver" : {
-	\	"clangd" : {
+	\       "clangd" : {
 	\	  "command": "/Users/dkalowsky/clang/clang_8/bin/clangd",
-	\	  "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/"],
-	\	  "filetypes": ["c", "cpp" ]
-	\ },
-	\ "bash": {
-	\   "command" : "bash-language-server",
-	\   "args" : ["start"],
-	\   "filetypes" : ["sh"],
-	\   "ignoredRootPaths" : ["~"]
-	\ },
+	\         "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/"],
+	\         "filetypes": ["c", "cpp" ]
+	\       },
+	\       "bash": {
+	\         "command" : "bash-language-server",
+	\         "args" : ["start"],
+	\         "filetypes" : ["sh"],
+	\         "ignoredRootPaths" : ["~"]
+	\       },
 	\}
 
 endif
@@ -708,9 +708,16 @@ if exists('g:plugs["ale"]')
 	let g:ale_clangformat_executable= '/Users/dkalowsky/clang/clang_8/bin/clang-format'
 	let g:ale_clangtidy_executable = '/Users/dkalowsky/clang/clang_8/bin/clang-tidy'
 
+	" Configure bits for ccls
+	let g:ale_cpp_ccls_init_options = {
+	\   'cache': {
+	\       'directory': '/tmp/ccls/cache',
+	\   },
+	\ }
+
 	let g:ale_linters = {
 	\ 'c'   : ['clangd', 'clang-tidy'],
-	\ 'cpp' : ['clangd', 'clang-tidy'],
+	\ 'cpp' : ['clangd', 'clang-tidy', 'ccls'],
 	\ 'sh'  : ['bash-language-server'],
 	\ 'py'  : ['pylint'],
 	\}
