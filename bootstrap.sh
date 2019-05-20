@@ -424,6 +424,10 @@ doConfig() {
     curl -L https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ${HOME}/bin/diff-so-fancy
     chmod +x ${HOME}/bin/diff-so-fancy
   fi
+
+  if ! command -v yarn > /dev/null; then
+    curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+  fi
 }
 
 doAll() {

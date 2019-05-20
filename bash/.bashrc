@@ -21,6 +21,7 @@ HISTFILESIZE=2000
 [ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.6/bin"
 [ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.7/bin"
 [ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/2.7/bin"
+[ -d "${HOME}/.yarn/bin" ] && export PATH="${PATH}:${HOME}/.yarn/bin"
 #
 # Simple prompt: show user, host, path
 # set the terminal line
