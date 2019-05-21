@@ -183,6 +183,15 @@ augroup filetype_text
 augroup END
 " }}}
 
+" filetype_markdown {{{
+augroup filetype_markdown
+  autocmd FileType *.md setlocal filetype=markdown
+  autocmd FileType markdown setlocal textwidth=80
+  autocmd FileType markdown setlocal autoindent
+  autocmd FileType markdown setlocal copyindent
+augroup END
+" }}}
+
 " filetype_vim {{{
 augroup filetype_vim
   autocmd!
