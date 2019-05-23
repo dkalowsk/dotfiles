@@ -357,11 +357,6 @@ endif
 
 " Session List {{{
 set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-if exists('g:plugs["sessionman"]')
-	nmap <leader>sl :SessionList<CR>
-        nmap <leader>ss :SessionSave<CR>
-        nmap <leader>sc :SessionClose<CR>
-endif
 " }}}
 
 " lightline {{{
