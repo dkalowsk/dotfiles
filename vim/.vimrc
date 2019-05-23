@@ -176,7 +176,6 @@ augroup END
 
 " filetype_text {{{
 augroup filetype_text
-  autocmd FileType text let g:acp_enableAtStartup = 0
   " Source of the commented out line: https://stackoverflow.com/a/11068175
   "autocmd WinEnter * :if &ft=='text' | DisableAcp | else | EnableAcp | endif
   "autocmd WinEnter README,*.txt :DisableAcp
@@ -187,7 +186,6 @@ augroup END
 " filetype_vim {{{
 augroup filetype_vim
   autocmd!
-  autocmd FileType vim let g:acp_enableAtStartup = 0
   autocmd FileType vim setlocal expandtab
   autocmd FileType vim setlocal tabstop=2
   autocmd FileType vim setlocal shiftwidth=2
