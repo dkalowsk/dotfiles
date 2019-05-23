@@ -20,7 +20,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
-"Plug 'lifepillar/vim-mucomplete'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'luochen1990/rainbow'

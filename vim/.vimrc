@@ -670,16 +670,6 @@ if exists('g:plugs["quickmenu"]')
 endif
 " }}}
 
-" vim-mucomplete {{{
-if exists('g:plug["vim-mucomplete"]')
-	" For automatic completion, you most likely want this:
-	set noshowmode shortmess+=c
-
-	" Enable mucomplete at startup
-	let g:mucomplete#enable_auto_at_startup = 0
-endif
-" }}}
-
 " emmet {{{
 if exists('g:plugs["emmet-vim"]')
 	" Use emmet just for html/css
