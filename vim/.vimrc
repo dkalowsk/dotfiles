@@ -67,6 +67,11 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set scrolloff=3
 set sidescroll=3
 set sidescrolloff=3
+set updatetime=300
+set signcolumn=yes
+"
+" Enable a marker line on a Column not to overstep
+set colorcolumn=120
 
 " status line contents {{{
 set laststatus=2     " Enable lower status bar
@@ -115,9 +120,6 @@ endif
 
 scriptencoding utf-8
 
-"
-" Enable a marker line on a Column not to overstep
-set colorcolumn=120
 
 " local buffer remap keys {{{
 " set ctrl-tab to be next buffer
@@ -614,9 +616,7 @@ if exists('g:plugs["coc"]')
 	let g:coc_global_extensions = [ 'coc-yaml' ]
 
 	set cmdheight = 2
-	set updatetime = 300
 	set shortmess += c
-	set signcolumn = yes
 
 	nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
 	nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
