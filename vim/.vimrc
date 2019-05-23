@@ -795,24 +795,6 @@ if exists('g:plugs["which-key.vim"]')
 endif
 " }}}
 
-"  vim-buffet support {{{
-if exists('g:plugs["vim-buffet"]')
-	noremap <Leader><Tab> :Bw<CR>
-	noremap <Leader><S-Tab> :Bw!<CR>
-	"noremap <C-t> :WSTabNew<CR>
-
-	cabbrev bonly WSBufOnly
-
-	let g:buffet_powerline_separators = 0
-	" To get these special icons to work install vim-devicons:
-	" https://github.com/ryanoasis/vim-devicons
-	" not done here as macOS install wasn't working for me
-	let g:buffet_tab_icon = "\uf00a"
-	let g:buffet_left_trunc_icon = "\uf0a8"
-	let g:buffet_right_trunc_icon = "\uf0a9"
-endif
-" }}}
-
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
