@@ -465,33 +465,6 @@ endif
 
 " }}}
 
-" ctrl-p {{{
-"-----------------------------------------------------------
-if exists('g:plugs["ctrlp"]')
-	let g:ctrlp_map = '<c-p>'
-	let g:ctrlp_cmd = 'CtrlP'
-	let g:ctrlp_match_window = 'bottom,order:ttb'
-	let g:ctrlp_dont_split = 'nerdtree'
-	let g:ctrlp_switch_buffer = 0
-	" r = Search from the nearest ancestor that contains a .git, .svn, or .hg directory
-	" a = the directory of the current file if there is no 'r' available
-	let g:ctrlp_working_path_mode = 'ra'
-	"let g:ctrlp_user_command = 'ag %s -l --nocolor --hideen -g ""'
-	" The nearest ancestor that contains git or set to 0 for disable
-	"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hi|svn)$'
-	let g:ctrlp_custom_ignore = {
-	  \ 'dir':    '\v[\/]\.(git|hg|svn)$',
-	  \ 'file':   '\v\.(exe|so|dll|old)$',
-	  \ }
-	if executable('ag')
-		" Use ag in CtrlP for listing files.  Lightning fast and respects .gitignore
-		let g:ctrlp_user_command = 'ag %s --nocolor -l -g ""'
-		" Since ag is fast enough, CtrlP doesn't need to cache
-		let g:ctrlp_use_caching = 0
-	endif
-endif
-" }}}
-
 " syntastic {{{
 "-----------------------------------------------------------
 if exists('g:plugs["syntastic"]')
@@ -570,9 +543,6 @@ if exists('g:plugs["vim-gutentags"]')
 				\  },
 				\}
 	set statusline+=%{gutentags#statusline()}
-	if exists('g:plugs["ctrlp"]')
-	map <silent> <leader>jd :CtrlPTag<cr><c-\>w
-	endif
 endif
 
 if executable('ctags')
