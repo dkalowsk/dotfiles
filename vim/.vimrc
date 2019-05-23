@@ -384,40 +384,10 @@ if exists('g:plugs["sessionman"]')
 endif
 " }}}
 
-" vim-airline {{{
-"-----------------------------------------------------------
-if exists('g:plugs["vim-airline"]')
-
-	let g:airline#extensions#tabline#enabled = 1
-	let g:airline_detect_modified=1
-
-	if exists('g:plugs["vim-airline-themes"]')
-	let g:airline_theme = 'luna'
-	else
-	  let g:airline_theme='solarized'
-	endif
-
-	let g:airline_powerline_fonts = 1
-	if !exists('g:airline_powerline_fonts')
-	  let g:airline_left_sep='›'  " Slightly fancier than '>'
-	  let g:airline_right_sep='‹' " Slightly fancier than '<'
-	endif
-
-	if !exists('g:airline_symbols')
-	  let g:airline_symbols = {}
-	endif
-
-	" Workaround for causing slow exit in nvim
-	" See: https://github.com/neovim/neovim/issues/4487
-	let g:airline#extensions#branch#enabled = 0
-
-endif
-" }}}
-
 " lightline {{{
 if exists('g:plugs["lightline"]')
-	" Exploring this as a possible replacement for airline so I don't need
-	" hacked up fonts
+	" Using this as a replacement for airline removing the need
+	" for hacked up fonts
 	let g:lightline.colorscheme = 'jellybeans'
 
 	let g:lightline.component_expand = {
@@ -518,13 +488,6 @@ if exists('g:plugs["ctrlp"]')
 		let g:ctrlp_user_command = 'ag %s --nocolor -l -g ""'
 		" Since ag is fast enough, CtrlP doesn't need to cache
 		let g:ctrlp_use_caching = 0
-	endif
-
-	if exists('g:plugs["vim-airline"]')
-		let g:airline#extensions#ctrlp#color_template = 'insert'
-		"let g:airline#extensions#ctrlp#color_template = 'normal'
-		"let g:airline#extensions#ctrlp#color_template = 'visual'
-		"let g:airline#extensions#ctrlp#color_template = 'replace'
 	endif
 endif
 " }}}
@@ -778,10 +741,6 @@ endif
 
 " ale {{{
 if exists('g:plugs["ale"]')
-	if exists('g:plugs["vim-airline"]')
-	  let g:airline#extensions#ale#enabled = 1
-	endif
-
 	" Only run the linter when saving the file
 	"let g:ale_lint_on_text_changed = 'never'
 	
