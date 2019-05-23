@@ -340,24 +340,6 @@ vmap D       <Plug>SchleppDupLeft
 vmap <C-D>   <Plug>SchleppDupLeft
 "}}}
 
-" clang-complete {{{
-if exists('g:plugs["clang_complete"]')
-  let g:clang_complete_loaded=0
-  if has('macunix')
-    "let s:clang_library_path='/Developer/usr/clang-ide/lib'
-    "let s:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
-    let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-  endif
-  let g:clang_use_library=1
-  let g:clang_user_options = '-std=c++14'
-  let g:clang_complete_auto = 1
-  let g:clang_auto_select = 1
-  let g:clang_hl_errors = 1
-  let g:clang_snippets = 1
-  let g:clang_snippets_engine = 'clang_complete'
-endif
-" }}}
-
 " color scheme {{{
 "-----------------------------------------------------------
 syntax enable
