@@ -670,15 +670,6 @@ if exists('g:plugs["quickmenu"]')
 endif
 " }}}
 
-" emmet {{{
-if exists('g:plugs["emmet-vim"]')
-	" Use emmet just for html/css
-	let g:user_emmet_install_global = 0
-	autocmd FileType html,css EmmetInstall
-endif
-
-"}}}
-
 "  tig support {{{
 if executable('tig')
 
