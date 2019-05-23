@@ -440,22 +440,6 @@ endif
 
 " }}}
 
-" syntastic {{{
-"-----------------------------------------------------------
-if exists('g:plugs["syntastic"]')
-	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
-
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
-	let g:syntastic_check_on_wq = 0
-"  let g:synatastic_clang_tidy_config_file = $clang_tidy
-"  let g:synatastic_cpp_checkers = ['clang_check', 'clang-tidy', 'cppcheck' ]
-endif
-" }}}
-
 " NERDtree {{{
 "-----------------------------------------------------------
 if exists('g:plugs["nerdtree"]')
