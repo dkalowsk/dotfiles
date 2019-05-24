@@ -29,7 +29,10 @@ doStow() {
       shopt -s dotglob
       for F in ${1}/*; do
         if [ ! -f ${F} ]; then
-          ln -s ${F} ${HOME}/${F##*/}
+          if ["${F}" == ^. ]; then
+            ln -s ${F} ${HOME}/${F##*/}
+          else
+            ln -s ${F} ${HOME}/${1}/${F##*/}
         else
           info "File already exists ${F}"
         fi
