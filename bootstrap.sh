@@ -150,7 +150,6 @@ doPipInstall() {
   fi
 
   ${pip_version} install jedi --user ${update}
-  ${pip_version} install meson --user ${update}
   ${pip_version} install neovim --user ${update}
   ${pip_version} install parso --user ${update}
   ${pip_version} install voltron --user ${update}
