@@ -18,6 +18,7 @@ HISTFILESIZE=2000
 [ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
 [ -d "/opt/usr/bin" ] && export PATH="${PATH}:/opt/usr/bin"
 [ -d "/opt/bin" ] && export PATH="${PATH}:/opt/bin"
+[ -d "/usr/local/sbin" ] && export PATH="${PATH}:/usr/local/sbin"
 [ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.6/bin"
 [ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.7/bin"
 [ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/2.7/bin"
