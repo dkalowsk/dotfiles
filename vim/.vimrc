@@ -647,10 +647,12 @@ if exists('g:plugs["ale"]')
 	\ 'c'   : ['clangd', 'clang-tidy'],
 	\ 'cpp' : ['clangd', 'clang-tidy'],
 	\ 'sh'  : ['bash-language-server'],
+	\ 'py'  : ['pylint'],
 	\}
 	let g:ale_fixers = {
 	\ 'c'   : ['clang-format'],
 	\ 'cpp' : ['clang-format'],
+	\ 'py'  : ['autopep8'],
 	\}
 	let g:ale_completion_max_suggestions = 100
 	let g:ale_completion_enabled = 1
