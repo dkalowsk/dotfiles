@@ -47,12 +47,9 @@ brew 'gawk'
 brew 'gnu-sed'
 brew 'libelf'
 brew 'wget'
-brew 'crosstool-ng'
-brew 'ctags'
 brew 'docbook-xsl'
 brew 'dwarfutils'
 brew 'isl'
-#brew 'gcc'
 brew 'jpeg'
 brew 'gd'
 brew 'gdb'
@@ -92,18 +89,14 @@ brew 'pygobject3'
 brew 'qt'
 brew 'qcachegrind', args: ['with-graphviz']
 brew 'qemu'
-brew 'rust'
 brew 'socat'
 brew 'stgit'
 brew 'stow'
 brew 'the_silver_searcher'
 brew 'tig'
-brew 'tmux'
-brew 'tmuxinator-completion'
 brew 'vim', args: ['with-lua', 'with-python', 'with-client-server', 'with-override-system-vi']
 brew 'xmlto'
 brew 'zlib'
-#brew 'facebook/fb/buck', args: ['HEAD']
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 
 # Apps
