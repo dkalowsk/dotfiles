@@ -97,6 +97,7 @@ brew 'tig'
 brew 'vim', args: ['with-lua', 'with-python', 'with-client-server', 'with-override-system-vi']
 brew 'xmlto'
 brew 'zlib'
+brew 'ccls'
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 
 # Apps
