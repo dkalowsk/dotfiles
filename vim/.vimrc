@@ -676,7 +676,7 @@ if exists('g:plugs["fzf.vim"]')
 	" Search only the local buffer for the specific tag
 	nmap <Leader>ft :BTags<CR>
 	" Use AG for some fuzzy find
-	nmap <Leader>fa :Ag --ignore tags<Space>
+	nmap <Leader>fa :Ag<Space>
 	" Search only for git tracked files
 	nnoremap <C-p> :GFiles<CR>
 	" Search for non-git tracked files
@@ -720,7 +720,8 @@ if exists('g:plugs["fzf.vim"]')
 	command! -bang Colors
 	  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
 
-	endif
+	command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--path-to-ignore ~/.ignore --color-match="30;43" --color-path="0;33"', <bang>0)
+endif
 "}}}
 "
 " vim-which-key {{{
