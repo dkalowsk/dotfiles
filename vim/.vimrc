@@ -298,6 +298,11 @@ map <C-H> <C-W><C-H>
 "map <C-K> <C-W><C-W>
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
+
+" Toggle quickfix
+map <silent> <F8> :copen<CR>
+
+nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
 
 " backup {{{
@@ -776,4 +781,20 @@ function! <SID>StripTrailingWhitespaces()
 	call cursor(l, c)
 endfunction
 
+function! LightLineReadonly()
+	if &filetype == "help"
+		return ""
+	elseif &readonly
+		return "RO"
+	else
+		return ""
+	endif
+endfunction
+
+" Copy current file path to clipboard
+function! CopyCurrentFilePath() " {{{
+  let @+ = expand('%')
+  echo @+
+endfunction
+" }}}
 " vim:foldmethod=marker:foldlevel=0
