@@ -689,6 +689,7 @@ endif
 if exists('g:plugs["fzf.vim"]')
 
 	let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+	let g:fzf_history_dir = '~/.local/share/fzf-history'
 	nmap ; :Buffers<CR>
 	" Search all tags
 	nmap <Leader>fT :Tags<CR>
