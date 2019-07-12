@@ -384,13 +384,17 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 if exists('g:plugs["lightline"]')
 	" Using this as a replacement for airline removing the need
 	" for hacked up fonts
+
+	let g:lightline.separator = { 'left': '▓▒░', 'right': '░▒▓'  }
+	let g:lightline.subseparator = { 'left': '>', 'right': ''  }
 	let g:lightline.colorscheme = 'jellybeans'
 
-	let g:lightline.component_expand = {
+	let g:lightline.component_function = {
 	\   'linter_checking': 'lightline#ale#checking',
 	\   'linter_warnings': 'lightline#ale#warnings',
 	\   'linter_errors': 'lightline#ale#errors',
-	\   'linter_ok': 'lightline#ale#ok'
+	\   'linter_ok': 'lightline#ale#ok',
+	\   'readonly': 'LightlineReadonly',
 	\ }
 
 	let g:lightline.component_type = {
