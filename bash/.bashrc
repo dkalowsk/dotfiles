@@ -23,6 +23,10 @@ HISTFILESIZE=2000
 [ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.7/bin"
 [ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/2.7/bin"
 [ -d "${HOME}/.yarn/bin" ] && export PATH="${PATH}:${HOME}/.yarn/bin"
+
+if hash rbenv 2>/dev/null; then
+  eval "$(rbenv init -)"
+fi
 #
 # Simple prompt: show user, host, path
 # set the terminal line
