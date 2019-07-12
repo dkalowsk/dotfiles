@@ -687,6 +687,8 @@ endif
 
 " fzf {{{
 if exists('g:plugs["fzf.vim"]')
+
+	let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 	nmap ; :Buffers<CR>
 	" Search all tags
 	nmap <Leader>fT :Tags<CR>
@@ -695,9 +697,29 @@ if exists('g:plugs["fzf.vim"]')
 	" Use AG for some fuzzy find
 	nmap <Leader>fa :Ag<Space>
 	" Search only for git tracked files
-	nnoremap <C-p> :GFiles<CR>
+	nnoremap <silent> <C-p> :GFiles<CR>
 	" Search for non-git tracked files
-	nnoremap <C-P> :Files<CR>
+	nnoremap <silent> <C-P> :Files<CR>
+
+	" taken from https://github.com/zenbro/dotfiles/blob/d3f4bd3136aab297191c062345dfc680abb1efac/.nvimrc#L235
+	nnoremap <silent> K :call SearchWordWithAg()<CR>
+	vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+
+	function! SearchWordWithAg()
+	  execute 'Ag' expand('<cword>')
+	endfunction
+
+	function! SearchVisualSelectionWithAg() range
+	  let old_reg = getreg('"')
+	  let old_regtype = getregtype('"')
+	  let old_clipboard = &clipboard
+	  set clipboard&
+	  normal! ""gvy
+	  let selection = getreg('"')
+	  call setreg('"', old_reg, old_regtype)
+	  let &clipboard = old_clipboard
+	  execute 'Ag' selection
+	endfunction
 
 	" Have fzf colors match color scheme
 	let g:fzf_colors =
