@@ -250,6 +250,13 @@ augroup filetype_gitcommit
 augroup END
 " }}}
 
+" {{{ netrw fix for broken buffer closing
+  " Per default, netrw leaves unmodified buffers open. This autocommand
+  " deletes netrw's buffer once it's hidden (using ':q', for example)
+  " Found in: https://github.com/tpope/vim-vinegar/issues/13#issuecomment-47133890
+  autocmd FileType netrw setl bufhidden=delete
+" }}}
+
 " ============================================================================
 
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
@@ -449,38 +456,38 @@ endif
 
 " }}}
 
-" NERDtree {{{
-"-----------------------------------------------------------
-if exists('g:plugs["nerdtree"]')
-	map <F2> :NERDTreeToggle<CR>  " set F2 to be the key to open NERDTree
-	" Configure to open NERDTree if no file is given
-	"autocmd StdinReadPre * let s:std_in=1
-	"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-	"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-	let g:nerdtree_tabs_open_on_console_startup = 0
-	let g:nerdtree_tabs_open_on_gui_startup=0
-	let g:nerdtree_tabs_meaningful_tab_names = 1
-	let g_nerdtree_tabs_autoclose = 1
-	let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-	let NERDTreeShowBookmarks=1
-	let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-	let NERDTreeChDirMode=0
-	let NERDTreeQuitOnOpen=1
-	let NERDTreeMouseMode=2
-	let NERDTreeShowHidden=1
-	let NERDTreeKeepTreeInNewTab=1
-endif
+" netrw {{{
+" -------------------------------------------------
+"  This is kind of a built-in replacement for NERDTree
+
+" open files in previous window
+let g:netrw_browse_split = 4
+" only take up 25% of the screen
+let g:netrw_winsize = 25
+" set the list style to tree
+let g:netrw_liststyle = 3
+
+let g:NetrwIsOpen=0
+" Function thanks to /u/ThinkNormieThoughts at:
+" https://www.reddit.com/r/vim/comments/6jcyfj/toggle_lexplore_properly/djdmsal/
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Vexplore
+    endif
+endfunction
+
+noremap <silent> <F2> :call ToggleNetrw()<CR>  " set F2 to be the key to open a vertical netrw screen
 " }}}
 
 " gundo {{{
