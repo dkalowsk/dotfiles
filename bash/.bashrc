@@ -105,12 +105,16 @@ alias less="less -R"
 #
 # Add the Android build tool paths
 #
-if [ -d "$HOME/development/android/toolchains" ]; then
-	export ANDROID_TOOLCHAIN_ROOT="${HOME}/development/android/toolchains"
-	export ANDROID_ARMV7="${ANDROID_TOOLCHAIN_ROOT}/android-19_arm_r18b/bin"
-	export ANDROID_X86="${ANDROID_TOOLCHAIN_ROOT}/android-19_x86_r18b/bin"
-	export ANDROID_ARM64="${ANDROID_TOOLCHAIN_ROOT}/android-21_arm64_r18b/bin"
-	export PATH=${PATH}:${ANDROID_ARMV7}:${ANDROID_ARM64}:${ANDROID_X86}
+if [ -d "$HOME/development/android/android-ndk-r20" ]; then
+	export NDK_HOME="${HOME}/development/android/android-ndk-r20"
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin"
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/darwin-x86_64/bin"
+	elif [[ "$OSTYPE" == "msys" ]]; then
+		export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin"
+	fi
+	export PATH="${PATH}:${NDK_HOME}:${NDK_BIN}"
 fi
 
 #
