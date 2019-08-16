@@ -760,7 +760,7 @@ endif
 "}}}
 "
 " vim-which-key {{{
-if exists('g:plugs["which-key.vim"]')
+if exists('g:plugs["vim-which-key"]')
   nnoremap <silent> <leader> :WhichKey '<,>'<CR>
 endif
 " }}}
