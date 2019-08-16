@@ -380,45 +380,41 @@ endif
 set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 " }}}
 
-" lightline {{{
-if exists('g:plugs["lightline"]')
+" lightline.vim {{{
+if exists('g:plugs["lightline.vim"]')
 	" Using this as a replacement for airline removing the need
 	" for hacked up fonts
 
-	let g:lightline.separator = { 'left': '▓▒░', 'right': '░▒▓'  }
-	let g:lightline.subseparator = { 'left': '>', 'right': ''  }
-	let g:lightline.colorscheme = 'jellybeans'
-
-	let g:lightline.component_function = {
+	let g:lightline = {
+	\ 'separator' : { 'left': '▓▒░', 'right': '░▒▓'  },
+	\ 'subseparator' : { 'left': '>', 'right': ''  },
+	\ 'colorscheme' : 'jellybeans',
+	\ 'enable' : {
+	\   'statusline': 1,
+	\ },
+	\ 'component_function' : {
 	\   'linter_checking': 'lightline#ale#checking',
 	\   'linter_warnings': 'lightline#ale#warnings',
 	\   'linter_errors': 'lightline#ale#errors',
 	\   'linter_ok': 'lightline#ale#ok',
 	\   'readonly': 'LightlineReadonly',
-	\ }
-
-	let g:lightline.component_type = {
+	\ },
+	\ 'component_type' :  {
 	\   'linter_checking': 'left',
 	\   'linter_warnings': 'warning',
 	\   'linter_errors': 'error',
 	\   'linter_ok': 'left',
-	\ }
-
-	let g:lightline.active = {
+	\ },
+	\ 'active' : {
 	\   'left': [['mode', 'paste'], ['filename', 'modified']],
 	\   'right': [['readonly', 'linter_warnings', 'linter_errors', 'linter_ok'], ['lineinfo'], ['percent']],
-	\ }
-
-	let g:lightline.enable = {
-	\ 'statusline': 1,
-	\ 'tabline': 1
-	\ }
+	\ },
+	\}
 
 	let g:lightline#ale#indicator_warnings = '◆'
 	let g:lightline#ale#indicator_errors = '✗'
 	let g:lightline#ale#indicator_ok = '✓ '
 
-	set showtabline=2 " show tabline
 	set guioptions-=e " don't use GUI tabline
 endif
 " }}}
@@ -464,7 +460,6 @@ if exists('g:plugs["tagbar"]')
 endif
 
 " }}}
-
 
 " netrw {{{
 " -------------------------------------------------
