@@ -2,7 +2,6 @@
 " plug-ins to add
 Plug 'altercation/vim-colors-solarized'
 Plug 'benjifisher/matchit.zip'
-Plug 'bling/vim-bufferline'
 Plug 'cespare/vim-toml'
 Plug 'CoatiSoftware/vim-sourcetrail'
 Plug 'elzr/vim-json'
