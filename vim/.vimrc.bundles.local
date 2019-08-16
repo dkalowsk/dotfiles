@@ -33,7 +33,6 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'osyo-manga/vim-over'
 Plug 'powerline/fonts'
 Plug 'quentindecock/vim-cucumber-align-pipes'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-textobj-quote'
