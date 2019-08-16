@@ -647,17 +647,20 @@ if exists('g:plugs["ale"]')
 	let g:ale_c_parse_compile_commands = 1
 	let g:ale_clangformat_executable= '/Users/dkalowsky/clang/clang_8/bin/clang-format'
 	let g:ale_clangtidy_executable = '/Users/dkalowsky/clang/clang_8/bin/clang-tidy'
+
 	let g:ale_linters = {
 	\ 'c'   : ['clangd', 'clang-tidy'],
 	\ 'cpp' : ['clangd', 'clang-tidy'],
 	\ 'sh'  : ['bash-language-server'],
 	\ 'py'  : ['pylint'],
 	\}
+
 	let g:ale_fixers = {
 	\ 'c'   : ['clang-format'],
 	\ 'cpp' : ['clang-format'],
 	\ 'py'  : ['autopep8'],
 	\}
+
 	let g:ale_completion_max_suggestions = 100
 	let g:ale_completion_enabled = 1
 
@@ -668,6 +671,12 @@ if exists('g:plugs["ale"]')
 	nmap ]w :ALENextWrap<CR>
 	nmap [w :ALEPreviousWrap<CR>
 	nmap <Leader>af <Plug>(ale_fix)
+
+	" keybindings from ccls documentation
+	nnoremap <silent> <Leader>ad :ALEGoToDefinition<cr>
+	nnoremap <silent> <Leader>ar :ALEFindReferences<cr>
+	nnoremap <silent> <Leader>aa :ALESymbolSearch<cr>
+	nnoremap <silent> <Leader>ah :ALEHover<cr>
 endif
 
 "}}}
