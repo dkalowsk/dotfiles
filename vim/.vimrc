@@ -595,14 +595,6 @@ if exists('g:plugs["asyncrun"]')
 endif
 " }}}
 
-" UndoTree {{{
-if exists('g:plugs["undotree"]')
-      nnoremap <Leader>u :UndotreeToggle<CR>
-      " If undotree is opened, it is likely one wants to interact with it.
-      let g:undotree_SetFocusWhenToggle=1
-endif
-" }}}
-
 " quickmenu {{{
 if exists('g:plugs["quickmenu"]')
   " choose a favorite key to show/hide quickmenu
