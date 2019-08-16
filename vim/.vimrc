@@ -596,7 +596,7 @@ endif
 " }}}
 
 " quickmenu {{{
-if exists('g:plugs["quickmenu"]')
+if exists('g:plugs["quickmenu.vim"]')
   " choose a favorite key to show/hide quickmenu
   noremap <silent><F12> :call quickmenu#toggle(0)<cr>
 
