@@ -588,7 +588,7 @@ endif
 " }}}
 
 " asyncrun {{{
-if exists('g:plugs["asyncrun"]')
+if exists('g:plugs["asyncrun.vim"]')
 	if exists(':Ack')
 	  let g:ack_use_asyncrun = 0
 	endif
