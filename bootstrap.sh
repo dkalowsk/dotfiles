@@ -393,6 +393,9 @@ doConfig() {
     if [ -f "${HOME}/bin/diff-so-fancy" ]; then
       rm ${HOME}/bin/diff-so-fancy
     fi
+    if [ -d "${HOME}/.yarn" ]; then
+      rm -Rf ${HOME}/.yarn
+    fi
   fi
 
   if [ ! -f ${HOME}/.git-prompt.sh ]; then
