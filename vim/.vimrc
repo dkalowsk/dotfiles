@@ -794,7 +794,23 @@ function! ClangCheck()
   endif
 endfunction
 
-nmap <silent> <F5> :call ClangCheck()<CR><CR>
+"
+" Borrowed from https://www.reddit.com/r/vim/comments/cw6q13/my_own_alternatives_to_vimsurround_and_avim/
+"
+nnoremap <silent> <leader>aa :call SwitchSourceHeader()<cr>
+function! SwitchSourceHeader()
+  if (expand ("%:e") == "cpp")
+    silent! find %:t:r.h
+    silent! find %:t:r.hpp
+  elseif (expand ("%:e") == "c")
+    silent! find %:t:r.h
+  elseif (expand ("%:e") == "hpp")
+    silent! find %:t:r.cpp
+  elseif (expand ("%:e") == "h")
+    silent! find %:t:r.cpp
+    silent! find %:t:r.c
+  endif
+endfunction
 
 
 " Strips trailing whitespace at the end of files.  This is called on buffer
