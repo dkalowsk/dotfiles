@@ -33,6 +33,7 @@ doStow() {
             ln -s ${F} ${HOME}/${F##*/}
           else
             ln -s ${F} ${HOME}/${1}/${F##*/}
+          fi
         else
           info "File already exists ${F}"
         fi
