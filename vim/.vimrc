@@ -392,12 +392,14 @@ if exists('g:plugs["lightline.vim"]')
 	\ 'enable' : {
 	\   'statusline': 1,
 	\ },
+	\ 'component_function' : {
+	\   'readonly': 'LightlineReadonly',
+	\ },
 	\ 'component_expand' : {
 	\   'linter_checking': 'lightline#ale#checking',
 	\   'linter_warnings': 'lightline#ale#warnings',
 	\   'linter_errors': 'lightline#ale#errors',
 	\   'linter_ok': 'lightline#ale#ok',
-	\   'readonly': 'LightlineReadonly',
 	\ },
 	\ 'component_type' :  {
 	\   'linter_checking': 'left',
@@ -406,9 +408,16 @@ if exists('g:plugs["lightline.vim"]')
 	\   'linter_ok': 'left',
 	\ },
 	\ 'active' : {
-	\   'left': [['mode', 'paste'], ['filename', 'modified']],
-	\   'right': [['readonly', 'linter_warnings', 'linter_errors', 'linter_ok'], ['lineinfo'], ['percent']],
+	\   'left': [ ['mode', 'paste'],
+	\            ['readonly', 'filename', 'modified'] ],
+	\   'right': [ ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok'],
+	\              ['lineinfo'],
+	\              ['percent'],
+	\              ['fileformat'] ],
 	\ },
+	\ 'component' : {
+	\   'helloworld' : "Hello World!",
+	\ }
 	\}
 
 	let g:lightline#ale#indicator_warnings = '◆'
