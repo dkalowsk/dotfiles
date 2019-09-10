@@ -505,7 +505,8 @@ noremap <silent> <F2> :call ToggleNetrw()<CR>  " set F2 to be the key to open a 
 
 " gundo {{{
 "-----------------------------------------------------------
-nnoremap <leader>u :GundoToggle<CR>
+  let g:gundo_preview_bottom = 1
+  nnoremap <F4> :GundoToggle<CR>
 " }}}
 
 " ctags && gutentags {{{
