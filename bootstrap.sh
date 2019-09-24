@@ -130,6 +130,8 @@ doFonts() {
     rm -Rf codeface-fonts.zip
   fi
 
+  cd ${fonts_dir} && { curl -O https://github.com/microsoft/cascadia-code/releases/download/v1909.16/Cascadia.ttf ; cd -; }
+
   #
   # install only if the git command was successful
   #
