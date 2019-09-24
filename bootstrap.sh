@@ -127,6 +127,7 @@ doFonts() {
     # in turn add the extra fonts to the already existing fonts directory
     # generated from the code check out
     unzip -o -q "codeface-fonts.zip"
+    rm -Rf codeface-fonts.zip
   fi
 
   #
@@ -141,8 +142,6 @@ doFonts() {
     popd > /dev/null
     rm -rf fonts
   fi
-
-  rm -Rf codeface-fonts.zip
 }
 
 doPipInstall() {
