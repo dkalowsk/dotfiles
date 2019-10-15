@@ -760,12 +760,6 @@ if exists('g:plugs["fzf.vim"]')
 endif
 "}}}
 "
-" vim-which-key {{{
-if exists('g:plugs["vim-which-key"]')
-  nnoremap <silent> <leader> :WhichKey '<,>'<CR>
-endif
-" }}}
-
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
