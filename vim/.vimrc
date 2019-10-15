@@ -613,20 +613,19 @@ endif
 " coc {{{
 if exists('g:plugs["coc"]')
 
-	let g:coc_global_extensions = [ 'coc-yaml' ]
+	"let g:coc_global_extensions = [ 'coc-yaml' ]
 
 	set cmdheight = 2
 	set shortmess += c
 
-	nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
-	nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+	"nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
+	"nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+	"nmap <leader>lr <Plug>(coc-rename)
 
-	nmap <silent> <leader>ld <Plug>(coc-definition)
-	nmap <silent> <leader>lt <Plug>(coc-type-definition)
-	nmap <silent> <leader>li <Plug>(coc-implementation)
-	nmap <silent> <leader>lf <Plug>(coc-references)
-
-	nmap <leader>lr <Plug>(coc-rename)
+	nmap <silent> <leader>gd <Plug>(coc-definition)
+	nmap <silent> <leader>gy <Plug>(coc-type-definition)
+	nmap <silent> <leader>gi <Plug>(coc-implementation)
+	nmap <silent> <leader>gr <Plug>(coc-references)
 
 	function! s:show_documentation()
 		if &filetype == 'vim'
@@ -636,19 +635,17 @@ if exists('g:plugs["coc"]')
 		endif
 	endfunction
 
+	" Highlight symbol under cursor on CursorHold
 	autocmd CursorHold * silent call CocActionAsync('highlight')
+
+	" Show all diagnostics using CocList
+	noremap <silent> <leader>gcd :<C-u>CocList diagnostics<cr>
 
 	languageserver" : {
 	\       "clangd" : {
 	\	  "command": "/Users/dkalowsky/clang/clang_8/bin/clangd",
 	\         "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/"],
-	\         "filetypes": ["c", "cpp" ]
-	\       },
-	\       "bash": {
-	\         "command" : "bash-language-server",
-	\         "args" : ["start"],
-	\         "filetypes" : ["sh"],
-	\         "ignoredRootPaths" : ["~"]
+	\         "filetypes": ["c", "cpp"]
 	\       },
 	\}
 
@@ -717,7 +714,7 @@ if exists('g:plugs["ale"]')
 
 	let g:ale_linters = {
 	\ 'c'   : ['clangd', 'clang-tidy'],
-	\ 'cpp' : ['clangd', 'clang-tidy', 'ccls'],
+	\ 'cpp' : ['ccls'],
 	\ 'sh'  : ['bash-language-server'],
 	\ 'py'  : ['pylint'],
 	\}
