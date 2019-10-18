@@ -392,7 +392,7 @@ if exists('g:plugs["lightline.vim"]')
 	\ 'enable' : {
 	\   'statusline': 1,
 	\ },
-	\ 'component_function' : {
+	\ 'component_expand' : {
 	\   'linter_checking': 'lightline#ale#checking',
 	\   'linter_warnings': 'lightline#ale#warnings',
 	\   'linter_errors': 'lightline#ale#errors',
