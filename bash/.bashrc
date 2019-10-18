@@ -79,6 +79,7 @@ fi
 alias ffind='find . -name'
 alias telnet=nc
 alias top="top -o cpu"
+[ -x "/usr/local/bin/python3" ] && alias python=/usr/local/bin/python3
 
 #
 # For git repos, enable a quick return to the root directory
