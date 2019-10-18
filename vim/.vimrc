@@ -366,7 +366,10 @@ vmap <C-D>   <Plug>SchleppDupLeft
 " color scheme {{{
 "-----------------------------------------------------------
 syntax enable
-set t_Co=256
+if &term == "screen"
+  " If we're using screen, and maybe if we're using tmux, make sure to limit to 256
+  set t_Co=256
+endif
 set background=dark
 if exists('g:plugs["vim-colors-solarized"]')
 	let g:solarized_termcolors=256
