@@ -425,6 +425,7 @@ if exists('g:plugs["lightline.vim"]')
 	let g:lightline#ale#indicator_ok = '✓ '
 
 	set guioptions-=e " don't use GUI tabline
+	set noshowmode
 endif
 " }}}
 
