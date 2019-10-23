@@ -65,6 +65,8 @@ set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap too
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set scrolloff=3
+set sidescroll=3
+set sidescrolloff=3
 
 " status line contents {{{
 set laststatus=2     " Enable lower status bar
