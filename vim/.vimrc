@@ -372,7 +372,6 @@ if &term == "screen"
 endif
 set background=dark
 if exists('g:plugs["vim-colors-solarized"]')
-	let g:solarized_termcolors=256
 	let g:solarized_style="dark"
 	let g:solarized_termtrans=1
 	let g:solarized_constract = "normal"
