@@ -302,7 +302,7 @@ noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
 
 " Toggle quickfix
-map <silent> <F8> :copen<CR>
+nmap <silent> <F8> :call ToggleQuickFix()<CR>
 
 nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 " }}}
@@ -844,4 +844,21 @@ function! CopyCurrentFilePath() " {{{
   echo @+
 endfunction
 " }}}
+
+" Quickly and easily toggle quickfix window
+function! ToggleQuickFix() " {{{
+  if exists("g:qwindow")
+    lclose
+    unlet g:qwindow
+  else
+    try
+      lopen 10
+      let g:qwindow = 1
+    catch
+      echo "No Errors found!"
+    endtry
+  endif
+endfunction
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
