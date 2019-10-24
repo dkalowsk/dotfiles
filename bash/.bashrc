@@ -135,7 +135,7 @@ else
 	export EDITOR='vim'
 fi
 
-alias ag="ag --ignore '*tags'"
+alias ag="ag --ignore '*tags' --ignore '.ccls-cache'"
 
 #
 # Only do the following for Windows Subsystem Linux installs
