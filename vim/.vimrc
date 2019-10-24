@@ -800,7 +800,7 @@ endfunction
 "
 " Borrowed from https://www.reddit.com/r/vim/comments/cw6q13/my_own_alternatives_to_vimsurround_and_avim/
 "
-nnoremap <silent> <leader>aa :call SwitchSourceHeader()<cr>
+nnoremap <silent> <leader>sf :call SwitchSourceHeader()<cr>
 function! SwitchSourceHeader()
   if (expand ("%:e") == "cpp")
     silent! find %:t:r.h
@@ -854,7 +854,7 @@ function! ToggleQuickFix() " {{{
     try
       lopen 10
       let g:qwindow = 1
-    catch
+    catch 
       echo "No Errors found!"
     endtry
   endif
