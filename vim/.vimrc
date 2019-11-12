@@ -528,6 +528,8 @@ endif
 
 if exists('g:plugs["vim-gutentags"]')
 	let g:gutentags_enabled=1
+	let g:gutentags_define_advanced_commands = 1
+	let g:gutentags_exclude_filetypes = ['git', 'gitcommit', 'go']
 	let g:gutentags_generate_on_new=1
 	let g:gutentags_generate_on_missing=1
 	let g:gutentags_generate_on_write=1
