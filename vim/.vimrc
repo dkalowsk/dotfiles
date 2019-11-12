@@ -706,6 +706,7 @@ if exists('g:plugs["ale"]')
 	let g:ale_lint_on_enter = 0
 	let g:ale_sign_column_always = 1
 	let g:ale_c_parse_compile_commands = 1
+	let g:ale_echo_msg_format = '[%linter%%:code%] %s'
 	let g:ale_clangformat_executable= '/Users/dkalowsky/clang/clang_8/bin/clang-format'
 	let g:ale_clangtidy_executable = '/Users/dkalowsky/clang/clang_8/bin/clang-tidy'
 
