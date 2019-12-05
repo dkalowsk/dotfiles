@@ -1,6 +1,6 @@
-Font=Powerline Consolas
+Font=Cascadia Code
 ForegroundColour=131,148,150
-BackgroundColour=0,43,54
+BackgroundColour=0,0,0
 CursorColour=220,50,47
 Black=7,54,66
 BoldBlack=0,43,54
@@ -21,3 +21,4 @@ BoldWhite=253,246,227
 Transparency=low
 FontHeight=12
 Scrollbar=none
+OpaqueWhenFocused=yes
