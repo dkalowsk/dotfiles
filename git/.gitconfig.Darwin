@@ -1,0 +1,13 @@
+[mergetool "araxis"]
+	path = /Applications/Araxis Merge.app/Contents/Utilities/compare
+[mergetool "diff3"]
+	path = /usr/bin/diff3
+[diff]
+	tool = araxis 
+[merge]
+	tool = araxis
+[alias]
+	quick-stats = ! /Users/dkalowsky/bin/git-quick-stats
+[core]
+	exludesFile = /Users/dkalowsky/.gitignore
+

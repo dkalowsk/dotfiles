@@ -64,6 +64,16 @@ doSync() {
     info "Syncing ${mydir}"
     doStow ${mydir}
   done
+
+  # Now go append the OS specific parts to the gitconfig
+  # This needs to be done here, as we've potentially just wrote out new
+  # files.
+  local include_text="[include]"
+  if ! grep -q \"${include_text}\" "${HOME}/.gitconfig"; then
+    info "Appending per-OS gitconfig values"
+    echo "${include_text}" >> ${HOME}/.gitconfig
+    echo "  path = ${DOTFILES}/git/.gitconfig.${PLATFORM}" >> ${HOME}/.gitconfig
+  fi
 }
 
 doBrew() {

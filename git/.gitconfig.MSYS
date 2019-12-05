@@ -1,0 +1,9 @@
+[mergetool "vimdiff"]
+	path = /c/Users/DanKalowsky/bin/Neovim/diff.exe
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[winUpdater]
+        recentlySeenVersion = 2.24.0.windows.2
+
