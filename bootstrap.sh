@@ -96,7 +96,7 @@ doInstall() {
   # Now that dotfiles are in place, make sure to run the Vundle installation
   vim -i NONE -c PlugInstall -c PlugClean -c quitall
 
-  doPython3 ${update}
+  doPython ${update}
 }
 
 doFonts() {
@@ -141,25 +141,29 @@ doPipInstall() {
     update="--upgrade"
   fi
 
-  ${pip_version} install jedi --user ${update}
-  ${pip_version} install neovim --user ${update}
-  ${pip_version} install parso --user ${update}
-  ${pip_version} install voltron --user ${update}
-  ${pip_version} install powerline-status --user ${update}
 }
 
-doPython3() {
-  local update=${1}
+doPython() {
+  local update=""
+  local pip_app="pip"
 
   # Check if pip is installed
-  if ! type -P "pip3"; then
-    #if not do the following:
+  if ! type -P "${pip_app}"; then
+    # if not go install with python3:
     curl https://bootstrap.pypa.io/get-pip.py | python3
-  else
-    pip3 install --upgrade pip
+    pip_app = "pip3"
   fi
 
-  doPipInstall "pip3" ${update}
+  if [[ ${1} == true ]]; then
+    ${pip_app} install --upgrade pip
+    update="--upgrade"
+  fi
+
+  ${pip_app} install jedi --user ${update}
+  ${pip_app} install neovim --user ${update}
+  ${pip_app} install parso --user ${update}
+  #${pip_app} install voltron --user ${update}
+  #${pip_app} install powerline-status --user ${update}
 }
 
 doMacOSConfig() {
