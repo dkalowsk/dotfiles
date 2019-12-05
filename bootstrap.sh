@@ -7,7 +7,7 @@
 # Many edits later, it's become it's own beast of a mistake
 #
 
-DOTFILES="~/dotfiles"
+DOTFILES="${HOME}/dotfiles"
 PLATFORM="$(uname)"
 
 info () {
@@ -130,7 +130,7 @@ doFonts() {
     rm -Rf codeface-fonts.zip
   fi
 
-  cd ${fonts_dir} && { curl -O https://github.com/microsoft/cascadia-code/releases/download/v1909.16/Cascadia.ttf ; cd -; }
+  cd ${fonts_dir} && { curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf ; cd -; }
 
   #
   # install only if the git command was successful
