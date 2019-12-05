@@ -111,19 +111,8 @@ doFonts() {
 
   mkdir -p "${fonts_dir}"
 
-  if [ ! -f "codeface-fonts.zip" ]; then
-    curl -OL https://github.com/chrissimpkins/codeface/releases/download/font-collection/codeface-fonts.zip
-  fi
-
-  if [ -f "codeface-fonts.zip" ]; then
-    # this will expand out to a directory called "fonts" which will
-    # in turn add the extra fonts to the already existing fonts directory
-    # generated from the code check out
-    unzip -o -q "codeface-fonts.zip"
-    rm -Rf codeface-fonts.zip
-  fi
-
-  cd ${fonts_dir} && { curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf ; cd -; }
+  # Grab the latest Microsoft Cascadia Code font
+  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf
 
   #
   # install only if the git command was successful
