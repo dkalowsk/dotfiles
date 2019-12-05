@@ -370,7 +370,7 @@ doConfig() {
   if [[ ${update} == true ]]; then
     if [ -d "${HOME}/.fzf" ]; then
       pushd ${HOME}/.fzf > /dev/null
-      git pull --prune
+      git pull --prune && ./install
       popd > /dev/null
     fi
     #
