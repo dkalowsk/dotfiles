@@ -9,6 +9,7 @@
 
 DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
 PLATFORM=""
+PLATFORM_TYPE=""
 
 #
 # Why are we doing this?  Because uname doesn't always support the -o
@@ -23,13 +24,16 @@ case "$(uname -s)" in
     PLATFORM="Linux"
     ;;
   CYGWIN*)
-    PLATFORM="Cygwin"
+    PLATFORM="Windows"
+    PLATFORM_TYPE="Cygwin"
     ;;
   MINGW*)
-    PLATFORM="MINGW"
+    PLATFORM="Windows"
+    PLATFORM_TYPE="MINGW"
     ;;
   MSYS*)
-    PLATFORM="MSYS"
+    PLATFORM="Windows"
+    PLATFORM_TYPE="MSYS"
     ;;
   *)
     PLATFORM="UNKNOWN"
@@ -152,7 +156,7 @@ doFonts() {
   curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
   curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaPL.ttf
 
-  if [ ${PLATFORM} == "MSYS" ]; then
+  if [ ${PLATFORM} == "Windows" ]; then
     info "You will need to manually install the fonts by clicking on them."
     info "I have not setup the PowerShell script to do so yet."
     info "This might help: https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58"
@@ -211,7 +215,7 @@ doPython() {
 }
 
 doWindowsConfig() {
-  if [ ${PLATFORM} != "MSYS" ]; then
+  if [ ${PLATFORM} != "Windows" ]; then
     return
   fi
 }
