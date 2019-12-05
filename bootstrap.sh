@@ -55,14 +55,22 @@ doStow() {
     if [ -d "${1}" ]; then
       shopt -s dotglob
       for F in ${1}/*; do
-        if [ ! -f ${F} ]; then
-          if ["${F}" == ^. ]; then
-            ln -s ${F} ${HOME}/${F##*/}
-          else
-            ln -s ${F} ${HOME}/${1}/${F##*/}
-          fi
+        if [ -d ${F} ]; then
+            # Remove the version already there
+            rm -Rf "${HOME}/${F##*/}" 2> /dev/null
+            ln -s "${DOTFILES}/${F}" "${HOME}/${F##*/}"
         else
-          info "File already exists ${F}"
+          # We've got a file in our local copy, now make the link to the
+          # home directory version.
+
+          # Remove the leading directory name as this is a root directory file
+          config_file="${F##*/}"
+
+          # You may need to blow away any file that already exists there.
+          rm "${HOME}/${config_file}" 2> /dev/null
+          #
+          # Create the link to the file
+          ln -s "${DOTFILES}/${F}" "${HOME}/${config_file}"
         fi
       done
       shopt -u dotglob
