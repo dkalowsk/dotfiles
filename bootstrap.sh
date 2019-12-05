@@ -7,8 +7,9 @@
 # Many edits later, it's become it's own beast of a mistake
 #
 
-DOTFILES="${HOME}/dotfiles"
+DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
 PLATFORM="$(uname)"
+
 
 info () {
   printf "\033[00;34m$@\033[0m\n"
