@@ -373,24 +373,12 @@ doConfig() {
     #
     # This is a destructive process meaning we can't roll back.
     #
-    if [ -f "${HOME}/.git-prompt.sh" ]; then
-      rm ${HOME}/.git-prompt.sh
-    fi
-    if [ -f "${HOME}/.git-completion.bash" ]; then
-      rm ${HOME}/.git-completion.bash
-    fi
-    if [ -f "${HOME}/.tigrc.vim" ]; then
-      rm ${HOME}/.tigrc.vim
-    fi
-    if [ -f "${HOME}/bin/git-quick-stats" ]; then
-      rm ${HOME}/bin/git-quick-stats
-    fi
-    if [ -f "${HOME}/bin/diff-so-fancy" ]; then
-      rm ${HOME}/bin/diff-so-fancy
-    fi
-    if [ -d "${HOME}/.yarn" ]; then
-      rm -Rf ${HOME}/.yarn
-    fi
+    [ -f "${HOME}/.git-prompt.sh" ] && rm ${HOME}/.git-prompt.sh
+    [ -f "${HOME}/.git-completion.bash" ] && rm ${HOME}/.git-completion.bash
+    [ -f "${HOME}/.tigrc.vim" ] && rm ${HOME}/.tigrc.vim
+    [ -f "${HOME}/bin/git-quick-stats" ] && rm ${HOME}/bin/git-quick-stats
+    [ -f "${HOME}/bin/diff-so-fancy" ] && rm ${HOME}/bin/diff-so-fancy
+    [ -d "${HOME}/.yarn" ] && rm -Rf ${HOME}/.yarn
   fi
 
   if [ ! -f ${HOME}/.git-prompt.sh ]; then
