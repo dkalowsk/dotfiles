@@ -8,7 +8,33 @@
 #
 
 DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
-PLATFORM="$(uname)"
+PLATFORM=""
+
+#
+# Why are we doing this?  Because uname doesn't always support the -o
+# flag on all platforms, so it's easier to take one flag that is supported
+# and explode the output
+#
+case "$(uname -s)" in
+  Darwin)
+    PLATFORM="Darwin"
+    ;;
+  Linux)
+    PLATFORM="Linux"
+    ;;
+  CYGWIN*)
+    PLATFORM="Cygwin"
+    ;;
+  MINGW*)
+    PLATFORM="MINGW"
+    ;;
+  MSYS*)
+    PLATFORM="MSYS"
+    ;;
+  *)
+    PLATFORM="UNKNOWN"
+    ;;
+esac
 
 
 info () {
