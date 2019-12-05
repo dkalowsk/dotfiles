@@ -103,6 +103,21 @@ doInstall() {
 doFonts() {
   info "Installing Fonts"
 
+  # Grab the latest Microsoft Cascadia Code font
+  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf
+  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMono.ttf
+  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
+  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaPL.ttf
+
+  if [ ${PLATFORM} == "MSYS" ]; then
+    info "You will need to manually install the fonts by clicking on them."
+    info "I have not setup the PowerShell script to do so yet."
+    info "This might help: https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58"
+
+    return
+
+  fi
+
   if [ ${PLATFORM} == "Darwin" ]; then
     fonts_dir=~/Library/Fonts
   elif [ ${PLATFORM} == "Linux" ]; then
@@ -111,21 +126,12 @@ doFonts() {
 
   mkdir -p "${fonts_dir}"
 
-  # Grab the latest Microsoft Cascadia Code font
-  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf
+  # Copy the fonts to the font dir
+  find . -name "*.[ot]tf" -type f -print0 | xargs -0 -n1 -I % cp "%" "${font_dir}/"
 
-  #
-  # install only if the git command was successful
-  #
-  if [ -d "fonts" ]; then
-    pushd fonts > /dev/null
-    # We can exploit this already provided script to install the additional
-    # font pieces we need as it
-    ./install.sh
-    # clean-up a bit
-    popd > /dev/null
-    rm -rf fonts
-  fi
+  # Now clean up the downloaded font files 
+  find . -name "*.[ot]tf" -type f -print0 | xargs -0 -n1 -I % rm "%"
+
 }
 
 doPipInstall() {
