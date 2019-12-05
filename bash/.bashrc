@@ -38,6 +38,7 @@ GREP_FLAGS="--exclude=tags --exclude=TAGS"
 #
 # check if the term supports color
 #
+color_support=no
 case "${TERM}" in
 	xterm-color|*-256color) color_support=yes;;
 esac
