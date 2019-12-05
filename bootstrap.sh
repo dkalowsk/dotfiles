@@ -166,6 +166,12 @@ doPython() {
   #${pip_app} install powerline-status --user ${update}
 }
 
+doWindowsConfig() {
+  if [ ${PLATFORM} != "MSYS" ]; then
+    return
+  fi
+}
+
 doMacOSConfig() {
   if [ ${PLATFORM} != "Darwin" ]; then
     return
@@ -337,6 +343,7 @@ doConfig() {
 
   doMacOSConfig
   doLinuxConfig
+  doWindowsConfig
 
   if [ ! -d "${HOME}/.fzf" ]; then
     info "Installing fzf"
