@@ -96,7 +96,6 @@ doInstall() {
   # Now that dotfiles are in place, make sure to run the Vundle installation
   vim -i NONE -c PlugInstall -c PlugClean -c quitall
 
-  doPython2 ${update}
   doPython3 ${update}
 }
 
@@ -147,20 +146,6 @@ doPipInstall() {
   ${pip_version} install parso --user ${update}
   ${pip_version} install voltron --user ${update}
   ${pip_version} install powerline-status --user ${update}
-}
-
-doPython2() {
-  local update=${1}
-
-  # Check if pip is installed
-  if ! type -P "pip2"; then
-    #if not do the following:
-    curl https://bootstrap.pypa.io/get-pip.py | python2
-  else
-    pip2 install --upgrade pip
-  fi
-
-  doPipInstall "pip2" ${update}
 }
 
 doPython3() {
