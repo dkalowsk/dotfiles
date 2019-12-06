@@ -522,7 +522,7 @@ if gitroot != ''
 	let &tags = &tags . ',' . gitroot . '/.git/tags'
 endif
 
-if exists('g:plugs["vim-gutentags"]')
+if exists('g:plugs["vim-gutentags"]') && executable('ctags')
 	let g:gutentags_enabled=1
 	let g:gutentags_generate_on_new=1
 	let g:gutentags_generate_on_missing=1
@@ -535,12 +535,11 @@ if exists('g:plugs["vim-gutentags"]')
 				\  },
 				\}
 	set statusline+=%{gutentags#statusline()}
-endif
 
-if executable('ctags')
 	nnoremap <C-]> g<C-]>
 	map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 endif
+
 " }}}
 
 " indent_guides {{{
