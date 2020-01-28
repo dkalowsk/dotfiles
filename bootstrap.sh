@@ -118,9 +118,9 @@ doFonts() {
   fi
 
   if [ ${PLATFORM} == "Darwin" ]; then
-    fonts_dir=~/Library/Fonts
+    fonts_dir="${HOME}/Library/Fonts"
   elif [ ${PLATFORM} == "Linux" ]; then
-    fonts_dir=~/.local/share/fonts
+    fonts_dir="${HOME}/.local/share/fonts"
   fi
 
   mkdir -p "${fonts_dir}"
