@@ -5,6 +5,7 @@ curl
 universal-ctags
 neovim
 python-optcomplete
+python3-pip
 silversearcher-ag
 ssh-askpass
 stow
