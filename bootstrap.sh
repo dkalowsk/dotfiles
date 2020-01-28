@@ -440,10 +440,10 @@ doConfig() {
 
 doAll() {
   doUpdate
-  doSync
   doInstall
   doFonts
   doConfig
+  doSync
 }
 
 doHelp() {
