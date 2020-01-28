@@ -2,7 +2,7 @@ apt-listdifferences
 autoconf
 ccache
 curl
-exuberant-ctags
+universal-ctags
 neovim
 python-optcomplete
 silversearcher-ag
