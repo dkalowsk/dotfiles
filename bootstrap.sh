@@ -305,6 +305,10 @@ doLinuxConfig() {
     fi
   fi
 
+  # Setup to use python3 by default not python2
+  sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 20
+  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 10
+
   # use universal ctags if possible instead
   if [ ! -f "${HOME}/bin/ctags" ]; then
     info "Installing universal-ctags"
