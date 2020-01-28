@@ -430,7 +430,6 @@ doHelp() {
   echo "   -i, --install          Install (extra) software"
   echo "   -f, --fonts            Copies font files"
   echo "   -c, --config           Configures your system"
-  echo "   -u, --update           Updates the configured files for your system"
   echo "   -a, --all              Does all of the above"
   echo
   exit 1
