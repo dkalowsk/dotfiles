@@ -23,7 +23,7 @@ HISTFILESIZE=2000
 [ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.7/bin"
 [ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/2.7/bin"
 [ -d "${HOME}/.yarn/bin" ] && export PATH="${PATH}:${HOME}/.yarn/bin"
-[ -d  "/Applications/010 Editor.app/Contents/CmdLine" ] && export PATH="$PATH:/Applications/010 Editor.app/Contents/CmdLine"
+[ -d  "/Applications/010 Editor.app/Contents/CmdLine" ] && export PATH="${PATH}:/Applications/010 Editor.app/Contents/CmdLine"
 
 if hash rbenv 2>/dev/null; then
   eval "$(rbenv init -)"
