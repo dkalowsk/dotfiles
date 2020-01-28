@@ -60,6 +60,7 @@
 	quick-stats = ! /Users/dkalowsky/bin/git-quick-stats
 	dad = !curl -w \"\\n\" https://icanhazdadjoke.com/
 	nah = "!git reset --hard & git clean -df"
+        restore = "!git config remote.origin.fetch \"+refs/heads/*:refs/remotes/origin/*\" && git fetch origin"
 [diff]
 	tool = araxis
 	# Use the slower but better patience diff algorithm
