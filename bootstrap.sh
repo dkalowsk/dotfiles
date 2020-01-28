@@ -133,19 +133,9 @@ doFonts() {
 
 }
 
-doPipInstall() {
-  local pip_version=${1}
-  local update=false
-
-  if [[ ${2} == true ]]; then
-    update="--upgrade"
-  fi
-
-}
-
 doPython() {
   local update=""
-  local pip_app="pip"
+  local pip_app="pip3"
 
   # Check if pip is installed
   if ! type -P "${pip_app}"; then
@@ -155,10 +145,10 @@ doPython() {
   fi
 
   if [[ ${1} == true ]]; then
-    ${pip_app} install --upgrade pip
     update="--upgrade"
   fi
 
+  ${pip_app} install ${update} pip
   ${pip_app} install jedi --user ${update}
   ${pip_app} install neovim --user ${update}
   ${pip_app} install parso --user ${update}
