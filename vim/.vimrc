@@ -5,29 +5,30 @@
 set nocompatible  " None of this works with old original vi, only VIM
 
 if has("unix")
-let s:uname = substitute(system("uname -s"), '\n', '', '') " remove the trailing \n
+  " remove the trailing \n
+  let s:uname = substitute(system("uname -s"), '\n', '', '')
 endif
 
 " vim-plug setup {{{
 let plugin_install_needed=0
 if has('nvim')
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  let plugin_install_needed=1
-endif
+  if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let plugin_install_needed=1
+  endif
 else
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  let plugin_install_needed=1
-endif
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let plugin_install_needed=1
+  endif
 endif
 
 call plug#begin('~/.vim/bundle')
 
 if filereadable(expand("~/.vimrc.bundles.local"))
-	source ~/.vimrc.bundles.local
+  source ~/.vimrc.bundles.local
 endif
 
 if exists(plugin_install_needed)
@@ -103,13 +104,13 @@ set mousehide               " Hide the mouse cursor while typing
 
 let ssh_remote_env=$SSH_CLIENT
 if ssh_remote_env == ''
-if has('clipboard')
-	if has('unnamedplus')  " When possible use + register for copy-paste
-            set clipboard=unnamed,unnamedplus
-        else         " On mac and Windows, use * register for copy-paste
-            set clipboard=unnamed
-        endif
-endif
+  if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+      else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+      endif
+  endif
 endif
 " }}}
 
@@ -273,15 +274,15 @@ augroup END
 "   let g:no_restore_cursor = 1
 if !exists('g:no_restore_cursor')
   function! ResCur()
-      if line("'\"") <= line("$")
-	  silent! normal! g`"
-	  return 1
-      endif
+    if line("'\"") <= line("$")
+      silent! normal! g`"
+      return 1
+    endif
   endfunction
 
   augroup resCur
-      autocmd!
-      autocmd BufWinEnter * call ResCur()
+    autocmd!
+    autocmd BufWinEnter * call ResCur()
   augroup END
 endif
 
@@ -325,15 +326,14 @@ set noswapfile
 
 " {{{ persistent_undo
 if has('persistent_undo')
-    " Save all undo files in a single location (less messy, more risky)...
-    set undodir=$HOME/.VIM_UNDO_FILES
+  " Save all undo files in a single location (less messy, more risky)...
+  set undodir=$HOME/.VIM_UNDO_FILES
 
-    " Save a lot of back-history...
-    set undolevels=5000
+  " Save a lot of back-history...
+  set undolevels=5000
 
-    " Actually switch on persistent undo
-    set undofile
-
+  " Actually switch on persistent undo
+  set undofile
 endif
 " }}}
 
@@ -373,14 +373,14 @@ syntax enable
 set t_Co=256
 set background=dark
 if exists('g:plugs["vim-colors-solarized"]')
-	let g:solarized_termcolors=256
-	let g:solarized_style="dark"
-	let g:solarized_termtrans=1
-	let g:solarized_constract = "normal"
-	let g:solarized_visibility = "normal"
-	colorscheme solarized
+  let g:solarized_termcolors=256
+  let g:solarized_style="dark"
+  let g:solarized_termtrans=1
+  let g:solarized_constract = "normal"
+  let g:solarized_visibility = "normal"
+  colorscheme solarized
 else
-	colorscheme slate
+  colorscheme slate
 endif
 " }}}
 
@@ -390,60 +390,60 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 
 " lightline.vim {{{
 if exists('g:plugs["lightline.vim"]')
-	" Using this as a replacement for airline removing the need
-	" for hacked up fonts
+  " Using this as a replacement for airline removing the need
+  " for hacked up fonts
 
-	let g:lightline = {
-	\ 'separator' : { 'left': '▓▒░', 'right': '░▒▓'  },
-	\ 'subseparator' : { 'left': '>', 'right': ''  },
-	\ 'colorscheme' : 'jellybeans',
-	\ 'enable' : {
-	\   'statusline': 1,
-	\ },
-	\ 'component_function' : {
-	\   'readonly': 'LightlineReadonly',
-	\ },
-	\ 'component_expand' : {
-	\   'linter_checking': 'lightline#ale#checking',
-	\   'linter_warnings': 'lightline#ale#warnings',
-	\   'linter_errors': 'lightline#ale#errors',
-	\   'linter_ok': 'lightline#ale#ok',
-	\ },
-	\ 'component_type' :  {
-	\   'linter_checking': 'left',
-	\   'linter_warnings': 'warning',
-	\   'linter_errors': 'error',
-	\   'linter_ok': 'left',
-	\ },
-	\ 'active' : {
-	\   'left': [ ['mode', 'paste'],
-	\            ['readonly', 'filename', 'modified'] ],
-	\   'right': [ ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok'],
-	\              ['lineinfo'],
-	\              ['percent'],
-	\              ['fileformat'] ],
-	\ },
-	\ 'component' : {
-	\   'helloworld' : "Hello World!",
-	\ }
-	\}
+  let g:lightline = {
+  \ 'separator' : { 'left': '▓▒░', 'right': '░▒▓'  },
+  \ 'subseparator' : { 'left': '>', 'right': ''  },
+  \ 'colorscheme' : 'jellybeans',
+  \ 'enable' : {
+  \   'statusline': 1,
+  \ },
+  \ 'component_function' : {
+  \   'readonly': 'LightlineReadonly',
+  \ },
+  \ 'component_expand' : {
+  \   'linter_checking': 'lightline#ale#checking',
+  \   'linter_warnings': 'lightline#ale#warnings',
+  \   'linter_errors': 'lightline#ale#errors',
+  \   'linter_ok': 'lightline#ale#ok',
+  \ },
+  \ 'component_type' :  {
+  \   'linter_checking': 'left',
+  \   'linter_warnings': 'warning',
+  \   'linter_errors': 'error',
+  \   'linter_ok': 'left',
+  \ },
+  \ 'active' : {
+  \   'left': [ ['mode', 'paste'],
+  \            ['readonly', 'filename', 'modified'] ],
+  \   'right': [ ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok'],
+  \              ['lineinfo'],
+  \              ['percent'],
+  \              ['fileformat'] ],
+  \ },
+  \ 'component' : {
+  \   'helloworld' : "Hello World!",
+  \ }
+  \}
 
-	let g:lightline#ale#indicator_warnings = '◆'
-	let g:lightline#ale#indicator_errors = '✗'
-	let g:lightline#ale#indicator_ok = '✓ '
+  let g:lightline#ale#indicator_warnings = '◆'
+  let g:lightline#ale#indicator_errors = '✗'
+  let g:lightline#ale#indicator_ok = '✓ '
 
-	set guioptions-=e " don't use GUI tabline
-	set noshowmode
+  set guioptions-=e " don't use GUI tabline
+  set noshowmode
 endif
 " }}}
 
 " tagbar {{{
 "-----------------------------------------------------------
 if exists('g:plugs["tagbar"]')
-	nnoremap <silent> <leader>tt :TagbarToggle<CR>
-	let g_tagbar_foldlevel = 2
+  nnoremap <silent> <leader>tt :TagbarToggle<CR>
+  let g_tagbar_foldlevel = 2
 
-	let g:tagbar_type_cpp = {
+  let g:tagbar_type_cpp = {
             \ 'ctagstype' : 'c++',
             \ 'kinds'     : [
                 \ 'd:macros:1:0',
@@ -494,28 +494,29 @@ let g:NetrwIsOpen=0
 " Function thanks to /u/ThinkNormieThoughts at:
 " https://www.reddit.com/r/vim/comments/6jcyfj/toggle_lexplore_properly/djdmsal/
 function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Vexplore
-    endif
+  if g:NetrwIsOpen
+    let i = bufnr("$")
+    while (i >= 1)
+      if (getbufvar(i, "&filetype") == "netrw")
+        silent exe "bwipeout " . i 
+      endif
+      let i-=1
+    endwhile
+    let g:NetrwIsOpen=0
+  else
+    let g:NetrwIsOpen=1
+    silent Vexplore
+  endif
 endfunction
 
-noremap <silent> <F2> :call ToggleNetrw()<CR>  " set F2 to be the key to open a vertical netrw screen
+" set F2 to be the key to open a vertical netrw screen
+noremap <silent> <F2> :call ToggleNetrw()<CR>
 " }}}
 
 " gundo {{{
 "-----------------------------------------------------------
-  let g:gundo_preview_bottom = 1
-  nnoremap <F4> :GundoToggle<CR>
+let g:gundo_preview_bottom = 1
+nnoremap <F4> :GundoToggle<CR>
 " }}}
 
 " ctags && gutentags {{{
@@ -525,25 +526,25 @@ set tags=~/.vimtags
 " Make tags placed in .git/tags file available in all levels of a repository
 let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
 if gitroot != ''
-	let &tags = &tags . ',' . gitroot . '/.git/tags'
+  let &tags = &tags . ',' . gitroot . '/.git/tags'
 endif
 
 if exists('g:plugs["vim-gutentags"]') && executable('ctags')
-	let g:gutentags_enabled=1
-	let g:gutentags_generate_on_new=1
-	let g:gutentags_generate_on_missing=1
-	let g:gutentags_generate_on_write=1
-	let g:gutentags_background_update=1
-	let g:gutentags_cache_dir = '~/.vimtags'
-	let g:gutentags_file_list_command = {
-				\'markers': {
-				\  '.git': 'git ls-files',
-				\  },
-				\}
-	set statusline+=%{gutentags#statusline()}
+  let g:gutentags_enabled=1
+  let g:gutentags_generate_on_new=1
+  let g:gutentags_generate_on_missing=1
+  let g:gutentags_generate_on_write=1
+  let g:gutentags_background_update=1
+  let g:gutentags_cache_dir = '~/.vimtags'
+  let g:gutentags_file_list_command = {
+        \'markers': {
+        \  '.git': 'git ls-files',
+        \  },
+        \}
+  set statusline+=%{gutentags#statusline()}
 
-	nnoremap <C-]> g<C-]>
-	map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+  nnoremap <C-]> g<C-]>
+  map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 endif
 
 " }}}
@@ -565,41 +566,41 @@ endif
 
 " cpp-enhanced-highlight {{{
 if exists('g:plugs["vim-cpp-enhanced-highlight"]')
-	let g:cpp_class_scope_highlight=1
-	let g:cpp_member_variable_highlight=1
-	let g:cpp_experimental_simple_template_highlight=0
-	let g:cpp_experimental_template_highlight=0
-	let g:cpp_concepts_highlight=0
+  let g:cpp_class_scope_highlight=1
+  let g:cpp_member_variable_highlight=1
+  let g:cpp_experimental_simple_template_highlight=0
+  let g:cpp_experimental_template_highlight=0
+  let g:cpp_concepts_highlight=0
 endif
 "}}}
 
 " rainbow parens {{{
 if exists('g:plugs["rainbow"]')
-	let g:rainbow_active = 1
-	let g:rainbow_conf = {
-	\   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-	\   'operators': '_,_',
-	\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\   'separately': {
-	\       '*': {},
-	\       'tex': {
-	\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\       },
-	\       'lisp': {
-	\           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-	\       },
-	\       'vim': {
-	\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\       },
-	\       'html': {
-	\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\       },
-	\       'css': 0,
-	\   }
-	\}
+  let g:rainbow_active = 1
+  let g:rainbow_conf = {
+  \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+  \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+  \   'operators': '_,_',
+  \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+  \   'separately': {
+  \       '*': {},
+  \       'tex': {
+  \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+  \       },
+  \       'lisp': {
+  \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+  \       },
+  \       'vim': {
+  \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+  \       },
+  \       'html': {
+  \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+  \       },
+  \       'css': 0,
+  \   }
+  \}
 "if executable('ag')
-"	let g:rainbow_conf += { 'separately' : { 'agsv' : 0 } }
+" let g:rainbow_conf += { 'separately' : { 'agsv' : 0 } }
 "endif
 endif
 
@@ -607,9 +608,9 @@ endif
 
 " asyncrun {{{
 if exists('g:plugs["asyncrun.vim"]')
-	if exists(':Ack')
-	  let g:ack_use_asyncrun = 0
-	endif
+  if exists(':Ack')
+    let g:ack_use_asyncrun = 0
+  endif
 endif
 " }}}
 
@@ -625,76 +626,74 @@ endif
 
 "  tig support {{{
 if executable('tig')
-
-	if has('nvim')
-	  " Apdated from: https://news.ycombinator.com/item?id=14306217
-	  "nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
-	  nnoremap <leader>to :silent term tig<CR>:silent redraw!<CR>
-	  nnoremap <leader>tb :silent term tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
-	  nnoremap <leader>ts :silent term tig status<CR>:silent redraw!<CR>
-	else
-	  " Apdated from: https://news.ycombinator.com/item?id=14306217
-	  "nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
-	  nnoremap <leader>to :silent !tig<CR>:silent redraw!<CR>
-	  nnoremap <leader>tb :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
-	  nnoremap <leader>ts :silent !tig status<CR>:silent redraw!<CR>
-	end
-	
+  if has('nvim')
+    " Apdated from: https://news.ycombinator.com/item?id=14306217
+    "nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
+    nnoremap <leader>to :silent term tig<CR>:silent redraw!<CR>
+    nnoremap <leader>tb :silent term tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
+    nnoremap <leader>ts :silent term tig status<CR>:silent redraw!<CR>
+  else
+    " Apdated from: https://news.ycombinator.com/item?id=14306217
+    "nnoremap <leader>tb :echo system("git rev-parse --abbrev-ref @ <bar> tr -d '\n'")<CR>
+    nnoremap <leader>to :silent !tig<CR>:silent redraw!<CR>
+    nnoremap <leader>tb :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
+    nnoremap <leader>ts :silent !tig status<CR>:silent redraw!<CR>
+  end
 endif
 " }}}
 
 " ale {{{
 if exists('g:plugs["ale"]')
-	" Only run the linter when saving the file
-	"let g:ale_lint_on_text_changed = 'never'
-	
-	"let g:ale_open_list = 1
-	" Set this if you want to.
-	" This can be useful if you are combining ALE with
-	" some other plugin which sets quickfix errors, etc.
-	"let g:ale_keep_list_window_open = 1
-	let g:ale_cpp_clang_executable = "/usr/bin/clang++"
-	let g:ale_cpp_clang_options = "-std=c++14 -Wall"
-	let g:ale_cpp_clangd_executable = "/Users/dkalowsky/clang/clang_8/bin/clangd"
-	let g:ale_cpp_clangd_options = "-std=c++14 -Wall"
-	let g:ale_c_build_dir_names = [ 'runtimecore', 'build', 'bin' ]
-	let g:ale_cache_executable_check_failures = 1
-	let g:ale_c_parse_makefile = 1
-	let g:ale_lint_on_enter = 0
-	let g:ale_sign_column_always = 1
-	let g:ale_c_parse_compile_commands = 1
-	let g:ale_clangformat_executable= '/Users/dkalowsky/clang/clang_8/bin/clang-format'
-	let g:ale_clangtidy_executable = '/Users/dkalowsky/clang/clang_8/bin/clang-tidy'
+  " Only run the linter when saving the file
+  "let g:ale_lint_on_text_changed = 'never'
+  
+  "let g:ale_open_list = 1
+  " Set this if you want to.
+  " This can be useful if you are combining ALE with
+  " some other plugin which sets quickfix errors, etc.
+  "let g:ale_keep_list_window_open = 1
+  let g:ale_cpp_clang_executable = "/usr/bin/clang++"
+  let g:ale_cpp_clang_options = "-std=c++14 -Wall"
+  let g:ale_cpp_clangd_executable = "/Users/dkalowsky/clang/clang_8/bin/clangd"
+  let g:ale_cpp_clangd_options = "-std=c++14 -Wall"
+  let g:ale_c_build_dir_names = [ 'runtimecore', 'build', 'bin' ]
+  let g:ale_cache_executable_check_failures = 1
+  let g:ale_c_parse_makefile = 1
+  let g:ale_lint_on_enter = 0
+  let g:ale_sign_column_always = 1
+  let g:ale_c_parse_compile_commands = 1
+  let g:ale_clangformat_executable= '/Users/dkalowsky/clang/clang_8/bin/clang-format'
+  let g:ale_clangtidy_executable = '/Users/dkalowsky/clang/clang_8/bin/clang-tidy'
 
-	let g:ale_linters = {
-	\ 'c'   : ['clangd', 'clang-tidy'],
-	\ 'cpp' : ['clangd', 'clang-tidy'],
-	\ 'sh'  : ['bash-language-server'],
-	\ 'py'  : ['pylint'],
-	\}
+  let g:ale_linters = {
+  \ 'c'   : ['clangd', 'clang-tidy'],
+  \ 'cpp' : ['clangd', 'clang-tidy'],
+  \ 'sh'  : ['bash-language-server'],
+  \ 'py'  : ['pylint'],
+  \}
 
-	let g:ale_fixers = {
-	\ 'c'   : ['clang-format'],
-	\ 'cpp' : ['clang-format'],
-	\ 'py'  : ['autopep8'],
-	\}
+  let g:ale_fixers = {
+  \ 'c'   : ['clang-format'],
+  \ 'cpp' : ['clang-format'],
+  \ 'py'  : ['autopep8'],
+  \}
 
-	let g:ale_completion_max_suggestions = 100
-	let g:ale_completion_enabled = 1
+  let g:ale_completion_max_suggestions = 100
+  let g:ale_completion_enabled = 1
 
-	let g:ale_sign_warning = '▲'
-	let g:ale_sign_error = '✗'
-	highlight link ALEWarningSign String
-	highlight link ALEErrorSign Title
-	nmap ]w :ALENextWrap<CR>
-	nmap [w :ALEPreviousWrap<CR>
-	nmap <Leader>af <Plug>(ale_fix)
+  let g:ale_sign_warning = '▲'
+  let g:ale_sign_error = '✗'
+  highlight link ALEWarningSign String
+  highlight link ALEErrorSign Title
+  nmap ]w :ALENextWrap<CR>
+  nmap [w :ALEPreviousWrap<CR>
+  nmap <Leader>af <Plug>(ale_fix)
 
-	" keybindings from ccls documentation
-	nnoremap <silent> <Leader>ad :ALEGoToDefinition<cr>
-	nnoremap <silent> <Leader>ar :ALEFindReferences<cr>
-	nnoremap <silent> <Leader>aa :ALESymbolSearch<cr>
-	nnoremap <silent> <Leader>ah :ALEHover<cr>
+  " keybindings from ccls documentation
+  nnoremap <silent> <Leader>ad :ALEGoToDefinition<cr>
+  nnoremap <silent> <Leader>ar :ALEFindReferences<cr>
+  nnoremap <silent> <Leader>aa :ALESymbolSearch<cr>
+  nnoremap <silent> <Leader>ah :ALEHover<cr>
 endif
 
 "}}}
@@ -702,79 +701,79 @@ endif
 " fzf {{{
 if exists('g:plugs["fzf.vim"]')
 
-	let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-	let g:fzf_history_dir = '~/.local/share/fzf-history'
-	nmap ; :Buffers<CR>
-	" Search all tags
-	nmap <Leader>fT :Tags<CR>
-	" Search only the local buffer for the specific tag
-	nmap <Leader>ft :BTags<CR>
-	" Use AG for some fuzzy find
-	nmap <Leader>fa :Ag<Space>
-	" Search only for git tracked files
-	nnoremap <silent> <C-p> :GFiles<CR>
-	" Search for non-git tracked files
-	nnoremap <silent> <C-P> :Files<CR>
+  let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+  let g:fzf_history_dir = '~/.local/share/fzf-history'
+  nmap ; :Buffers<CR>
+  " Search all tags
+  nmap <Leader>fT :Tags<CR>
+  " Search only the local buffer for the specific tag
+  nmap <Leader>ft :BTags<CR>
+  " Use AG for some fuzzy find
+  nmap <Leader>fa :Ag<Space>
+  " Search only for git tracked files
+  nnoremap <silent> <C-p> :GFiles<CR>
+  " Search for non-git tracked files
+  nnoremap <silent> <C-P> :Files<CR>
 
-	" taken from https://github.com/zenbro/dotfiles/blob/d3f4bd3136aab297191c062345dfc680abb1efac/.nvimrc#L235
-	nnoremap <silent> K :call SearchWordWithAg()<CR>
-	vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+  " taken from https://github.com/zenbro/dotfiles/blob/d3f4bd3136aab297191c062345dfc680abb1efac/.nvimrc#L235
+  nnoremap <silent> K :call SearchWordWithAg()<CR>
+  vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 
-	function! SearchWordWithAg()
-	  execute 'Ag' expand('<cword>')
-	endfunction
+  function! SearchWordWithAg()
+    execute 'Ag' expand('<cword>')
+  endfunction
 
-	function! SearchVisualSelectionWithAg() range
-	  let old_reg = getreg('"')
-	  let old_regtype = getregtype('"')
-	  let old_clipboard = &clipboard
-	  set clipboard&
-	  normal! ""gvy
-	  let selection = getreg('"')
-	  call setreg('"', old_reg, old_regtype)
-	  let &clipboard = old_clipboard
-	  execute 'Ag' selection
-	endfunction
+  function! SearchVisualSelectionWithAg() range
+    let old_reg = getreg('"')
+    let old_regtype = getregtype('"')
+    let old_clipboard = &clipboard
+    set clipboard&
+    normal! ""gvy
+    let selection = getreg('"')
+    call setreg('"', old_reg, old_regtype)
+    let &clipboard = old_clipboard
+    execute 'Ag' selection
+  endfunction
 
-	" Have fzf colors match color scheme
-	let g:fzf_colors =
-	\ {
-	  \ 'fg':      ['fg', 'Normal'],
-	  \ 'bg':      ['bg', 'Normal'],
-	  \ 'hl':      ['fg', 'Comment'],
-	  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-	  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-	  \ 'hl+':     ['fg', 'Statement'],
-	  \ 'info':    ['fg', 'PreProc'],
-	  \ 'border':  ['fg', 'Ignore'],
-	  \ 'prompt':  ['fg', 'Conditional'],
-	  \ 'pointer': ['fg', 'Exception'],
-	  \ 'marker':  ['fg', 'Keyword'],
-	  \ 'spinner': ['fg', 'Label'],
-	  \ 'header':  ['fg', 'Comment']
-	\ }
+  " Have fzf colors match color scheme
+  let g:fzf_colors =
+  \ {
+    \ 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', 'Ignore'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment']
+  \ }
 
-	" Default fzf layout
-	" - down / up / left / right
-	let g:fzf_layout = { 'down': '~40%' }
+  " Default fzf layout
+  " - down / up / left / right
+  let g:fzf_layout = { 'down': '~40%' }
 
-	if has('nvim')
-	  aug fzf_setup
-	    au!
-	    au TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
-	  aug END
-	  " In Neovim, you can set up fzf window using a Vim command
-	  let g:fzf_layout = { 'window': 'enew' }
-	  let g:fzf_layout = { 'window': '-tabnew' }
-	  let g:fzf_layout = { 'window': '10split enew' }
-	end
+  if has('nvim')
+    aug fzf_setup
+      au!
+      au TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
+    aug END
+    " In Neovim, you can set up fzf window using a Vim command
+    let g:fzf_layout = { 'window': 'enew' }
+    let g:fzf_layout = { 'window': '-tabnew' }
+    let g:fzf_layout = { 'window': '10split enew' }
+  end
 
-	" Override Colors command. You can safely do this in your .vimrc as fzf.vim
-	" will not override existing commands.
-	command! -bang Colors
-	  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+  " Override Colors command. You can safely do this in your .vimrc as fzf.vim
+  " will not override existing commands.
+  command! -bang Colors
+    \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
 
-	command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--path-to-ignore ~/.ignore --color-match="30;43" --color-path="0;33"', <bang>0)
+  command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--path-to-ignore ~/.ignore --color-match="30;43" --color-path="0;33"', <bang>0)
 endif
 "}}}
 "
@@ -824,23 +823,23 @@ endfunction
 " Strips trailing whitespace at the end of files.  This is called on buffer
 " write in the autogroup above.
 function! <SID>StripTrailingWhitespaces()
-	" save last search and cursor position
-	let _s=@/
-	let l = line(".")
-	let c = col(".")
-	%s/\s+$//e
-	let @/=_s
-	call cursor(l, c)
+  " save last search and cursor position
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  %s/\s+$//e
+  let @/=_s
+  call cursor(l, c)
 endfunction
 
 function! LightLineReadonly()
-	if &filetype == "help"
-		return ""
-	elseif &readonly
-		return "RO"
-	else
-		return ""
-	endif
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "RO"
+  else
+    return ""
+  endif
 endfunction
 
 " Copy current file path to clipboard
