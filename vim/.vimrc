@@ -646,24 +646,52 @@ endif
 if exists('g:plugs["ale"]')
   " Only run the linter when saving the file
   "let g:ale_lint_on_text_changed = 'never'
-  
+
   "let g:ale_open_list = 1
   " Set this if you want to.
   " This can be useful if you are combining ALE with
   " some other plugin which sets quickfix errors, etc.
   "let g:ale_keep_list_window_open = 1
-  let g:ale_cpp_clang_executable = "/usr/bin/clang++"
-  let g:ale_cpp_clang_options = "-std=c++14 -Wall"
-  let g:ale_cpp_clangd_executable = "/Users/dkalowsky/clang/clang_8/bin/clangd"
-  let g:ale_cpp_clangd_options = "-std=c++14 -Wall"
-  let g:ale_c_build_dir_names = [ 'runtimecore', 'build', 'bin' ]
+  let g:ale_c_build_dir_names = [ 'BUILDS', 'bin' ]
   let g:ale_cache_executable_check_failures = 1
   let g:ale_c_parse_makefile = 1
   let g:ale_lint_on_enter = 0
   let g:ale_sign_column_always = 1
   let g:ale_c_parse_compile_commands = 1
-  let g:ale_clangformat_executable= '/Users/dkalowsky/clang/clang_8/bin/clang-format'
-  let g:ale_clangtidy_executable = '/Users/dkalowsky/clang/clang_8/bin/clang-tidy'
+
+  " clang specific options
+  let g:ale_cpp_clang_executable = "/usr/bin/clang++"
+  let g:ale_cpp_clang_options = "-std=c++17 -Wall"
+  let g:ale_c_clang_executable = "/usr/bin/clang"
+  let g:ale_c_clang_options = "-std=c11 -Wall"
+
+  " GCC specific options
+  let g:ale_c_gcc_executable = "gcc"
+  let g:ale_c_gcc_options = "-std=c11 -Wall"
+  let g:ale_cpp_gcc_executable = "g++"
+  let g:ale_cpp_gcc_options = "-std=C++17 -Wall"
+
+  " LSP for C/CPP code
+  let g:ale_cpp_clangd_executable = "clangd"
+  let g:ale_cpp_clangd_options = "-std=c++17 -Wall"
+  let g:ale_c_clangd_options = "-std=c11 -Wall"
+  "let g:ale_c_ccls_executable = 'ccls'
+  "let g:ale_c_ccls_init_options = '{
+  "    \ 'cacheDirectory': '$HOME/.cache',
+  "    \ 'cacheFormat': 'binary',
+  "    \ 'diagnostics': {
+  "    \    'onOpen': 0,
+  "    \    ''opChange': 1000,
+  "    },
+  "}'
+
+  " clang-format options
+  let g:ale_clangformat_executable= 'clang-format'
+  let g:ale_clangtidy_executable = 'clang-tidy'
+
+  " CPPCHECK options
+  let g:ale_c_cppcheck_executable= 'cppcheck'
+  let g:ale_c_cppcheck_options = '--enable=style'
 
   let g:ale_linters = {
   \ 'c'   : ['clangd', 'clang-tidy'],
@@ -678,8 +706,10 @@ if exists('g:plugs["ale"]')
   \ 'py'  : ['autopep8'],
   \}
 
-  let g:ale_completion_max_suggestions = 100
   let g:ale_completion_enabled = 1
+  let g:ale_completion_max_suggestions = 100
+
+  let g:ale_fix_on_save = 1
 
   let g:ale_sign_warning = '▲'
   let g:ale_sign_error = '✗'
