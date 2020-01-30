@@ -1,5 +1,6 @@
 [user]
 	name = Dan Kalowsky
+	email = dkalowsky@amperecomputing.com
 [core]
 	editor = vim
 	eol = lf
@@ -62,7 +63,7 @@
 	nah = "!git reset --hard & git clean -df"
         restore = "!git config remote.origin.fetch \"+refs/heads/*:refs/remotes/origin/*\" && git fetch origin"
 [diff]
-	tool = araxis
+	tool = meld 
 	# Use the slower but better patience diff algorithm
 	algorithm = patience
 	# Use new diff algorithm to make function diffs look better
@@ -74,8 +75,10 @@
 	indentHeuristic = on
 	# enable the new color moved to show moved code in a different shade
 	colorMoved = zebra
+[difftool "meld"]
+	cmd = meld "$LOCAL" "$REMOTE"
 [merge]
-	tool = araxis
+	tool = meld 
 [mergetool]
 	# Don't prompt before opening the merge tool
 	prompt = false
@@ -100,6 +103,9 @@
 	path = /Applications/Araxis Merge.app/Contents/Utilities/compare
 [mergetool "diff3"]
 	path = /usr/bin/diff3
+[mergetool "meld"]
+	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+	path = /usr/bin/meld
 [pager]
 #	log  = diff-so-fancy | less -RFX
 #	show = diff-so-fancy | less -RFX
