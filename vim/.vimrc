@@ -689,7 +689,7 @@ if exists('g:plugs["ale"]')
   nmap [w :ALEPreviousWrap<CR>
   nmap <Leader>af <Plug>(ale_fix)
 
-  " keybindings from ccls documentation
+  " key bindings from ccls documentation
   nnoremap <silent> <Leader>ad :ALEGoToDefinition<cr>
   nnoremap <silent> <Leader>ar :ALEFindReferences<cr>
   nnoremap <silent> <Leader>aa :ALESymbolSearch<cr>
@@ -766,7 +766,7 @@ if exists('g:plugs["fzf.vim"]')
     let g:fzf_layout = { 'window': 'enew' }
     let g:fzf_layout = { 'window': '-tabnew' }
     let g:fzf_layout = { 'window': '10split enew' }
-  end
+  endif
 
   " Override Colors command. You can safely do this in your .vimrc as fzf.vim
   " will not override existing commands.
@@ -776,7 +776,7 @@ if exists('g:plugs["fzf.vim"]')
   command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--path-to-ignore ~/.ignore --color-match="30;43" --color-path="0;33"', <bang>0)
 endif
 "}}}
-"
+
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
