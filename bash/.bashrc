@@ -26,6 +26,9 @@ HISTFILESIZE=2000
 [ -d  "/Applications/010 Editor.app/Contents/CmdLine" ] && export PATH="${PATH}:/Applications/010 Editor.app/Contents/CmdLine"
 [ -d "${HOME}/.local/bin" ] && export PATH="${HOME}/.local/bin:${PATH}"
 
+export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+export ZEPHYR_SDK_INSTALL_DIR=~/zephyr-sdk-0.10.3
+
 if hash rbenv 2>/dev/null; then
   eval "$(rbenv init -)"
 fi
