@@ -14,17 +14,29 @@ HISTFILESIZE=2000
 
 #
 # Add in local path directories
-[ -d "${HOME}/bin" ] && [ ! -z "${PATH##${HOME}/bin}" ] && export PATH="${PATH}:${HOME}/bin"
-[ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
-[ -d "/opt/usr/bin" ] && export PATH="${PATH}:/opt/usr/bin"
-[ -d "/opt/bin" ] && export PATH="${PATH}:/opt/bin"
-[ -d "/usr/local/sbin" ] && export PATH="${PATH}:/usr/local/sbin"
-[ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.6/bin"
-[ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.7/bin"
-[ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/2.7/bin"
-[ -d "${HOME}/.yarn/bin" ] && [ ! -z "${PATH##${HOME}/.yarn/bin}" ] && export PATH="${PATH}:${HOME}/.yarn/bin"
-[ -d  "/Applications/010 Editor.app/Contents/CmdLine" ] && export PATH="${PATH}:/Applications/010 Editor.app/Contents/CmdLine"
-[ -d "${HOME}/.local/bin" ] && export PATH="${HOME}/.local/bin:${PATH}"
+path_additions=(
+  "${HOME}/bin",
+  "${HOME}/.local/bin",
+  "${HOME}/Library/Python/3.6/bin",
+  "${HOME}/Library/Python/3.7/bin",
+  "/opt/usr/bin",
+  "/opt/bin",
+  "/usr/local/sbin",
+  # These are Darwin specific but it doesn't matter
+  # as the directory won't exist, so they won't do anything
+  "/Applications/Araxis Merge.app/Contents/Utilities",
+  "/Applications/010 Editor.app/Contents/CmdLine"
+)
+
+for entry in "${path_additions[@]}"
+do
+  # Does the directory exist and is it already in the PATH variable
+  # if yes and no, then add it
+  # else, just skip the entry.
+  if [ -d "${entry}" ] && [ "${PATH}" != *"${entry}"* ]; then
+    export PATH="${PATH}:$entry"
+  fi
+done
 
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 export ZEPHYR_SDK_INSTALL_DIR=~/zephyr-sdk-0.10.3
