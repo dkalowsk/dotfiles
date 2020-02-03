@@ -176,8 +176,15 @@ fi
     #fi
 #}
 
-# private customizations
-[ -f "${HOME}/.bashrc-private" ] && source ${HOME}/.bashrc-private
+source_additions=(
+  "${HOME}/.bashrc-private",
+  "${HOME}/.fzf.bash",
+  "${HOME}/.git-completion.bash"
+)
 
-[ -f ${HOME}/.fzf.bash ] && source ${HOME}/.fzf.bash
-[ -f ${HOME}/.git-completion.bash ] && source ${HOME}/.git-completion.bash
+for entry in "${source_additions[@]}"; do
+  if [ -f "${entry}" ]; then
+    echo "Sourcing ${entry}"
+    source "${entry}"
+  fi
+done
