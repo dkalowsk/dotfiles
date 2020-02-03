@@ -83,7 +83,9 @@ fi
 
 alias ffind='find . -name'
 alias telnet=nc
-alias top="top -o cpu"
+if [ "Darwin" == "$(uname)" ]; then
+  alias top="top -o cpu"
+fi
 [ -x "/usr/local/bin/python3" ] && alias python=/usr/local/bin/python3
 
 #
