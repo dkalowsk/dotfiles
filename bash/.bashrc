@@ -14,7 +14,7 @@ HISTFILESIZE=2000
 
 #
 # Add in local path directories
-[ -d "${HOME}/bin" ] && export PATH="${PATH}:${HOME}/bin"
+[ -d "${HOME}/bin" ] && [ ! -z "${PATH##${HOME}/bin}" ] && export PATH="${PATH}:${HOME}/bin"
 [ -d "/Applications/Araxis Merge.app/Contents/Utilities" ] && export PATH="${PATH}:/Applications/Araxis Merge.app/Contents/Utilities"
 [ -d "/opt/usr/bin" ] && export PATH="${PATH}:/opt/usr/bin"
 [ -d "/opt/bin" ] && export PATH="${PATH}:/opt/bin"
@@ -22,7 +22,7 @@ HISTFILESIZE=2000
 [ -d "${HOME}/Library/Python/3.6/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.6/bin"
 [ -d "${HOME}/Library/Python/3.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/3.7/bin"
 [ -d "${HOME}/Library/Python/2.7/bin" ] && export PATH="${PATH}:${HOME}/Library/Python/2.7/bin"
-[ -d "${HOME}/.yarn/bin" ] && export PATH="${PATH}:${HOME}/.yarn/bin"
+[ -d "${HOME}/.yarn/bin" ] && [ ! -z "${PATH##${HOME}/.yarn/bin}" ] && export PATH="${PATH}:${HOME}/.yarn/bin"
 [ -d  "/Applications/010 Editor.app/Contents/CmdLine" ] && export PATH="${PATH}:/Applications/010 Editor.app/Contents/CmdLine"
 [ -d "${HOME}/.local/bin" ] && export PATH="${HOME}/.local/bin:${PATH}"
 
