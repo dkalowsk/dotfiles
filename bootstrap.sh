@@ -152,6 +152,7 @@ doPython() {
   ${pip_app} install jedi --user ${update}
   ${pip_app} install neovim --user ${update}
   ${pip_app} install parso --user ${update}
+  ${pip_app} install compiledb --user ${update}
   #${pip_app} install voltron --user ${update}
   #${pip_app} install powerline-status --user ${update}
 }
