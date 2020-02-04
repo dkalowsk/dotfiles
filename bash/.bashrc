@@ -60,40 +60,40 @@ GREP_FLAGS="--exclude=tags --exclude=TAGS"
 #
 color_support=no
 case "${TERM}" in
-	xterm-color|*-256color) color_support=yes;;
+  xterm-color|*-256color) color_support=yes;;
 esac
 #
 # add color ls output
 #
 if [ ${color_support} = yes ]; then
-	export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-	if [ -L "~/.bash_prompt" ]; then
-	  [ "$PS1" ] && source ${HOME}/.bash_prompt && prompt_fuction
-	  PROMPT_COMMAND="history -a; prompt_function"
-	fi
+  export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+  if [ -L "~/.bash_prompt" ]; then
+    [ "$PS1" ] && source ${HOME}/.bash_prompt && prompt_fuction
+    PROMPT_COMMAND="history -a; prompt_function"
+  fi
 
-	if [ "Darwin" == "$(uname)" ]; then
-		#export LSCOLORS="GxGxBxDxCxEgEdxbxgxcxd"
-		#export LSCOLORS="ExFxBxDxCxegedabagacad"
-		# Value from: https://github.com/seebi/dircolors-solarized/issues/10#issuecomment-381545995
-		export LSCOLORS="exfxfeaeBxxehehbadacea"
-		export CLICOLOR=true
-		export CLICOLOR=1
-		alias ls='ls -GFh'
-	elif [ "Linux" == "$(uname)" ]; then
-		if [ -x /usr/bin/dircolors ]; then
-		    # use ~/.dircolors if user has specified one
-		    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-		    alias ls='ls --color=auto'
-		fi
-	fi
-	GGREP_FLAGS="--color=auto ${GGREP_FLAGS}"
-	GREP_FLAGS="--color=auto ${GREP_FLAGS}"
+  if [ "Darwin" == "$(uname)" ]; then
+    #export LSCOLORS="GxGxBxDxCxEgEdxbxgxcxd"
+    #export LSCOLORS="ExFxBxDxCxegedabagacad"
+    # Value from: https://github.com/seebi/dircolors-solarized/issues/10#issuecomment-381545995
+    export LSCOLORS="exfxfeaeBxxehehbadacea"
+    export CLICOLOR=true
+    export CLICOLOR=1
+    alias ls='ls -GFh'
+  elif [ "Linux" == "$(uname)" ]; then
+    if [ -x /usr/bin/dircolors ]; then
+        # use ~/.dircolors if user has specified one
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+    fi
+  fi
+  GGREP_FLAGS="--color=auto ${GGREP_FLAGS}"
+  GREP_FLAGS="--color=auto ${GREP_FLAGS}"
 
-	#
-	# Force AG to use consistent colors on all platforms
-	#
-	alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
+#
+# Force AG to use consistent colors on all platforms
+#
+  alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
 
 fi
 
@@ -130,15 +130,15 @@ alias less="less -R"
 # Add the Android build tool paths
 #
 if [ -d "$HOME/development/android/android-ndk-r20" ]; then
-	export NDK_HOME="${HOME}/development/android/android-ndk-r20"
-	if [[ "$OSTYPE" == "linux-gnu" ]]; then
-		export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin"
-	elif [[ "$OSTYPE" == "darwin"* ]]; then
-		export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/darwin-x86_64/bin"
-	elif [[ "$OSTYPE" == "msys" ]]; then
-		export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin"
-	fi
-	export PATH="${PATH}:${NDK_HOME}:${NDK_BIN}"
+  export NDK_HOME="${HOME}/development/android/android-ndk-r20"
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin"
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/darwin-x86_64/bin"
+  elif [[ "$OSTYPE" == "msys" ]]; then
+    export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin"
+  fi
+  export PATH="${PATH}:${NDK_HOME}:${NDK_BIN}"
 fi
 
 #
@@ -148,14 +148,14 @@ export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
 
 if command_exists /opt/bin/nvim ; then
-	export EDITOR='/opt/bin/nvim'
-	alias vim='/opt/bin/nvim'
-	alias nvim='/opt/bin/nvim'
+  export EDITOR='/opt/bin/nvim'
+  alias vim='/opt/bin/nvim'
+  alias nvim='/opt/bin/nvim'
 elif command_exists nvim ; then
-	export EDITOR='nvim'
-	alias vim='nvim'
+  export EDITOR='nvim'
+  alias vim='nvim'
 else
-	export EDITOR='vim'
+  export EDITOR='vim'
 fi
 
 alias ag="ag --ignore '*tags'"
@@ -165,7 +165,7 @@ alias ag="ag --ignore '*tags'"
 #
 #if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 if [[ $(uname -r) =~ Microsoft$ ]]; then
-    export DISPLAY=localhost:0.0
+  export DISPLAY=localhost:0.0
 fi
 
 #vim () {
