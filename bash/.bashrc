@@ -15,16 +15,16 @@ HISTFILESIZE=2000
 #
 # Add in local path directories
 path_additions=(
-  "${HOME}/bin",
-  "${HOME}/.local/bin",
-  "${HOME}/Library/Python/3.6/bin",
-  "${HOME}/Library/Python/3.7/bin",
-  "/opt/usr/bin",
-  "/opt/bin",
-  "/usr/local/sbin",
+  "${HOME}/bin"
+  "${HOME}/.local/bin"
+  "${HOME}/Library/Python/3.6/bin"
+  "${HOME}/Library/Python/3.7/bin"
+  "/opt/usr/bin"
+  "/opt/bin"
+  "/usr/local/sbin"
   # These are Darwin specific but it doesn't matter
   # as the directory won't exist, so they won't do anything
-  "/Applications/Araxis Merge.app/Contents/Utilities",
+  "/Applications/Araxis Merge.app/Contents/Utilities"
   "/Applications/010 Editor.app/Contents/CmdLine"
 )
 
@@ -33,8 +33,12 @@ do
   # Does the directory exist and is it already in the PATH variable
   # if yes and no, then add it
   # else, just skip the entry.
+  #echo -n "Checking ${entry}... "
   if [ -d "${entry}" ] && [ "${PATH}" != *"${entry}"* ]; then
+    #echo "added"
     export PATH="${PATH}:$entry"
+  #else
+  #  echo "skipped"
   fi
 done
 
@@ -177,14 +181,17 @@ fi
 #}
 
 source_additions=(
-  "${HOME}/.bashrc-private",
-  "${HOME}/.fzf.bash",
+  "${HOME}/.bashrc-private"
+  "${HOME}/.fzf.bash"
   "${HOME}/.git-completion.bash"
 )
 
 for entry in "${source_additions[@]}"; do
+  #echo -n "Sourcing ${entry}... "
   if [ -f "${entry}" ]; then
-    echo "Sourcing ${entry}"
+    #echo "done"
     source "${entry}"
+  #else
+  #  echo "skipped"
   fi
 done
