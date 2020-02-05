@@ -119,7 +119,7 @@ alias grep="grep ${GREP_FLAGS}"
 #
 # Enable less to output raw characters
 #
-alias less="less -R"
+alias less="less -RXF"
 
 #
 # Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
