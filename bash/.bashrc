@@ -43,7 +43,7 @@ do
 done
 
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-export ZEPHYR_SDK_INSTALL_DIR=~/zephyr-sdk-0.10.3
+export ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk
 
 if hash rbenv 2>/dev/null; then
   eval "$(rbenv init -)"
