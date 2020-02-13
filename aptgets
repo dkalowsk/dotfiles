@@ -12,5 +12,6 @@ stow
 tig
 vim
 xsel
+xclip
 rxvt-unicode
 ubuntu-restricted-extras
