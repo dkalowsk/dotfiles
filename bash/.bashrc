@@ -4,6 +4,17 @@ command_exists() {
 	type "$1" &> /dev/null ;
 }
 
+if command_exists keychain; then
+  if [ "Linux" == "$(uname)" ]; then
+    eval `keychain --eval --agents ssh id_rsa`
+  elif [ "Darwin" == "$(uname)" ]; then
+    eval `keychain --eval --agents ssh --inherit any id_rsa`
+  fi
+else
+  echo "SSH Agent not started, install keychain"
+fi
+
+
 #
 # Append to history file, don't over write it
 # And limit the size it can grow to
