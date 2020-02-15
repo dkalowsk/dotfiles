@@ -8,6 +8,7 @@ python-optcomplete
 python3-pip
 silversearcher-ag
 ssh-askpass
+keychain
 stow
 tig
 vim
