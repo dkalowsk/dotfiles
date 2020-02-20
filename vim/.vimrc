@@ -685,12 +685,20 @@ if exists('g:plugs["ale"]')
   "}'
 
   " clang-format options
+  let g:ale_c_clangformat_executable= 'clang-format'
+  let g:ale_c_clangformat_options = '-style=file'
   let g:ale_clangformat_executable= 'clang-format'
+  let g:ale_clangformat_options = '-style=file'
+
+  " clang-tidy options
   let g:ale_clangtidy_executable = 'clang-tidy'
+  let g:ale_c_clangtidy_executable = 'clang-tidy'
 
   " CPPCHECK options
   let g:ale_c_cppcheck_executable= 'cppcheck'
   let g:ale_c_cppcheck_options = '--enable=style'
+  let g:ale_cppcheck_executable= 'cppcheck'
+  let g:ale_cppcheck_options = '--enable=style'
 
   let g:ale_linters = {
   \ 'c'   : ['clangd', 'clang-tidy'],
