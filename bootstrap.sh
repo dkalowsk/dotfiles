@@ -301,20 +301,6 @@ doLinuxConfig() {
   sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 20
   sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 10
 
-  # use universal ctags if possible instead
-  if [ ! -f "${HOME}/bin/ctags" ]; then
-    info "Installing universal-ctags"
-    git clone https://github.com/universal-ctags/ctags.git universal_ctags
-    if [ -d universal_ctags ]; then
-      pushd universal_ctags > /dev/null
-      ./autogen.sh
-      ./configure --prefix=$HOME
-      make && make install
-      popd > /dev/null
-      rm -Rf universal_ctags
-    fi
-  fi
-
   if [ ! -f "${HOME}/.dircolors" ]; then
     info "Installing solarized dircolors"
     git clone --quiet https://github.com/seebi/dircolors-solarized
