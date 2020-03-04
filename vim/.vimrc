@@ -47,7 +47,7 @@ let mapleader=","
 set encoding=utf-8
 
 " vim UI settings {{{
-set number
+set nu rnu
 "set norelativenumber
 "set relativenumber
 set wildmenu         " visual autocomplete for command menu
