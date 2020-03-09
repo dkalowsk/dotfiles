@@ -289,17 +289,9 @@ doLinuxConfig() {
 
   info "Configuring Linux..."
 
-  info "Installing from aptgets"
-  if (($EUID != 0)); then
-    if [[ -t 1 ]]; then
-#                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
-      xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y 
-    fi
-  fi
-
-  # Setup to use python3 by default not python2
-  sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 20
-  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 10
+  # Get the distro name from /etc/os-release, as
+  # that seems to be the only sure way to get it.
+  local distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
   if [ ! -f "${HOME}/.dircolors" ]; then
     info "Installing solarized dircolors"
@@ -307,6 +299,27 @@ doLinuxConfig() {
     cp dircolors-solarized/dircolors.256dark ~/.dircolors
     eval `dircolors ${HOME}/.dircolors`
     rm -Rf dircolors-solarized
+  fi
+
+  if [ ${distro} == "Ubuntu" ]; then
+
+    info "Installing from aptgets"
+    if (($EUID != 0)); then
+      if [[ -t 1 ]]; then
+#                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
+        xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y
+      fi
+    fi
+    #
+    # On Ubuntu set the text to something reasonable size... because
+    # who the hell wants to squint that hard at text?
+    gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
+    # To reset:
+    #gsettings reset org.gnome.desktop.interface text-scaling-factor
+
+    # Setup to use python3 by default not python2
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 20
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 10
   fi
 
 }
