@@ -308,6 +308,23 @@ doLinuxConfig() {
       if [[ -t 1 ]]; then
 #                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
         xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y
+
+        cat << EOF sudo tee /etc/systemd/system/powertop.service
+[Unit]
+Description=PowerTOP auto tune
+
+[Service]
+Type=idle
+Environment="TERM=dumb"
+ExecStart=/usr/sbin/powertop --auto-tune
+ExecStart=/bin/sh -c "echo on > /sys/bus/usb/device/1-4.1/power/control"
+ExecStart=/bin/sh -c "echo on > /sys/bus/usb/device/1-4.2.2/power/control"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+        sudo systemctl daemon-reload
+        sudo systemctl enable powertop.service
       fi
     fi
     #
