@@ -1,7 +1,7 @@
 [user]
 	name = Dan Kalowsky
 [core]
-	editor = vim
+	editor = nvim
 	eol = lf
 	autocrlf = input
 	# Don't prompt for commit messages on merge commits
