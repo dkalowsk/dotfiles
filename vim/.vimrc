@@ -1,7 +1,3 @@
-"
-" To start this whole thing off you'll need to go get vundle like so:
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
 set nocompatible  " None of this works with old original vi, only VIM
 
 if has("unix")
