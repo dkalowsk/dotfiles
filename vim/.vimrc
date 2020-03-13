@@ -807,7 +807,11 @@ if exists('g:plugs["fzf.vim"]')
   command! -bang Colors
     \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
 
-  command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--path-to-ignore ~/.ignore --color-match="30;43" --color-path="0;33"', <bang>0)
+  command! -bang -nargs=* Ag
+    \ call fzf#vim#grep(
+    \   'ag --column --numbers --noheading --color --smart-case '.shellescape(<q-args>), 1,
+    \   fzf#vim#with_preview(), <bang>0)
+
 endif
 "}}}
 
