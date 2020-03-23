@@ -211,6 +211,22 @@ augroup filetype_markdown
 augroup END
 " }}}
 
+" filetype_yaml {{{
+augroup filetype_yaml
+  autocmd!
+  autocmd VimEnter * highlight clear SignColumn
+  autocmd BufEnter *.yml setlocal filetype=yaml
+  autocmd BufEnter *.yaml setlocal filetype=yaml
+  autocmd FileType yaml setlocal tabstop=2
+  autocmd FileType yaml setlocal shiftwidth=2
+  autocmd FileType yaml setlocal softtabstop=2
+  autocmd FileType yaml setlocal expandtab
+  autocmd FileType yaml setlocal autoindent
+  autocmd FileType yaml setlocal autoindent
+  autocmd FileType yaml setlocal copyindent
+augroup END
+" }}}
+
 " filetype_vim {{{
 augroup filetype_vim
   autocmd!
