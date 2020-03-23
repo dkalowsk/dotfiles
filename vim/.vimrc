@@ -160,6 +160,21 @@ end
 "  FileType overrides {{{
 " ============================================================================
 
+" filetype_c {{{
+augroup filetype_c
+  autocmd!
+  autocmd VimEnter * highlight clear SignColumn
+  autocmd BufEnter *.c setlocal filetype=c
+  autocmd BufEnter *.h setlocal filetype=cpp
+  autocmd FileType c setlocal tabstop=4
+  autocmd FileType c setlocal shiftwidth=4
+  autocmd FileType c setlocal softtabstop=4
+  autocmd FileType c setlocal expandtab
+  autocmd FileType c setlocal autoindent
+  autocmd FileType c setlocal copyindent
+augroup END
+" }}}
+"
 " filetype_cpp {{{
 augroup filetype_cpp
   autocmd!
