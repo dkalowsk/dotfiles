@@ -266,6 +266,19 @@ augroup filetype_crontab
 augroup END
 " }}}
 
+" filetype_crt {{{
+augroup filetype_crt
+  autocmd!
+  autocmd BufReadPre *.crt let &bin=1
+  autocmd BufReadPost *.crt if &bin | %!xxd
+  autocmd BufReadPost *.crt set ft=xxd | endif
+  autocmd BufWritePre *.crt if &bin | %!xxd -r
+  autocmd BufWritePre *.crt endif
+  autocmd BufWritePost *.crt if &bin | %!xxd
+  autocmd BufWritePost *.crt set nomod | endif
+augroup END
+" }}}
+
 " {{{ filetype_python 
 augroup filetype_python
   autocmd!
