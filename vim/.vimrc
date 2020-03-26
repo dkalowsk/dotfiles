@@ -759,10 +759,15 @@ if exists('g:plugs["ale"]')
   let g:ale_cppcheck_executable= 'cppcheck'
   let g:ale_cppcheck_options = '--enable=style'
 
+  " bash shell options
+  let g:ale_sh_shellcheck_executable = 'shellcheck'
+  let g:ale_sh_shellcheck_options = ''
+  let g:ale_sh_shfmt_options = ''
+
   let g:ale_linters = {
   \ 'c'   : ['clangd', 'clang-tidy'],
   \ 'cpp' : ['clangd', 'clang-tidy'],
-  \ 'sh'  : ['bash-language-server'],
+  \ 'sh'  : ['bash-language-server', 'shellcheck'],
   \ 'py'  : ['pylint'],
   \}
 
@@ -770,6 +775,7 @@ if exists('g:plugs["ale"]')
   \ 'c'   : ['clang-format'],
   \ 'cpp' : ['clang-format'],
   \ 'py'  : ['autopep8'],
+  \ 'sh'  : ['shfmt'],
   \}
 
   let g:ale_completion_enabled = 1

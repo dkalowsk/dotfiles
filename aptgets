@@ -9,6 +9,7 @@ python3-pip
 silversearcher-ag
 ssh-askpass
 keychain
+shellcheck
 snapd
 snapd-xdg-open
 stow
