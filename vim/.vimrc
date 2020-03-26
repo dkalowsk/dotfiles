@@ -269,6 +269,7 @@ augroup END
 augroup filetype_bash
   autocmd!
   autocmd BufEnter *.sh setlocal filetype=sh
+  autocmd FileType sh colorscheme solarized
   autocmd FileType sh setlocal autoindent
   autocmd FileType sh setlocal smartindent
   autocmd FileType sh setlocal copyindent
