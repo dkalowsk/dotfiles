@@ -127,6 +127,10 @@ set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatib
 set virtualedit=onemore             " Allow for cursor beyond last character
 set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
+
+" These may be needing to be set after vim-coloresque, as it seems
+" to reset the values.  Look for the ./vim/after/ftplugin/vim-coloresque.vim
+" file to reset them.
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
@@ -274,7 +278,7 @@ augroup filetype_bash
   autocmd FileType sh setlocal expandtab
 augroup END
 " }}}
-"
+
 " {{{ filetype_gitcommit
 " Instead of reverting the cursor to the last position in the buffer, we
 " set it to the first line when editing a git commit message
