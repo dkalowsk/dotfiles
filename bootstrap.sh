@@ -443,40 +443,41 @@ doHelp() {
 
 if [ $# -eq 0 ]; then
   doHelp
-else
-  for i in "$@"
-  do
-    case $i in
-      -s|--sync)
-        doSync
-        shift
-        ;;
-      -i|--install)
-        doInstall
-        shift
-        ;;
-      -f|--fonts)
-        doFonts
-        shift
-        ;;
-      -c|--config)
-        doConfig
-        shift
-        ;;
-      -c|--config)
-        doConfig "update"
-        shift
-        ;;
-      -a|--all)
-        doAll
-        shift
-        ;;
-      *)
-        doHelp
-        shift
-        ;;
-    esac
-  done
+  exit -1
 fi
+
+for i in "$@"
+do
+case $i in
+  -s|--sync)
+    doSync
+    shift
+    ;;
+  -i|--install)
+    doInstall
+    shift
+    ;;
+  -f|--fonts)
+    doFonts
+    shift
+    ;;
+  -c|--config)
+    doConfig
+    shift
+    ;;
+  -c|--config)
+    doConfig "update"
+    shift
+    ;;
+  -a|--all)
+    doAll
+    shift
+    ;;
+  *)
+    doHelp
+    shift
+    ;;
+esac
+done
 
 # vim: tabstop=2 shiftwidth=2 expandtab
