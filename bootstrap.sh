@@ -18,7 +18,7 @@ info () {
 
 doStow() {
   if hash stow 2>/dev/null; then
-    stow ${1}
+    stow "${1}"
   else
     #
     # This is primarily bash on windows, and there is no stow, so let's fake
@@ -28,12 +28,12 @@ doStow() {
     #
     if [ -d "${1}" ]; then
       shopt -s dotglob
-      for F in ${1}/*; do
-        if [ ! -f ${F} ]; then
-          if ["${F}" == ^. ]; then
-            ln -s ${F} ${HOME}/${F##*/}
+      for F in "${1}/*"; do
+        if [ ! -f "${F}" ]; then
+          if [ "${F}" == ^. ]; then
+            ln -s "${F}" "${HOME}/${F##*/}"
           else
-            ln -s ${F} ${HOME}/${1}/${F##*/}
+            ln -s "${F}" "${HOME}/${1}/${F##*/}"
           fi
         else
           info "File already exists ${F}"
@@ -62,13 +62,13 @@ doSync() {
 
     mydir=${D##*/}
     info "Syncing ${mydir}"
-    doStow ${mydir}
+    doStow "${mydir}"
   done
 }
 
 doBrew() {
 
-  if [ ${PLATFORM} != "Darwin" ]; then
+  if [ "${PLATFORM}" != "Darwin" ]; then
     return
   fi
 
@@ -96,7 +96,7 @@ doInstall() {
   # Now that dotfiles are in place, make sure to run the Vundle installation
   vim -i NONE -c PlugInstall -c PlugClean -c quitall
 
-  doPython ${update}
+  doPython "${update}"
 }
 
 doFonts() {
@@ -108,7 +108,7 @@ doFonts() {
   curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
   curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaPL.ttf
 
-  if [ ${PLATFORM} == "MSYS" ]; then
+  if [ "${PLATFORM}" == "MSYS" ]; then
     info "You will need to manually install the fonts by clicking on them."
     info "I have not setup the PowerShell script to do so yet."
     info "This might help: https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58"
@@ -117,16 +117,16 @@ doFonts() {
 
   fi
 
-  if [ ${PLATFORM} == "Darwin" ]; then
+  if [ "${PLATFORM}" == "Darwin" ]; then
     fonts_dir="${HOME}/Library/Fonts"
-  elif [ ${PLATFORM} == "Linux" ]; then
+  elif [ "${PLATFORM}" == "Linux" ]; then
     fonts_dir="${HOME}/.local/share/fonts"
   fi
 
   mkdir -p "${fonts_dir}"
 
   # Copy the fonts to the font dir
-  find . -name "*.[ot]tf" -type f -print0 | xargs -0 -n1 -I % cp "%" "${font_dir}/"
+  find . -name "*.[ot]tf" -type f -print0 | xargs -0 -n1 -I % cp "%" "${fonts_dir}/"
 
   # Now clean up the downloaded font files 
   find . -name "*.[ot]tf" -type f -print0 | xargs -0 -n1 -I % rm "%"
@@ -141,7 +141,7 @@ doPython() {
   if ! type -P "${pip_app}"; then
     # if not go install with python3:
     curl https://bootstrap.pypa.io/get-pip.py | python3
-    pip_app = "pip3"
+    pip_app="pip3"
   fi
 
   if [[ ${1} == true ]]; then
@@ -159,13 +159,13 @@ doPython() {
 }
 
 doWindowsConfig() {
-  if [ ${PLATFORM} != "MSYS" ]; then
+  if [ "${PLATFORM}" != "MSYS" ]; then
     return
   fi
 }
 
 doMacOSConfig() {
-  if [ ${PLATFORM} != "Darwin" ]; then
+  if [ "${PLATFORM}" != "Darwin" ]; then
     return
   fi
 
@@ -278,12 +278,12 @@ doMacOSConfig() {
     # a value of 0 means installed + returns the path
     # brew can only be run if Xcode's CLI tools have been installed.
     #
-    [ ${xcode_status:=2} -ne 2 ] && doBrew
+    [ "${xcode_status:=2}" -ne 2 ] && doBrew
   fi
 }
 
 doLinuxConfig() {
-  if [ ${PLATFORM} != "Linux" ]; then
+  if [ "${PLATFORM}" != "Linux" ]; then
     return
   fi
 
@@ -301,7 +301,7 @@ doLinuxConfig() {
     rm -Rf dircolors-solarized
   fi
 
-  if [ ${distro} == "Ubuntu" ]; then
+  if [ "${distro}" == "Ubuntu" ]; then
 
     info "Installing from aptgets"
     if (($EUID != 0)); then
@@ -351,7 +351,7 @@ doConfig() {
     update=true
   fi
 
-  mkdir -p ${HOME}/bin
+  mkdir -p "${HOME}/bin"
 
   doMacOSConfig
   doLinuxConfig
@@ -360,12 +360,12 @@ doConfig() {
   if [ ! -d "${HOME}/.fzf" ]; then
     info "Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ${HOME}/.fzf/install --bin --no-update-rc --completion --key-bindings
+    "${HOME}"/.fzf/install --bin --no-update-rc --completion --key-bindings
   fi
 
   if [[ ${update} == true ]]; then
     if [ -d "${HOME}/.fzf" ]; then
-      pushd ${HOME}/.fzf > /dev/null
+      pushd "${HOME}"/.fzf > /dev/null
       git pull --prune && ./install
       popd > /dev/null
     fi
@@ -375,45 +375,45 @@ doConfig() {
     #
     # This is a destructive process meaning we can't roll back.
     #
-    [ -f "${HOME}/.git-prompt.sh" ] && rm ${HOME}/.git-prompt.sh
-    [ -f "${HOME}/.git-completion.bash" ] && rm ${HOME}/.git-completion.bash
-    [ -f "${HOME}/.tigrc.vim" ] && rm ${HOME}/.tigrc.vim
-    [ -f "${HOME}/bin/git-quick-stats" ] && rm ${HOME}/bin/git-quick-stats
-    [ -f "${HOME}/bin/diff-so-fancy" ] && rm ${HOME}/bin/diff-so-fancy
-    [ -d "${HOME}/.yarn" ] && rm -Rf ${HOME}/.yarn
+    [ -f "${HOME}/.git-prompt.sh" ] && rm "${HOME}/.git-prompt.sh"
+    [ -f "${HOME}/.git-completion.bash" ] && rm "${HOME}/.git-completion.bash"
+    [ -f "${HOME}/.tigrc.vim" ] && rm "${HOME}/.tigrc.vim"
+    [ -f "${HOME}/bin/git-quick-stats" ] && rm "${HOME}/bin/git-quick-stats"
+    [ -f "${HOME}/bin/diff-so-fancy" ] && rm "${HOME}/bin/diff-so-fancy"
+    [ -d "${HOME}/.yarn" ] && rm -Rf "${HOME}/.yarn"
   fi
 
-  if [ ! -f ${HOME}/.git-prompt.sh ]; then
-    curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ${HOME}/.git-prompt.sh
+  if [ ! -f "${HOME}/.git-prompt.sh" ]; then
+    curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o "${HOME}/.git-prompt.sh"
   fi
 
-  if [ ! -f ${HOME}/.git-completion.bash ]; then
-    curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ${HOME}/.git-completion.bash
+  if [ ! -f "${HOME}/.git-completion.bash" ]; then
+    curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o "${HOME}/.git-completion.bash"
   fi
 
-  if [ ! -f ${HOME}/.tigrc.vim ]; then
-    curl -L https://raw.githubusercontent.com/jonas/tig/master/contrib/vim.tigrc -o ${HOME}/.tigrc.vim
+  if [ ! -f "${HOME}/.tigrc.vim" ]; then
+    curl -L https://raw.githubusercontent.com/jonas/tig/master/contrib/vim.tigrc -o "${HOME}/.tigrc.vim"
   fi
 
   info "Installing git-quick-stats"
-  if [ ! -f ${HOME}/bin/git-quick-stats ]; then
-    git clone https://github.com/arzzen/git-quick-stats.git ${HOME}/git-quick-stats
+  if [ ! -f "${HOME}/bin/git-quick-stats" ]; then
+    git clone https://github.com/arzzen/git-quick-stats.git "${HOME}/git-quick-stats"
   fi
-  if [ -d ${HOME}/git-quick-stats ]; then
+  if [ -d "${HOME}/git-quick-stats" ]; then
     pushd ${HOME}/git-quick-stats > /dev/null
     #
     # The makefile is broken and appends bin to any PREFIX, so don't add in
     # the full path
     #
-    make install PREFIX=${HOME}
+    make install PREFIX="${HOME}"
     popd > /dev/null
-    rm -Rf ${HOME}/git-quick-stats
+    rm -Rf "${HOME}/git-quick-stats"
   fi
 
   info "Installing diff-so-fancy"
   if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
-    curl -L https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ${HOME}/bin/diff-so-fancy
-    chmod +x ${HOME}/bin/diff-so-fancy
+    curl -L https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o "${HOME}/bin/diff-so-fancy"
+    chmod +x "${HOME}/bin/diff-so-fancy"
   fi
 
   if ! command -v yarn > /dev/null; then
@@ -443,7 +443,7 @@ doHelp() {
 
 if [ $# -eq 0 ]; then
   doHelp
-  exit -1
+  exit 1
 fi
 
 for i in "$@"
@@ -459,10 +459,6 @@ case $i in
     ;;
   -f|--fonts)
     doFonts
-    shift
-    ;;
-  -c|--config)
-    doConfig
     shift
     ;;
   -c|--config)
