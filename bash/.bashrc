@@ -95,7 +95,8 @@ if [ ${color_support} = yes ]; then
   elif [ "Linux" == "$(uname)" ]; then
     if [ -x /usr/bin/dircolors ]; then
         # use ${HOME}/.dircolors if user has specified one
-        test -r ${HOME}/.dircolors && eval "$(dircolors -b ${HOME}/.dircolors)" || eval "$(dircolors -b)"
+        [ -r "${HOME}/.dircolors" ] && color_path="${HOME}/.dircolors" || color_path=""
+        eval "$(dircolors -b ${color_path})"
         alias ls='ls --color=auto'
     fi
   fi
