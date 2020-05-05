@@ -116,6 +116,7 @@ if [ "Darwin" == "$(uname)" ]; then
   alias top="top -o cpu"
 fi
 [ -x "/usr/local/bin/python3" ] && alias python=/usr/local/bin/python3
+[ -x "/usr/bin/python3" ] && alias python=/usr/bin/python3
 
 #
 # For git repos, enable a quick return to the root directory
