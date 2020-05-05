@@ -30,6 +30,7 @@ path_additions=(
   "${HOME}/.local/bin"
   "${HOME}/Library/Python/3.6/bin"
   "${HOME}/Library/Python/3.7/bin"
+  "${HOME}/.yarn/bin"
   "/opt/usr/bin"
   "/opt/bin"
   "/usr/local/sbin"
