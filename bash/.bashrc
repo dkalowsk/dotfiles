@@ -45,7 +45,7 @@ do
   # if yes and no, then add it
   # else, just skip the entry.
   #echo -n "Checking ${entry}... "
-  if [ -d "${entry}" ] && [ "${PATH}" != *"${entry}"* ]; then
+  if [ -d "${entry}" ] && [[ "${PATH}" != *"${entry}"* ]]; then
     #echo "added"
     export PATH="${PATH}:$entry"
   #else
@@ -93,8 +93,8 @@ if [ ${color_support} = yes ]; then
     alias ls='ls -GFh'
   elif [ "Linux" == "$(uname)" ]; then
     if [ -x /usr/bin/dircolors ]; then
-        # use ~/.dircolors if user has specified one
-        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        # use ${HOME}/.dircolors if user has specified one
+        test -r ${HOME}/.dircolors && eval "$(dircolors -b ${HOME}/.dircolors)" || eval "$(dircolors -b)"
         alias ls='ls --color=auto'
     fi
   fi
@@ -124,8 +124,8 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 # Enable grep for color
 # Do not use the GREG_OPTIONS as they are deprecated
 #
-alias ggrep="grep ${GGREP_FLAGS}"
-alias grep="grep ${GREP_FLAGS}"
+alias ggrep='grep ${GGREP_FLAGS}'
+alias grep='grep ${GREP_FLAGS}'
 
 #
 # Enable less to output raw characters
@@ -137,7 +137,7 @@ export LESSOPEN='|~/.lessfilter %s'
 #
 # Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
 #
-[ -f ${HOME}/.stgit-completion.bash ] && source ${HOME}/.stgit-completion.bash
+[ -f "${HOME}/.stgit-completion.bash" ] && source "${HOME}/.stgit-completion.bash"
 
 #
 # Add the Android build tool paths
