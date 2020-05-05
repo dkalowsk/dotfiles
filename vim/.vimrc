@@ -795,7 +795,7 @@ if exists('g:plugs["ale"]')
   " key bindings from ccls documentation
   nnoremap <silent> <Leader>ad :ALEGoToDefinition<cr>
   nnoremap <silent> <Leader>ar :ALEFindReferences<cr>
-  nnoremap <silent> <Leader>aa :ALESymbolSearch<cr>
+  nnoremap <silent> <Leader>aa :ALESymbolSearch<Space>
   nnoremap <silent> <Leader>ah :ALEHover<cr>
 endif
 
