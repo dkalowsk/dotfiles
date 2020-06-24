@@ -3,6 +3,7 @@
 Plug 'altercation/vim-colors-solarized'
 Plug 'benjifisher/matchit.zip'
 Plug 'cespare/vim-toml'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
 Plug 'gcmt/wildfire.vim'
 Plug 'godlygeek/tabular'

@@ -684,6 +684,15 @@ if exists('g:plugs["quickmenu.vim"]')
 endif
 " }}}
 
+" EditorConfig {{{
+if exists('g:plugs["editorconfig-vim"]')
+  "let g:EditorConfig_core_mode='vim_core'
+  let g:EditorConfig_core_mode='external_command'
+  let g:EditorConfig_exec_path='/usr/bin/editorconfig'
+  let g:EditorCOnfig_verbose=1
+endif
+" }}}
+
 "  tig support {{{
 if executable('tig')
   if has('nvim')
