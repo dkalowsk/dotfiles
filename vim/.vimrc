@@ -621,6 +621,16 @@ if exists('g:plugs["vim-indent-guides"]')
 endif
 " }}}
 
+" beacon {{{
+if exists('g:plugs["beacon"]')
+  let g:beacon_enable=1
+  let g:beacon_size=40
+  let g:beacon_show_jumps=1
+
+  highlight Beacon guibg=white ctermbg=15
+endif
+" }}}
+
 " cpp-enhanced-highlight {{{
 if exists('g:plugs["vim-cpp-enhanced-highlight"]')
   let g:cpp_class_scope_highlight=1
