@@ -154,9 +154,9 @@ if has('nvim')
   if s:uname == "Darwin"
     let g:python_host_prog = '/usr/bin/python'
   else
-    let g:python_host_prog = '/usr/local/bin/python'
+    let g:python_host_prog = '/usr/bin/python2'
   endif
-  let g:python3_host_prog = '/usr/local/bin/python3'
+  let g:python3_host_prog = '/usr/bin/python3'
 end
 
 " }}}
