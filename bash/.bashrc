@@ -79,9 +79,14 @@ esac
 #
 if [ ${color_support} = yes ]; then
   export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-  if [ -L "~/.bash_prompt" ]; then
-    [ "$PS1" ] && source ${HOME}/.bash_prompt && prompt_function
-    PROMPT_COMMAND="history -a; prompt_function"
+  if [ -L "${HOME}/.bash_prompt" ]; then
+    if [ "$PS1" ]; then
+      source "${HOME}/.bash_prompt"
+      prompt_function
+      PROMPT_COMMAND="history -a; prompt_function"
+    else
+      PROMPT_COMMAND="history -a"
+    fi
   fi
 
   if [ "Darwin" == "$(uname)" ]; then
