@@ -163,7 +163,7 @@ fi
 # Add for NERDtree and sed/awk scripts to work properly
 #
 #export LC_ALL=en_US.utf-8
-export LANG="en_US.UTF-8"
+#export LANG="en_US.UTF-8"
 
 if command_exists /opt/bin/nvim ; then
   export EDITOR='/opt/bin/nvim'
