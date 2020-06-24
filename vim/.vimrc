@@ -427,16 +427,16 @@ vmap <C-D>   <Plug>SchleppDupLeft
 "-----------------------------------------------------------
 syntax enable
 "set t_Co=256
+"set termguicolors
 set background=dark
 if exists('g:plugs["vim-colors-solarized"]')
-  let g:solarized_termcolors=256
+  "let g:solarized_termcolors=256
   let g:solarized_style="dark"
   let g:solarized_termtrans=1
   let g:solarized_contrast = "normal"
   let g:solarized_visibility = "normal"
 endif
 
-"colorscheme slate
 colorscheme solarized
 "colorscheme apprentice
 " }}}
