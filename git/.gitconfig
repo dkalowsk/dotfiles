@@ -1,6 +1,5 @@
 [user]
 	name = Dan Kalowsky
-	email = dkalowsky@amperecomputing.com
 [core]
 	editor = vim
 	eol = lf
