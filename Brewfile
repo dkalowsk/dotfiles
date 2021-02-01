@@ -89,10 +89,10 @@ brew 'pygobject3'
 brew 'qt'
 brew 'qcachegrind', args: ['with-graphviz']
 brew 'qemu'
+brew 'ripgrep'
 brew 'socat'
 brew 'stgit'
 brew 'stow'
-brew 'the_silver_searcher'
 brew 'tig'
 brew 'vim', args: ['with-lua', 'with-python', 'with-client-server', 'with-override-system-vi']
 brew 'xmlto'

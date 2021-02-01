@@ -6,7 +6,7 @@ universal-ctags
 neovim
 python-optcomplete
 python3-pip
-silversearcher-ag
+ripgrep
 ssh-askpass
 keychain
 shellcheck

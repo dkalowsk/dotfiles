@@ -680,8 +680,8 @@ if exists('g:plugs["rainbow"]')
   \       'css': 0,
   \   }
   \}
-"if executable('ag')
-" let g:rainbow_conf += { 'separately' : { 'agsv' : 0 } }
+"if executable('rg')
+" let g:rainbow_conf += { 'separately' : { 'rgsv' : 0 } }
 "endif
 endif
 
@@ -844,22 +844,22 @@ if exists('g:plugs["fzf.vim"]')
   nmap <Leader>fT :Tags<CR>
   " Search only the local buffer for the specific tag
   nmap <Leader>ft :BTags<CR>
-  " Use AG for some fuzzy find
-  nmap <Leader>fa :Ag<Space>
+  " Use RG for some fuzzy find
+  nmap <Leader>fa :Rg<Space>
   " Search only for git tracked files
   nnoremap <silent> <C-p> :GFiles<CR>
   " Search for non-git tracked files
   nnoremap <silent> <C-P> :Files<CR>
 
   " taken from https://github.com/zenbro/dotfiles/blob/d3f4bd3136aab297191c062345dfc680abb1efac/.nvimrc#L235
-  nnoremap <silent> K :call SearchWordWithAg()<CR>
-  vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+  nnoremap <silent> K :call SearchWordWithRg()<CR>
+  vnoremap <silent> K :call SearchVisualSelectionWithRg()<CR>
 
-  function! SearchWordWithAg()
-    execute 'Ag' expand('<cword>')
+  function! SearchWordWithRg()
+    execute 'Rg' expand('<cword>')
   endfunction
 
-  function! SearchVisualSelectionWithAg() range
+  function! SearchVisualSelectionWithRg() range
     let old_reg = getreg('"')
     let old_regtype = getregtype('"')
     let old_clipboard = &clipboard
@@ -868,7 +868,7 @@ if exists('g:plugs["fzf.vim"]')
     let selection = getreg('"')
     call setreg('"', old_reg, old_regtype)
     let &clipboard = old_clipboard
-    execute 'Ag' selection
+    execute 'Rg' selection
   endfunction
 
   " Have fzf colors match color scheme
@@ -909,9 +909,9 @@ if exists('g:plugs["fzf.vim"]')
   command! -bang Colors
     \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
 
-  command! -bang -nargs=* Ag
+  command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
-    \   'ag --column --numbers --noheading --color --smart-case '.shellescape(<q-args>), 1,
+    \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
     \   fzf#vim#with_preview(), <bang>0)
 
 endif
