@@ -226,11 +226,25 @@ augroup filetype_yaml
   autocmd FileType yaml setlocal softtabstop=2
   autocmd FileType yaml setlocal expandtab
   autocmd FileType yaml setlocal autoindent
-  autocmd FileType yaml setlocal autoindent
   autocmd FileType yaml setlocal copyindent
 augroup END
 " }}}
 
+" filetype_dts {{{
+augroup filetype_dts
+  autocmd!
+  autocmd VimEnter * highlight clear SignColumn
+  autocmd BufEnter *.dts setlocal filetype=dts
+  autocmd BufEnter *.dtsi setlocal filetype=dts
+  autocmd FileType dts setlocal tabstop=4
+  autocmd FileType dts setlocal shiftwidth=4
+  autocmd FileType dts setlocal softtabstop=4
+  autocmd FileType dts setlocal expandtab
+  autocmd FileType dts setlocal autoindent
+  autocmd FileType dts setlocal copyindent
+augroup END
+" }}}
+"
 " filetype_vim {{{
 augroup filetype_vim
   autocmd!
