@@ -187,6 +187,17 @@ alias docker-clean=' \
   docker network prune --all --filter "until=4320" ; \
   docker volume prune --all --filter "until=4320" '
 
+# Alias for rg (ripgrep) to do paging
+if command -v rg >/dev/null; then
+    export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgrep.rc
+    function rg {
+        command rg --smart-case --pretty "$@" | command less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen
+    }
+    function rgg {
+        command rg --smart-case "$@"
+    }
+fi
+
 #
 # Only do the following for Windows Subsystem Linux installs
 #
