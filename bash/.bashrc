@@ -176,7 +176,9 @@ else
   export EDITOR='vim'
 fi
 
-alias ag="ag --ignore '*tags'"
+if command -v ag >/dev/null; then
+    alias ag="ag --ignore '*tags'"
+fi
 
 # Clean out all docker pieces older than 6 months
 alias docker-clean=' \
