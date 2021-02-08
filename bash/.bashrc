@@ -112,6 +112,7 @@ if [ ${color_support} = yes ]; then
 
 fi
 
+alias ll='ls --color=auto -Al'
 alias ffind='find . -name'
 alias telnet=nc
 if [ "Darwin" == "$(uname)" ]; then
