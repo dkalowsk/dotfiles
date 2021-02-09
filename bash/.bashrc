@@ -27,6 +27,7 @@ HISTFILESIZE=2000
 # Add in local path directories
 path_additions=(
   "${HOME}/bin"
+  "${HOME}/.gem/bin"
   "${HOME}/.local/bin"
   "${HOME}/Library/Python/3.6/bin"
   "${HOME}/Library/Python/3.7/bin"
