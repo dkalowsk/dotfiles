@@ -1,0 +1,20 @@
+--colors
+path:fg:green
+
+--colors
+path:style:intense
+
+--colors
+line:fg:yellow
+
+--colors
+line:style:intense
+
+--colors
+match:bg:cyan
+
+--colors
+match:fg:black
+
+# Because who cares about case!?
+--smart-case
