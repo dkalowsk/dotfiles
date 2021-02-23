@@ -854,9 +854,7 @@ if exists('g:plugs["fzf.vim"]')
   " Use RG for some fuzzy find
   nmap <Leader>fa :Rg<Space>
   " Search only for git tracked files
-  nnoremap <silent> <C-p> :GFiles<CR>
-  " Search for non-git tracked files
-  nnoremap <silent> <C-P> :Files<CR>
+  nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
   " taken from https://github.com/zenbro/dotfiles/blob/d3f4bd3136aab297191c062345dfc680abb1efac/.nvimrc#L235
   nnoremap <silent> K :call SearchWordWithRg()<CR>
