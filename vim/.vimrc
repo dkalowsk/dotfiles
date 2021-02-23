@@ -615,6 +615,10 @@ if exists('g:plugs["vim-gutentags"]') && executable('ctags')
         \  '.git': 'git ls-files',
         \  },
         \}
+  let g:gutentags_ctags_extra_args=[
+    \ '--tag-relative=yes',
+    \ '--fields=:ailmnS',
+    \ ]
   set statusline+=%{gutentags#statusline()}
 
   nnoremap <C-]> g<C-]>
