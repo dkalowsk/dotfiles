@@ -186,6 +186,7 @@ alias docker-clean=' \
 # Alias for rg (ripgrep) to do paging
 if command -v rg >/dev/null; then
     export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgrep.rc
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
     function rg {
         command rg --smart-case --pretty "$@" | command less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen
     }
