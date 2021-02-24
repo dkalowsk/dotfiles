@@ -143,8 +143,8 @@ export LESSOPEN='|~/.lessfilter %s'
 #
 # Add the Android build tool paths
 #
-if [ -d "$HOME/development/android/android-ndk-r20" ]; then
-  export NDK_HOME="${HOME}/development/android/android-ndk-r20"
+if [ -d "$HOME/development/android/android-ndk" ]; then
+  export NDK_HOME="${HOME}/development/android/android-ndk"
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export NDK_BIN="${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin"
   elif [[ "$OSTYPE" == "darwin"* ]]; then
