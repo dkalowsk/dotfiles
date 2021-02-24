@@ -140,12 +140,6 @@ alias grep="grep ${GREP_FLAGS}"
 export LESS="-RXF"
 export LESSOPEN='|~/.lessfilter %s'
 
-
-#
-# Add the stgit-completion.bash for tab completion in stgit (from the STgit repo)
-#
-[ -f "${HOME}/.stgit-completion.bash" ] && source "${HOME}/.stgit-completion.bash"
-
 #
 # Add the Android build tool paths
 #
@@ -224,6 +218,7 @@ source_additions=(
   "${HOME}/.bashrc-private"
   "${HOME}/.fzf.bash"
   "${HOME}/.git-completion.bash"
+  "${HOME}/.stgit-completion.bash"
 )
 
 for entry in "${source_additions[@]}"; do
@@ -280,7 +275,6 @@ _gt() {
   fzf-down --multi --preview-window right:70% \
     --preview 'git show --color=always {} | head -'$LINES
 }
-
 
 # For choosing commit hashes
 _gh() {
