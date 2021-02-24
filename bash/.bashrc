@@ -131,8 +131,8 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 # Enable grep for color
 # Do not use the GREG_OPTIONS as they are deprecated
 #
-alias ggrep='grep ${GGREP_FLAGS}'
-alias grep='grep ${GREP_FLAGS}'
+alias ggrep="grep ${GGREP_FLAGS}"
+alias grep="grep ${GREP_FLAGS}"
 
 #
 # Enable less to output raw characters
