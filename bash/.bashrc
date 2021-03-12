@@ -176,12 +176,13 @@ if command -v ag >/dev/null; then
     alias ag="ag --ignore '*tags'"
 fi
 
-# Clean out all docker pieces older than 6 months
+# Clean out all docker pieces older than a week old
+DOCKER_IMAGE_TIMEOUT="168h"
 alias docker-clean=' \
-  docker container prune --all --filter "until=4320" ; \
-  docker image prune --all --filter "until=4320h" ; \
-  docker network prune --all --filter "until=4320" ; \
-  docker volume prune --all --filter "until=4320" '
+  docker container prune --filter "until=${DOCKER_IMAGE_TIMEOUT}" ; \
+  docker image prune --all --filter "until=${DOCKER_IMAGE_TIMEOUT}" ; \
+  docker network prune --filter "until=${DOCKER_IMAGE_TIMEOUT}" ; \
+  docker volume prune --filter "until=${DOCKER_IMAGE_TIMEOUT}" '
 
 # Alias for rg (ripgrep) to do paging
 if command -v rg >/dev/null; then
