@@ -68,7 +68,10 @@ set sidescrolloff=3
 " status line contents {{{
 set laststatus=2     " Enable lower status bar
 " Broken down into easily includeable segments
-set statusline=%<%f\                     " Filename
+set statusline=
+set statusline+={%{NumOfBufs()}}       " Number of buffers
+set statusline+=\ \                    " Separator
+set statusline+=%<%f\                     " Filename
 set statusline+=%w%h%m%r                 " Options
 set statusline+=\ [%{&ff}/%Y]            " Filetype
 set statusline+=\ [%{getcwd()}]          " Current dir
@@ -1009,5 +1012,12 @@ function! ToggleQuickFix() " {{{
   endif
 endfunction
 " }}}
+
+" Number of buffers {{{3
+function! NumOfBufs() abort
+  let num = len(getbufinfo({'buflisted':1}))
+  let hid = len(filter(getbufinfo({'buflisted':1}), 'empty(v:val.windows)'))
+  return hid ? num-hid."+".hid : num
+endfunction
 
 " vim:foldmethod=marker:foldlevel=0
