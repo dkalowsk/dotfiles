@@ -924,6 +924,7 @@ if exists('g:plugs["fzf.vim"]')
     \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
     \   fzf#vim#with_preview(), <bang>0)
 
+  command! FZFR call s:FzfFindRoot()
 endif
 "}}}
 
@@ -1003,8 +1004,21 @@ function! CopyCurrentFilePath() " {{{ Copy current file path to clipboard
 endfunction
 " }}}
 
-" Quickly and easily toggle quickfix window
-function! ToggleQuickFix() " {{{
+function! s:FzfFindRoot() " {{{ FZF find root with .west
+  " Taken from https://github.com/junegunn/fzf/issues/369#issuecomment-146053423
+  for vcs in ['.west', '.git']
+    let dir = finddir(vcs.'/..', ';')
+    if !empty(dir)
+      execute 'FZF' dir
+      return
+    endif
+  endfor
+  FZF
+endfunction
+
+" }}}
+
+function! ToggleQuickFix() " {{{ Quickly and easily toggle quickfix window
   if exists("g:qwindow")
     lclose
     unlet g:qwindow
