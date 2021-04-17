@@ -961,15 +961,15 @@ function! SwitchSourceHeader() " {{{ Attempt to switch between header/source wit
   let west_dir = finddir('.west/..', ';')
   "echo "Search path starts with: " . west_dir
   if (expand ("%:e") == "cpp")
-    silent! find %:t:r.h
-    silent! find %:t:r.hpp
+    !find -type f -name %:t:r.h
+    !find -type f -name %:t:r.hpp
   elseif (expand ("%:e") == "c")
-    silent! find %:t:r.h
+    silent !find -type f -name %:t:r.h
   elseif (expand ("%:e") == "hpp")
-    silent! find %:t:r.cpp
+    silent !find -type f -name %:t:r.cpp
   elseif (expand ("%:e") == "h")
-    silent! find %:t:r.cpp
-    silent! find %:t:r.c
+    !find -type f -name %:t:r.cpp
+    !find -type f -name %:t:r.c
   endif
 endfunction
 " }}}
