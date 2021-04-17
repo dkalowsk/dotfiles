@@ -370,7 +370,8 @@ elseif empty('$MSYSTEM')
 endif
 " }}}
 
-" window shift and tab keys {{{
+" Global re-mapped keys {{{
+"
 " Remap the standard VIM movement keys to also work for moving between window frames
 " while holding down Cntrl
 map <C-J> <C-W><C-J>
@@ -385,6 +386,7 @@ noremap <S-Tab> :bp<CR>
 nmap <silent> <F8> :call ToggleQuickFix()<CR>
 
 nnoremap <leader>% :call CopyCurrentFilePath()<CR>
+nnoremap <silent> <leader>sf :call SwitchSourceHeader()<cr>
 " }}}
 
 " backup {{{
@@ -952,8 +954,9 @@ endfunction
 "
 " Borrowed from https://www.reddit.com/r/vim/comments/cw6q13/my_own_alternatives_to_vimsurround_and_avim/
 "
-nnoremap <silent> <leader>sf :call SwitchSourceHeader()<cr>
-function! SwitchSourceHeader()
+function! SwitchSourceHeader() " {{{ Attempt to switch between header/source with the same name
+  let west_dir = finddir('.west/..', ';')
+  "echo "Search path starts with: " . west_dir
   if (expand ("%:e") == "cpp")
     silent! find %:t:r.h
     silent! find %:t:r.hpp
