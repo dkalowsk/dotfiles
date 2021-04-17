@@ -35,6 +35,7 @@ path_additions=(
   "/opt/usr/bin"
   "/opt/bin"
   "/usr/local/sbin"
+  "${HOME}/.gem/ruby/2.7.0/bin"
   # These are Darwin specific but it doesn't matter
   # as the directory won't exist, so they won't do anything
   "/Applications/Araxis Merge.app/Contents/Utilities"
