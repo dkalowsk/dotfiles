@@ -73,8 +73,9 @@ color_support=no
 case "${TERM}" in
   xterm-color|*-256color) color_support=yes;;
 esac
+
 #
-# add color ls output
+# Enable color output
 #
 if [ ${color_support} = yes ]; then
   export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
@@ -88,33 +89,44 @@ if [ ${color_support} = yes ]; then
     fi
   fi
 
-  if [ "Darwin" == "$(uname)" ]; then
-    #export LSCOLORS="GxGxBxDxCxEgEdxbxgxcxd"
-    #export LSCOLORS="ExFxBxDxCxegedabagacad"
-    # Value from: https://github.com/seebi/dircolors-solarized/issues/10#issuecomment-381545995
-    export LSCOLORS="exfxfeaeBxxehehbadacea"
-    export CLICOLOR=true
-    export CLICOLOR=1
-    alias ls='ls -GFh'
-  elif [ "Linux" == "$(uname)" ]; then
-    if [ -x /usr/bin/dircolors ]; then
-        # use ${HOME}/.dircolors if user has specified one
-        [ -r "${HOME}/.dircolors" ] && color_path="${HOME}/.dircolors" || color_path=""
-        eval "$(dircolors -b ${color_path})"
-        alias ls='ls --color=auto'
+  LS_OPTIONS=
+
+  #
+  # Setup alias for ls
+  if command_exists exa ; then
+    alias tree="exa --tree"
+    alias ls="exa --group-directories-first"
+    alias ll="exa --long --git --group-directories-first"
+  else
+    if [ "Darwin" == "$(uname)" ]; then
+      #export LSCOLORS="GxGxBxDxCxEgEdxbxgxcxd"
+      #export LSCOLORS="ExFxBxDxCxegedabagacad"
+      # Value from: https://github.com/seebi/dircolors-solarized/issues/10#issuecomment-381545995
+      export LSCOLORS="exfxfeaeBxxehehbadacea"
+      export CLICOLOR=true
+      export CLICOLOR=1
+      LS_OPTIONS="-GFh"
+    elif [ "Linux" == "$(uname)" ]; then
+      if [ -x /usr/bin/dircolors ]; then
+          # use ${HOME}/.dircolors if user has specified one
+          [ -r "${HOME}/.dircolors" ] && color_path="${HOME}/.dircolors" || color_path=""
+          eval "$(dircolors -b ${color_path})"
+          LS_OPTIONS="--color=auto"
+      fi
     fi
+    alias ls="ls ${LS_OPTIONS}"
+    alias ll="ls ${LS_OPTIONS} -Al"
   fi
   GGREP_FLAGS="--color=auto ${GGREP_FLAGS}"
   GREP_FLAGS="--color=auto ${GREP_FLAGS}"
 
-#
-# Force AG to use consistent colors on all platforms
-#
+  #
+  # Force AG to use consistent colors on all platforms
+  #
   alias ag="ag --color-path '33;36' --color-line-number '33;35' --color"
 
 fi
 
-alias ll='ls --color=auto -Al'
 alias ffind='find . -name'
 alias telnet=nc
 if [ "Darwin" == "$(uname)" ]; then
@@ -128,12 +140,6 @@ fi
 #
 alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
-#
-# Enable grep for color
-# Do not use the GREG_OPTIONS as they are deprecated
-#
-alias ggrep="grep ${GGREP_FLAGS}"
-alias grep="grep ${GREP_FLAGS}"
 
 #
 # Enable less to output raw characters
@@ -195,6 +201,13 @@ if command -v rg >/dev/null; then
     function rgg {
         command rg --smart-case "$@"
     }
+else
+  #
+  # Enable grep for color
+  # Do not use the GREG_OPTIONS as they are deprecated
+  #
+  alias ggrep="grep ${GGREP_FLAGS}"
+  alias grep="grep ${GREP_FLAGS}"
 fi
 
 #
