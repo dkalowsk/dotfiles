@@ -927,7 +927,7 @@ if exists('g:plugs["fzf.vim"]')
 endif
 "}}}
 
-function! ClangCheckImpl(cmd)
+function! ClangCheckImpl(cmd) " {{{
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
   let l:output = system(a:cmd)
@@ -939,8 +939,9 @@ echo "Running " . a:cmd . " ..."
   endif
   let g:clang_check_last_cmd = a:cmd
 endfunction
+" }}}
 
-function! ClangCheck()
+function! ClangCheck() " {{{ Run clang-check on the files
   let l:filename = expand('%')
   if l:filename =~ '\.\(cpp\|cxx\|cc\|c\)$'
     call ClangCheckImpl("clang-check " . l:filename)
@@ -950,9 +951,10 @@ function! ClangCheck()
     echo "Can't detect file's compilation arguments and no previous clang-check invocation!"
   endif
 endfunction
+" }}}
 
 "
-" Borrowed from https://www.reddit.com/r/vim/comments/cw6q13/my_own_alternatives_to_vimsurround_and_avim/
+" Borrowed and modified from https://www.reddit.com/r/vim/comments/cw6q13/my_own_alternatives_to_vimsurround_and_avim/
 "
 function! SwitchSourceHeader() " {{{ Attempt to switch between header/source with the same name
   let west_dir = finddir('.west/..', ';')
@@ -969,11 +971,11 @@ function! SwitchSourceHeader() " {{{ Attempt to switch between header/source wit
     silent! find %:t:r.c
   endif
 endfunction
+" }}}
 
-
-" Strips trailing whitespace at the end of files.  This is called on buffer
-" write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces() " {{{
+  " Strips trailing whitespace at the end of files.
+  " This is called on buffer write in the autogroup above.
   " save last search and cursor position
   let _s=@/
   let l = line(".")
@@ -982,8 +984,9 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
+" }}}
 
-function! LightLineReadonly()
+function! LightLineReadonly() " {{{ Check if file is read only
   if &filetype == "help"
     return ""
   elseif &readonly
@@ -992,9 +995,9 @@ function! LightLineReadonly()
     return ""
   endif
 endfunction
+" }}}
 
-" Copy current file path to clipboard
-function! CopyCurrentFilePath() " {{{
+function! CopyCurrentFilePath() " {{{ Copy current file path to clipboard
   let @+ = expand('%')
   echo @+
 endfunction
@@ -1009,18 +1012,18 @@ function! ToggleQuickFix() " {{{
     try
       lopen 10
       let g:qwindow = 1
-    catch 
+    catch
       echo "No Errors found!"
     endtry
   endif
 endfunction
 " }}}
 
-" Number of buffers {{{3
-function! NumOfBufs() abort
+function! NumOfBufs() abort " {{{ Number of buffers
   let num = len(getbufinfo({'buflisted':1}))
   let hid = len(filter(getbufinfo({'buflisted':1}), 'empty(v:val.windows)'))
   return hid ? num-hid."+".hid : num
 endfunction
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
