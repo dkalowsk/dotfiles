@@ -215,6 +215,10 @@ augroup filetype_markdown
   autocmd FileType markdown setlocal textwidth=80
   autocmd FileType markdown setlocal autoindent
   autocmd FileType markdown setlocal copyindent
+  autocmd FileType markdown setlocal tabstop=4
+  autocmd FileType markdown setlocal shiftwidth=4
+  autocmd FileType markdown setlocal softtabstop=4
+  autocmd FileType markdown setlocal expandtab
 augroup END
 " }}}
 
