@@ -319,9 +319,6 @@ augroup filetype_bash
   autocmd FileType sh setlocal autoindent
   autocmd FileType sh setlocal smartindent
   autocmd FileType sh setlocal copyindent
-  autocmd FileType sh setlocal tabstop=4
-  autocmd FileType sh setlocal shiftwidth=4
-  autocmd FileType sh setlocal softtabstop=4
   autocmd FileType sh setlocal expandtab
 augroup END
 " }}}
