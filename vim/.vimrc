@@ -841,9 +841,9 @@ if exists('g:plugs["ale"]')
   let g:ale_sign_error = '✗'
   highlight link ALEWarningSign String
   highlight link ALEErrorSign Title
-  nmap ]w :ALENextWrap<CR>
-  nmap [w :ALEPreviousWrap<CR>
-  nmap <Leader>af <Plug>(ale_fix)
+  nmap <silent> <leader>aj :ALENext<CR>
+  nmap <silent> <leader>ak :ALEPrevious<CR>
+  nmap <silent> <leader>af :ALEFix
 
   " key bindings from ccls documentation
   nnoremap <silent> <Leader>ad :ALEGoToDefinition<cr>
