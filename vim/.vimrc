@@ -758,7 +758,7 @@ if exists('g:plugs["ale"]')
   " This can be useful if you are combining ALE with
   " some other plugin which sets quickfix errors, etc.
   "let g:ale_keep_list_window_open = 1
-  let g:ale_c_build_dir_names = [ 'BUILDS', 'bin' ]
+  let g:ale_c_build_dir_names = [ 'BUILDS', 'bin' , 'build/debug/*/', 'build/release/*/' ]
   let g:ale_cache_executable_check_failures = 1
   let g:ale_c_parse_makefile = 1
   let g:ale_lint_on_enter = 0
