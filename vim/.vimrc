@@ -815,6 +815,9 @@ if exists('g:plugs["ale"]')
   let g:ale_sh_shellcheck_options = ''
   let g:ale_sh_shfmt_options = ''
 
+  " shfmt options
+  let g:ale_sh_shfmt_options= '-i 4'
+
   let g:ale_linters = {
   \ 'c'   : [ 'clangd', 'clang-tidy', 'cppcheck' ],
   \ 'cpp' : [ 'clangd', 'clang-tidy', 'cppcheck' ],
@@ -826,6 +829,7 @@ if exists('g:plugs["ale"]')
   \ 'c'   : ['clang-format', 'remove_trailing_lines', 'trim_whitespace', 'clangtidy' ],
   \ 'cpp' : ['clang-format', 'remove_trailing_lines', 'trim_whitespace', 'clangtidy' ],
   \ 'py'  : ['autopep8'],
+  \ 'sh'  : [ 'shfmt' ],
   \}
 
   let g:ale_completion_enabled = 1
