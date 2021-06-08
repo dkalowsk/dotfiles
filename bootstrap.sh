@@ -69,7 +69,7 @@ doStow() {
     #
     if [ -d "${1}" ]; then
       shopt -s dotglob
-      for dotfile in ${1}/.* ; do
+      for dotfile in "${1}"/.* ; do
         if [ ! -f "${dotfile}" ]; then
           #
           # Skip the . and .. files as they don't count
@@ -157,6 +157,8 @@ doBrew() {
 
 doInstall() {
   info "Installing Extras"
+
+  local update=${update:-false}
 
   # Now that dotfiles are in place, make sure to run the Vundle installation
   vim -i NONE -c PlugInstall -c PlugClean -c quitall
