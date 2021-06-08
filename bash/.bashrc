@@ -172,10 +172,3 @@ fi
 if command_exists ag ; then
     alias ag="ag --ignore '*tags'"
 fi
-
-# Clean out all docker pieces older than 6 months
-alias docker-clean= \
-  'docker container prune --all --filter "until=4320" ;' \
-  'docker image prune --all --filter "until=4320h" ; '   \
-  'docker network prune --all --filter "until=4320" ; '  \
-  'docker volume prune --all --filter "until=4320" '
