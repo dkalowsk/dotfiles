@@ -41,11 +41,23 @@ PURPLE="\e[35m"
 RED="\e[31m"
 
 info () {
-  printf "\033[00;34m$@\033[0m\n"
+  echo -e "${BLUE}$@${NORMAL}"
+}
+
+error() {
+  echo -e "${RED}$@${NORMAL}"
+}
+
+debug() {
+  if [[ -n "${DEBUG_SCRIPT:-}" ]]; then
+    echo -e "${GREEN}$@${NORMAL}"
+  fi
 }
 
 
 doStow() {
+  local orig_file=
+
   if hash stow 2>/dev/null; then
     stow "${1}"
   else
@@ -57,15 +69,39 @@ doStow() {
     #
     if [ -d "${1}" ]; then
       shopt -s dotglob
-      for F in "${1}/*"; do
-        if [ ! -f "${F}" ]; then
-          if [ "${F}" == ^. ]; then
-            ln -s "${F}" "${HOME}/${F##*/}"
-          else
-            ln -s "${F}" "${HOME}/${1}/${F##*/}"
-          fi
+      for dotfile in ${1}/.* ; do
+        if [ ! -f "${dotfile}" ]; then
+	  #
+	  # Skip the . and .. files as they don't count
+	  #
+	  if [[ ("${dotfile}" == "${1}/." ) || ( "${dotfile}" == "${1}/.." ) ]]; then
+	    debug "Skipping"
+            continue
+	  fi
+
+	  #
+	  # Work around to deal with a whole .dir
+	  #
+          ln -s "${dotfile}" "${HOME}/${dotfile##*/}"
         else
-          info "File already exists ${F}"
+          debug "We have a dotfile: ${dotfile}"
+	  orig_file=$(basename "${dotfile}")
+
+	  #
+	  # Check for a version in the $HOME
+	  # If there is one, delete it
+	  #
+	  if [ -f "${HOME}/${orig_file}" ]; then
+            debug "Removing original file"
+	    rm -Rf "${HOME}/${orig_file}"
+	  fi
+	  if [ -L "${HOME}/${orig_file}" ]; then
+            debug "Removing soft linked file"
+	    rm -Rf "${HOME}/${orig_file}"
+	  fi
+
+	  debug "Linking ${HOME}/${dotfile##*/} with ${DOTFILES}/${dotfile}"
+          ln -s "${DOTFILES}/${dotfile}" "${HOME}/${dotfile##*/}"
         fi
       done
       shopt -u dotglob
