@@ -356,20 +356,21 @@ doLinuxConfig() {
 
   # Get the distro name from /etc/os-release, as
   # that seems to be the only sure way to get it.
-  local distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+  local distro=
+  distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
   if [ ! -f "${HOME}/.dircolors" ]; then
     info "Installing solarized dircolors"
     git clone --quiet https://github.com/seebi/dircolors-solarized
     cp dircolors-solarized/dircolors.256dark ~/.dircolors
-    eval `dircolors ${HOME}/.dircolors`
+    eval "$(dircolors "${HOME}"/.dircolors)"
     rm -Rf dircolors-solarized
   fi
 
   if [ "${distro}" == "Ubuntu" ]; then
 
     info "Installing from aptgets"
-    if (($EUID != 0)); then
+    if ((EUID != 0)); then
       if [[ -t 1 ]]; then
 #                sudo apt-get install $(grep -vE "^\s*#" aptgets | tr "\n" " ")
         xargs -a <(awk '! /^ *(#|$)/' "aptgets") -r -- sudo apt-get install -y
@@ -465,7 +466,7 @@ doConfig() {
     git clone https://github.com/arzzen/git-quick-stats.git "${HOME}/git-quick-stats"
   fi
   if [ -d "${HOME}/git-quick-stats" ]; then
-    pushd ${HOME}/git-quick-stats > /dev/null
+    pushd "${HOME}/git-quick-stats" > /dev/null
     #
     # The makefile is broken and appends bin to any PREFIX, so don't add in
     # the full path
