@@ -7,9 +7,38 @@
 # Many edits later, it's become it's own beast of a mistake
 #
 
+set -o errexit
+set -o pipefail
+set -o nounset
+
+if [[ -n "${DEBUG_SCRIPT:-}" ]]; then
+    set -o xtrace
+    export PS4='+ ${BASH_SOURCE:-}:${FUNCNAME[0]:-}:L${LINENO:-}:   '
+    export
+fi
+
 DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
 PLATFORM="$(uname)"
 
+# Font colors
+
+# shellcheck disable=SC2034
+NORMAL="\e[0m"
+# shellcheck disable=SC2034
+BOLD="\e[1m"
+
+# shellcheck disable=SC2034
+BLACK="\e[30m"
+# shellcheck disable=SC2034
+BLUE="\e[34m"
+# shellcheck disable=SC2034
+CYAN="\e[36m"
+# shellcheck disable=SC2034
+GREEN="\e[32m"
+# shellcheck disable=SC2034
+PURPLE="\e[35m"
+# shellcheck disable=SC2034
+RED="\e[31m"
 
 info () {
   printf "\033[00;34m$@\033[0m\n"
