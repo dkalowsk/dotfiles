@@ -6,7 +6,7 @@ command_exists() {
 
 if command_exists keychain; then
   if [ "Linux" == "$(uname)" ]; then
-    eval `keychain --eval --agents ssh id_rsa id_ed25519`
+    eval `keychain --eval --agents ssh id_rsa id_ed25519 id_rsa_cadence`
   elif [ "Darwin" == "$(uname)" ]; then
     eval `keychain --eval --agents ssh --inherit any id_rsa`
   fi
