@@ -113,7 +113,6 @@ fi
 
 source_additions=(
   "${HOME}/.bashrc-private"
-  "${HOME}/.bashrc-interactive"
   "${HOME}/.fzf.bash"
   "${HOME}/.git-completion.bash"
   "${HOME}/.stgit-completion.bash"
