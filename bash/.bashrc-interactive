@@ -9,17 +9,17 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     exit 1
 fi
 
-
-if command_exists keychain; then
-  if [ "Linux" == "$(uname)" ]; then
-    eval "$(keychain --eval --agents ssh id_rsa id_ed25519)"
-  elif [ "Darwin" == "$(uname)" ]; then
-    eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+  if command_exists keychain; then
+    if [ "Linux" == "$(uname)" ]; then
+      eval "$(keychain --eval --agents ssh id_rsa id_ed25519)"
+    elif [ "Darwin" == "$(uname)" ]; then
+      eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
+    fi
+  else
+    echo "SSH Agent not started, install keychain"
   fi
-else
-  echo "SSH Agent not started, install keychain"
 fi
-
 #
 # check if the term supports color
 #
@@ -48,7 +48,7 @@ if [ ${color_support} = yes ]; then
     if [ -x /usr/bin/dircolors ]; then
         # use ${HOME}/.dircolors if user has specified one
         [ -r "${HOME}/.dircolors" ] && color_path="${HOME}/.dircolors" || color_path=""
-        eval "$(dircolors -b ${color_path})"
+        eval "$(dircolors -b "${color_path}")"
         alias ls='ls --color=auto'
     fi
   fi
