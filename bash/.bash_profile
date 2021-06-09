@@ -30,8 +30,6 @@ case "${TERM}" in
   xterm-color|*-256color) color_support=yes;;
 esac
 
-echo "DRK color_support=${color_support}"
-
 if [ ${color_support} = yes ]; then
   export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
   if [ -L "${HOME}/.bash_prompt" ]; then
