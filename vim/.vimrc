@@ -807,8 +807,8 @@ if exists('g:plugs["ale"]')
   let g:ale_sh_shfmt_options = ''
 
   let g:ale_linters = {
-  \ 'c'   : [ 'clangd', 'clang-tidy', 'cppcheck' ],
-  \ 'cpp' : [ 'clangd', 'clang-tidy', 'cppcheck' ],
+  \ 'c'   : [ 'clangd', 'clangtidy', 'cppcheck' ],
+  \ 'cpp' : [ 'clangd', 'clangtidy', 'cppcheck' ],
   \ 'sh'  : [ 'bash-language-server', 'shellcheck' ],
   \ 'py'  : [ 'pylint' ],
   \}
