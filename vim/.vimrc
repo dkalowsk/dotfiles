@@ -8,31 +8,42 @@ endif
 " vim-plug setup {{{
 let plugin_install_needed=0
 if has('nvim')
+  echo "Have NVIM"
   if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    echo "Pulling GitPlug"
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     let plugin_install_needed=1
+  else
+    if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+      let plugin_install_needed=1
+    endif
   endif
 else
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     let plugin_install_needed=1
   endif
+endif
+
+if plugin_install_needed == 1
+    echo "Installing vim plugins"
+    echo ""
+    autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \| PlugInstall --sync | source $MYVIMRC
+    \| endif
 endif
 
 call plug#begin('~/.vim/bundle')
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
-endif
-
-if exists(plugin_install_needed)
-  if plugin_install_needed == 1
-    echo "Installing vim plugins"
-    echo ""
-    autocmd VimEnter * PlugInstall --sync
-  endif
 endif
 
 call plug#end()
