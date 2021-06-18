@@ -161,7 +161,8 @@ doInstall() {
   local update=${update:-false}
 
   # Now that dotfiles are in place, make sure to run the Vundle installation
-  vim -i NONE -c PlugInstall -c PlugClean -c quitall
+  vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
+  nvim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
 
   doPython "${update}"
 }
