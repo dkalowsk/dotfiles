@@ -584,8 +584,10 @@ noremap <silent> <F2> :call ToggleNetrw()<CR>
 
 " gundo {{{
 "-----------------------------------------------------------
-let g:gundo_preview_bottom = 1
-nnoremap <F4> :GundoToggle<CR>
+if exists('g:plugs["gundo.vim"]')
+    let g:gundo_preview_bottom = 1
+    nnoremap <F4> :GundoToggle<CR>
+endif
 " }}}
 
 " ctags && gutentags {{{
