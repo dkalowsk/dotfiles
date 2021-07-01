@@ -151,11 +151,11 @@ set iskeyword-=-                    " '-' is an end of word designator
 
 set tabpagemax=10                   " Only show 10 tabs
 
+set completeopt=menuone
+set completeopt+=longest
 if has('nvim') || (v:version > 800)
-  set completeopt=menuone,longest,noinsert,noselect
-else
-  " Needed for use on some older vim7 installs
-  set completeopt=menuone,longest
+  set completeopt+=noinsert
+  set completeopt+=noselect
 endif
 
 " enable vim to auto update a file if it has changes
