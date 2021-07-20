@@ -78,7 +78,7 @@ set sidescrolloff=3
 
 " status line contents {{{
 set laststatus=2     " Enable lower status bar
-" Broken down into easily includeable segments
+" Broken down into easily include-able segments
 set statusline=%<%f\                     " Filename
 set statusline+=%w%h%m%r                 " Options
 set statusline+=\ [%{&ff}/%Y]            " Filetype
@@ -148,8 +148,9 @@ set iskeyword-=-                    " '-' is an end of word designator
 
 set tabpagemax=10                   " Only show 10 tabs
 
-set completeopt=menuone
+set completeopt+=menuone
 set completeopt+=longest
+set completeopt+=preview
 if has('nvim') || (v:version > 800)
   set completeopt+=noinsert
   set completeopt+=noselect
