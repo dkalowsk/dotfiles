@@ -816,7 +816,7 @@ if exists('g:plugs["ale"]')
   let g:ale_fixers = {
   \ 'c'         : ['clang-format', 'remove_trailing_lines', 'trim_whitespace', 'clangtidy' ],
   \ 'cpp'       : ['clang-format', 'remove_trailing_lines', 'trim_whitespace', 'clangtidy' ],
-  \ 'py'        : ['autopep8'],
+  \ 'py'        : ['autopep8', 'black'],
   \ 'markdown'  : ['prettier'],
   \}
 
