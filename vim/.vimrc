@@ -810,7 +810,7 @@ if exists('g:plugs["ale"]')
   \ 'c'   : [ 'clangd', 'clangtidy', 'cppcheck' ],
   \ 'cpp' : [ 'clangd', 'clangtidy', 'cppcheck' ],
   \ 'sh'  : [ 'bash-language-server', 'shellcheck' ],
-  \ 'py'  : [ 'pylint' ],
+  \ 'py'  : [ 'pylint', 'pyls' ],
   \}
 
   let g:ale_fixers = {
