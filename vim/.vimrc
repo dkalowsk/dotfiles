@@ -97,6 +97,10 @@ nnoremap <space> za   " use space to open/close a fold
 set foldmethod=indent " try using the indent method
 " }}}
 
+set title
+set titleold="Terminal"
+set titlestring=%F
+
 " search {{{
 set showmatch   " highlight matching [{()}]
 set incsearch   " search as characters are entered
