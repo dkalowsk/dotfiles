@@ -50,6 +50,9 @@ path_additions=(
   "${NDK_HOME}"
   "${NDK_BIN}"
 )
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  path_additions+=("$(eval "$(/bin/brew shellenv)")")
+fi
 
 for entry in "${path_additions[@]}"
 do
