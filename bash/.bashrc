@@ -41,6 +41,9 @@ path_additions=(
   "/Applications/Araxis Merge.app/Contents/Utilities"
   "/Applications/010 Editor.app/Contents/CmdLine"
 )
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  path_additions+=("$(eval "$(/bin/brew shellenv)")")
+fi
 
 for entry in "${path_additions[@]}"
 do
