@@ -618,6 +618,16 @@ if exists('g:plugs["gundo.vim"]')
 endif
 " }}}
 
+" vim-indent-guides {{{
+"-----------------------------------------------------------
+if exists('g:plugs["vim-indent-guides"]')
+  let g:indent_guides_start_level = 2
+  let g:indent_guides_guide_size = 1
+  hi IndentGuidesOdd  ctermbg=black
+  hi IndentGuidesEven ctermbg=darkgrey
+endif
+" }}}
+
 " ctags && gutentags {{{
 "-----------------------------------------------------------
 set tags=expand('~/.cache/vim/ctags')
