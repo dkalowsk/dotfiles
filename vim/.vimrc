@@ -454,7 +454,15 @@ if exists('g:plugs["vim-colors-solarized"]')
   let g:solarized_visibility = "normal"
 endif
 
-colorscheme solarized
+if exists('g:plugs["tokyonight.nvim"]')
+  let g:tokyonight_style = "night"
+  let g:tokyonight_italic_functions = 1
+  let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+
+endif
+
+colorscheme tokyonight
+"colorscheme solarized
 "colorscheme apprentice
 " }}}
 
@@ -470,7 +478,7 @@ if exists('g:plugs["lightline.vim"]')
   let g:lightline = {
   \ 'separator' : { 'left': '▓▒░', 'right': '░▒▓'  },
   \ 'subseparator' : { 'left': '>', 'right': ''  },
-  \ 'colorscheme' : 'jellybeans',
+  \ 'colorscheme' : 'tokyonight',
   \ 'enable' : {
   \   'statusline': 1,
   \ },
