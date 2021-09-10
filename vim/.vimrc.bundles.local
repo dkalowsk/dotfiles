@@ -34,7 +34,6 @@ Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-wordy'
-Plug 'romainl/Apprentice'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'scrooloose/nerdcommenter', { 'on' : '<Plug>NERDCommenterToggle' }
 Plug 'sjl/gundo.vim'
