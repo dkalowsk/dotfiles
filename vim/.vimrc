@@ -451,12 +451,15 @@ syntax enable
 "set t_Co=256
 "set termguicolors
 set background=dark
+
 if exists('g:plugs["vim-colors-solarized"]')
   "let g:solarized_termcolors=256
   let g:solarized_style="dark"
   let g:solarized_termtrans=1
   let g:solarized_contrast = "normal"
   let g:solarized_visibility = "normal"
+
+  colorscheme solarized
 endif
 
 if exists('g:plugs["tokyonight.nvim"]')
@@ -464,11 +467,9 @@ if exists('g:plugs["tokyonight.nvim"]')
   let g:tokyonight_italic_functions = 1
   let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
 
+  colorscheme tokyonight
 endif
 
-colorscheme tokyonight
-"colorscheme solarized
-"colorscheme apprentice
 " }}}
 
 " Session List {{{

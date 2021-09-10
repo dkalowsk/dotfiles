@@ -1,6 +1,6 @@
 "
 " plug-ins to add
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 Plug 'benjifisher/matchit.zip'
 Plug 'cespare/vim-toml'
 Plug 'danilamihailov/beacon.nvim'
