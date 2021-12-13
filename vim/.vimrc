@@ -455,12 +455,14 @@ if exists('g:plugs["vim-colors-solarized"]')
   colorscheme solarized
 endif
 
+if has('nvim')
 if exists('g:plugs["tokyonight.nvim"]')
   let g:tokyonight_style = "night"
   let g:tokyonight_italic_functions = 1
   let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
 
   colorscheme tokyonight
+endif
 endif
 
 " }}}
