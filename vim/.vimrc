@@ -326,10 +326,10 @@ augroup filetype_bash
   autocmd FileType sh setlocal autoindent
   autocmd FileType sh setlocal smartindent
   autocmd FileType sh setlocal copyindent
+  autocmd FileType sh setlocal expandtab
   autocmd FileType sh setlocal tabstop=4
   autocmd FileType sh setlocal shiftwidth=4
   autocmd FileType sh setlocal softtabstop=4
-  autocmd FileType sh setlocal expandtab
 augroup END
 " }}}
 
@@ -845,9 +845,9 @@ if exists('g:plugs["ale"]')
   "}'
 
   " clang-format options
-  let g:ale_c_clangformat_executable= 'clang-format'
+  let g:ale_c_clangformat_executable= '/usr/bin/clang-format'
   let g:ale_c_clangformat_options = '-style=file'
-  let g:ale_clangformat_executable= 'clang-format'
+  let g:ale_clangformat_executable= '/usr/bin/clang-format'
   let g:ale_clangformat_options = '-style=file'
 
   " clang-tidy options
