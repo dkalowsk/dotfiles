@@ -78,6 +78,8 @@
 	colorMoved = zebra
 [difftool "meld"]
 	cmd = meld "$LOCAL" "$REMOTE"
+[difftool "vscode"]
+        cmd = code --wait --diff "$LOCAL" "$REMOTE"
 [merge]
 	tool = meld 
 [mergetool]
@@ -107,6 +109,8 @@
 [mergetool "meld"]
 	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 	path = /usr/bin/meld
+[mergetool "vscode"]
+        cmd = code --wait "$MERGED"
 [pager]
 #	log  = diff-so-fancy | less -RFX
 #	show = diff-so-fancy | less -RFX
