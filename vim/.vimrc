@@ -863,7 +863,7 @@ if exists('g:plugs["ale"]')
   " bash shell options
   let g:ale_sh_shellcheck_executable = 'shellcheck'
   let g:ale_sh_shellcheck_options = ''
-  let g:ale_sh_shfmt_options = ''
+  let g:ale_sh_shfmt_options = '-ci -i 4'
 
   let g:ale_linters = {
   \ 'c'   : [ 'clangd', 'clangtidy', 'cppcheck' ],
