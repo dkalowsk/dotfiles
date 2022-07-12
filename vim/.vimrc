@@ -201,10 +201,9 @@ augroup filetype_cpp
   autocmd BufEnter *.cpp setlocal filetype=cpp
   autocmd BufEnter *.h setlocal filetype=cpp
   autocmd BufEnter *.hpp setlocal filetype=cpp
-"  autocmd BufWritePre *.cpp, *.h \:call <SID>StripTrailingWhitespaces()
-  autocmd FileType cpp setlocal tabstop=2
-  autocmd FileType cpp setlocal shiftwidth=2
-  autocmd FileType cpp setlocal softtabstop=2
+  autocmd FileType cpp setlocal tabstop=4
+  autocmd FileType cpp setlocal shiftwidth=4
+  autocmd FileType cpp setlocal softtabstop=4
   autocmd FileType cpp setlocal expandtab
   autocmd FileType cpp setlocal autoindent
   autocmd FileType cpp setlocal copyindent
