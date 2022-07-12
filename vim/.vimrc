@@ -54,6 +54,7 @@ let mapleader=","
 set encoding=utf-8
 
 " vim UI settings {{{
+set norelativenumber
 set number
 set wildmenu         " visual autocomplete for command menu
 set wildmode=longest,list:full " match to the longest string possible
