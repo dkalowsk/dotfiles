@@ -648,7 +648,7 @@ if exists('g:plugs["vim-gutentags"]') && executable('ctags')
   let g:gutentags_background_update=1
   let g:gutentags_add_default_project_roots=0
   let g:gutentags_project_root=['.west', '.git']
-  let g:gutentags_cache_dir = expand('~/.ctags')
+  let g:gutentags_cache_dir = expand('~/.cache/vim/ctags')
   let g:gutentags_file_list_command = {
         \'markers': {
         \  '.git': 'git ls-files',
