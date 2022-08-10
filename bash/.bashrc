@@ -34,6 +34,7 @@ fi
 #
 path_additions=(
   "${HOME}/bin"
+  "${HOME}/.cargo/bin"
   "${HOME}/.gem/bin"
   "${HOME}/.local/bin"
   "${HOME}/Library/Python/3.6/bin"
