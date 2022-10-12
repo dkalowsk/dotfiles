@@ -139,6 +139,7 @@
 [diff-so-fancy]
 	changeHunkIndicators = true
 	stripLeadingSymbols = false
+	rulerWidth = 80
 [tig "bind"]
 	generic = D !git difftool --tool=vimdiff --no-prompt --trust-exit-code %(commit)^!
 [push]
