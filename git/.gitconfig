@@ -137,7 +137,7 @@
 	new = green
 	whitespace = red reverse
 [diff-so-fancy]
-	changeHunkIndicators = true
+	changeHunkIndicators = false
 	stripLeadingSymbols = false
 	rulerWidth = 80
 [tig "bind"]
