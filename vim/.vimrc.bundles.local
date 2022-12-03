@@ -6,6 +6,7 @@ Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'danilamihailov/beacon.nvim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'folke/trouble.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'gcmt/wildfire.vim'
 Plug 'godlygeek/tabular'
@@ -18,6 +19,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'luochen1990/rainbow'
 Plug 'majutsushi/tagbar'
