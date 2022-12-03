@@ -95,6 +95,10 @@ if command_exists rg ; then
     }
 fi
 
+if command_exists bat ; then
+    alias bat="bat --color-always --style=numbers"
+    alias fzf="fzf --preview 'bat --color-always --style=numbers --line-range=:500 {}'"
+fi
 #
 # Only do the following for Windows Subsystem Linux installs
 #
