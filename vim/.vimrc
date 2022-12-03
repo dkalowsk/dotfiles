@@ -982,6 +982,10 @@ if exists('g:plugs["fzf.vim"]')
 endif
 "}}}
 
+if has('nvim')
+    source $HOME/.config/nvim/init.lua.vim
+endif
+
 function! ClangCheckImpl(cmd)
 if &autowrite | wall | endif
 echo "Running " . a:cmd . " ..."
