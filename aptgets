@@ -2,6 +2,7 @@ apt-listdifferences
 autoconf
 ccache
 curl
+bat
 universal-ctags
 neovim
 python-optcomplete
