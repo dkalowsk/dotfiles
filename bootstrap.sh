@@ -19,6 +19,7 @@ fi
 
 DOTFILES_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 PLATFORM="$(uname)"
+DEBUG_PRINTS=0
 
 # Font colors
 
@@ -49,7 +50,7 @@ error() {
 }
 
 debug() {
-  if [[ -n "${DEBUG_SCRIPT:-}" ]]; then
+  if [[ -n "${DEBUG_SCRIPT:-}" ]] || [[ "${DEBUG_PRINTS}" -gt 0 ]]; then
     echo -e "${GREEN}$@${NORMAL}"
   fi
 }
@@ -521,6 +522,10 @@ fi
 for i in "$@"
 do
 case $i in
+  -d|--debug)
+    DEBUG_PRINTS=1
+    shift
+    ;;
   -s|--sync)
     doSync
     shift
