@@ -17,7 +17,7 @@ if [[ -n "${DEBUG_SCRIPT:-}" ]]; then
     export
 fi
 
-DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
+DOTFILES_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 PLATFORM="$(uname)"
 
 # Font colors
@@ -100,8 +100,8 @@ doStow() {
             rm -Rf "${HOME:?}/${orig_file}"
           fi
 
-          debug "Linking ${HOME}/${dotfile##*/} with ${DOTFILES}/${dotfile}"
-          ln -s "${DOTFILES}/${dotfile}" "${HOME}/${dotfile##*/}"
+          debug "Linking ${HOME}/${dotfile##*/} with ${DOTFILES_DIR}/${dotfile}"
+          ln -s "${DOTFILES_DIR}/${dotfile}" "${HOME}/${dotfile##*/}"
         fi
       done
       shopt -u dotglob
