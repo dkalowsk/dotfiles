@@ -406,6 +406,9 @@ nnoremap <leader>% :call CopyCurrentFilePath()<CR>
 "set writebackup
 set nobackup
 set noswapfile
+
+set undodir=~/.vim/undodir
+set undofile
 " }}}
 
 " {{{ visual block configurations
