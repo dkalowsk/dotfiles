@@ -18,3 +18,16 @@ match:fg:black
 
 # Because who cares about case!?
 --smart-case
+
+
+--type-add
+dts:*.dts
+--type-add
+dts:*.dtsi
+--type-add
+dts:*.overlay
+
+--type-add
+kconfig:Kconfig*
+--type-add
+kconfig:*.conf
