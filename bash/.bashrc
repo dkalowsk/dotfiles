@@ -146,6 +146,14 @@ done
 ##
 ##
 
+function ccd {
+    if [ -n "{$1:-}" ]; then
+        mkdir -p "$1" && cd "$1"
+    else
+        echo "ERROR: missing name of new directory"
+    fi
+}
+
 alias ll='ls --color=auto -Al'
 alias ffind='find . -name'
 
