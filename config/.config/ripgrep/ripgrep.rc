@@ -31,3 +31,6 @@ dts:*.overlay
 kconfig:Kconfig*
 --type-add
 kconfig:*.conf
+
+--before-context
+2
