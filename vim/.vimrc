@@ -986,7 +986,7 @@ endif
 "}}}
 
 if has('nvim')
-    source $HOME/.config/nvim/init.lua.vim
+    source $HOME/.config/nvim/init.lua
 endif
 
 function! ClangCheckImpl(cmd)
