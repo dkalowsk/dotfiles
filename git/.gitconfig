@@ -157,3 +157,5 @@
 	default = matching
 [grep]
 	lineNumber = true
+[init]
+	defaultBranch = main
