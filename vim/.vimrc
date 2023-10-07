@@ -915,7 +915,9 @@ if exists('g:plugs["fzf.vim"]')
   " Search only the local buffer for the specific tag
   nmap <Leader>ft :BTags<CR>
   " Use RG for some fuzzy find
-  nmap <Leader>fa :Rg<Space>
+  nnoremap <leader>fa :RgNoBuild<Space>
+  " Use RG for some fuzzy find
+  nmap <Leader>fb :Rg<Space>
   " Search only for git tracked files
   nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
@@ -976,6 +978,11 @@ if exists('g:plugs["fzf.vim"]')
   " will not override existing commands.
   command! -bang Colors
     \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+
+  command! -bang -nargs=* RgNoBuild
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!build/*" --color "always" '.shellescape(<q-args>), 1,
+    \   fzf#vim#with_preview(), <bang>0)
 
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
