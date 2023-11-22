@@ -926,7 +926,7 @@ if exists('g:plugs["fzf.vim"]')
   vnoremap <silent> K :call SearchVisualSelectionWithRg()<CR>
 
   function! SearchWordWithRg()
-    execute 'Rg' expand('<cword>')
+    execute 'RgNoBuild' expand('<cword>')
   endfunction
 
   function! SearchVisualSelectionWithRg() range
@@ -938,7 +938,7 @@ if exists('g:plugs["fzf.vim"]')
     let selection = getreg('"')
     call setreg('"', old_reg, old_regtype)
     let &clipboard = old_clipboard
-    execute 'Rg' selection
+    execute 'RgNoBuild' selection
   endfunction
 
   " Have fzf colors match color scheme
