@@ -103,6 +103,28 @@ if command_exists batcat ; then
     alias bat="batcat --color-always --style=numbers"
     alias fzf="fzf --preview 'batcat --color-always --style=numbers --line-range=:500 {}'"
 fi
+
+# Thanks to jvillalovos for this
+# now combine to form frg for search
+function frg {
+    declare -a fzf_args
+    declare bat_cmd
+    bat_cmd="command batcat --color=always {1} --theme='Dracula' --highlight-line {2}"
+
+    fzf_args+=(--ansi)
+    fzf_args+=(--color 'hl:-1:underline,hl+:-1:underline:reverse')
+    fzf_args+=(--delimiter ':')
+    fzf_args+=(--preview "${bat_cmd}")
+    fzf_args+=(--preview-window 'up,60%,border-bottom,+{2}+3/3,~3')
+
+    result=$(command rg --sort path --smart-case --color=always --line-number --no-heading "$@" | command fzf "${fzf_args[@]}")
+
+    file="${result%%:*}"
+    linenumber=$(echo "${result}" | cut -d: -f2)
+    if [ -n "$file" ]; then
+        ${EDITOR} +"${linenumber}" "$file"
+    fi
+}
 #
 # Only do the following for Windows Subsystem Linux installs
 #
