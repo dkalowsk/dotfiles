@@ -6,7 +6,7 @@
 	mergeoptions = --no-edit
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	trustctime = false
-	pager = diff-so-fancy | less -RFX
+	pager = diff-so-fancy | less --tabs=4 -RFX
 	exludesFile = /Users/dkalowsky/.gitignore
 [fetch]
 	# always prune when fetching (and pulling)
@@ -114,6 +114,7 @@
 #	show = diff-so-fancy | less -RFX
 #	diff = diff-so-fancy | less -RFX
 [interactive]
+	diffFilter = diff-so-fancy --patch
 #	diffFilter = diff-highlight --color-words
 [color]
 	ui = always
@@ -127,13 +128,6 @@
 	oldHighlight = red 52
 	newNormal = green
 	newHighlight = green 22
-[color "diff"]
-	meta = yellow
-	frag = magenta
-	commit = yellow bold
-	old = red
-	new = green
-	whitespace = red reverse
 [diff-so-fancy]
 	changeHunkIndicators = false
 	stripLeadingSymbols = false
