@@ -1,5 +1,6 @@
 require "user.launch"
 require "user.options"
+require "user.keymaps"
 spec "user.telescope"
 spec "user.whichkey"
 require "user.lazy"
