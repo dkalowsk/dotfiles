@@ -1,4 +1,5 @@
 require "user.launch"
+require "user.options"
 spec "user.telescope"
 spec "user.whichkey"
 require "user.lazy"
