@@ -4,8 +4,9 @@ require "user.keymaps"
 spec "user.colorscheme"
 spec "user.devicons"
 spec "user.gitsigns"
--- schemastore needs to be before lspconfig so we can get the right schemea
+-- schemastore and mason need to be before lspconfig so we can get the right schemea
 spec "user.schemastore"
+spec "user.mason"
 spec "user.lspconfig"
 -- cmp must come after lspconfig it seems
 spec "user.cmp"
