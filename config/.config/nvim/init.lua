@@ -2,6 +2,7 @@ require "user.launch"
 require "user.options"
 require "user.keymaps"
 spec "user.colorscheme"
+spec "user.devicons"
 spec "user.gitsigns"
 -- schemastore needs to be before lspconfig so we can get the right schemea
 spec "user.schemastore"
