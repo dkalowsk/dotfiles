@@ -66,8 +66,8 @@ function M.config()
 
     local servers = {
         "bashls",
-        "clang-format",
-        "clangd",
+        -- "clangd",
+        "ccls",
         "lua_ls",
         "pyright",
     }
@@ -119,6 +119,10 @@ function M.config()
 
         if server == "lua_ls" then
             require("neodev").setup {}
+        end
+
+        if server == "ccls" then
+            opts.compilationDatabaseDirectory = "build/release/lsp/mpro_fw"
         end
 
         lspconfig[server].setup(opts)
