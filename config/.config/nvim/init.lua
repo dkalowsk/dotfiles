@@ -6,6 +6,7 @@ spec "user.devicons"
 spec "user.gitsigns"
 -- schemastore and mason need to be before lspconfig so we can get the right schemea
 spec "user.schemastore"
+spec "user.treesitter"
 spec "user.mason"
 spec "user.lspconfig"
 -- cmp must come after lspconfig it seems
