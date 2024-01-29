@@ -4,6 +4,7 @@ require "user.keymaps"
 spec "user.colorscheme"
 spec "user.devicons"
 spec "user.gitsigns"
+spec "user.guard"
 -- schemastore and mason need to be before lspconfig so we can get the right schemea
 spec "user.schemastore"
 spec "user.treesitter"
