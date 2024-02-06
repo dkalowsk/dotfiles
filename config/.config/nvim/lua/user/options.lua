@@ -48,6 +48,8 @@ vim.opt.fillchars:append {
   stl = " ",
 }
 
+-- read the .bash_profile!
+vim.opt.shell="bash -l"
 vim.opt.shortmess:append "c"
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
