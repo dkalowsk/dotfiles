@@ -20,7 +20,8 @@ function M.config()
             "vim"
         },
         highlight = {
-            enable = true
+            enable = true,
+            disable = { "kconfig" },
         },
         indent = {
             enable = true
