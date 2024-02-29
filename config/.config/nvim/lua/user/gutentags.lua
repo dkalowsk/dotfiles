@@ -14,6 +14,13 @@ function M.config()
         let g:gutentags_add_default_project_roots = 1
         let g:gutentags_project_root = ['.west']
         let g:gutentags_cache_dir = expand('~/.cache/vim/ctags')
+        let g:gutentags_ctags_exclude = [
+            \ 'conan-artifacts/*',
+            \ 'conan-common/*',
+            \ 'packaging/*',
+            \ 'release-matrix/*',
+            \ 'dev-ac03/*'
+        \]
         let g:gutentags_file_list_command = {
             \'markers': {
             \  '.git': 'git ls-files',
