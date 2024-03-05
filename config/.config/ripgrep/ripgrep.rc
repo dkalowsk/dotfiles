@@ -31,3 +31,6 @@ dts:*.overlay
 kconfig:Kconfig*
 --type-add
 kconfig:*.conf
+
+--type-add
+header:*.h
