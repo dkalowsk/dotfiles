@@ -21,7 +21,7 @@ function M.config()
             lualine_c = { "filename" },
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
-            lualine_z = { "location" },
+            lualine_z = { "selectioncount", "location" },
         },
     }
 end
