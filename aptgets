@@ -4,6 +4,7 @@ ccache
 curl
 bat
 universal-ctags
+nodejs
 neovim
 python-optcomplete
 python3-pip
