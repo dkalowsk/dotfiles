@@ -172,10 +172,8 @@ doFonts() {
   info "Installing Fonts"
 
   # Grab the latest Microsoft Cascadia Code font
-  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf
-  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMono.ttf
-  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
-  curl -O https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaPL.ttf
+  curl --output cascadia.zip -O https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip
+  unzip cascadia.zip
 
   if [ "${PLATFORM}" == "MSYS" ]; then
     info "You will need to manually install the fonts by clicking on them."
@@ -200,6 +198,8 @@ doFonts() {
   # Now clean up the downloaded font files 
   find . -name "*.[ot]tf" -type f -print0 | xargs -0 -n1 -I % rm "%"
 
+  # now clean up
+  rm cascadia.zip
 }
 
 doPython() {
