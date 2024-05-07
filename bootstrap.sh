@@ -408,8 +408,12 @@ EOF
     #gsettings reset org.gnome.desktop.interface text-scaling-factor
 
     # Setup to use python3 by default not python2
-    sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 20
-    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 10
+    if [ -f /usr/bin/python2 ]; then
+      sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 20
+    fi
+    if [ -f /usr/bin/python3 ]; then
+      sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+    fi
   fi
 
 }
