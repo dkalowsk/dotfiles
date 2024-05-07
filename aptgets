@@ -8,6 +8,7 @@ nodejs
 neovim
 python-optcomplete
 python3-pip
+python3-venv
 ripgrep
 ssh-askpass
 keychain
