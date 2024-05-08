@@ -9,6 +9,7 @@ spec "user.guard"
 spec "user.schemastore"
 spec "user.treesitter"
 spec "user.mason"
+spec "user.osc52"
 spec "user.lspconfig"
 -- cmp must come after lspconfig it seems
 spec "user.cmp"
