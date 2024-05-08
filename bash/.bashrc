@@ -4,6 +4,13 @@ command_exists() {
   type "$1" &> /dev/null ;
 }
 
+if [ -f "${HOME}"/.dan_profile ]; then
+    echo "Loading custom profile"
+    source "${HOME}"/.dan_profile
+else
+    echo "Missing .dan_profile!!"
+fi
+
 
 #
 # Append to history file, don't over write it
