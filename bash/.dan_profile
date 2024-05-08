@@ -1,3 +1,10 @@
+#
+# setting up the PS1, which is what a lot of this does
+# requires the use of an interactive terminal.  If PS1
+# isn't set, skip doing anything here.
+#
+[ -z "$PS1" ] && return
+
 completion_prefix=""
 
 if [[ "$OSTYPE" == "darwin"* ]]; then

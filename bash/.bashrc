@@ -4,14 +4,6 @@ command_exists() {
   type "$1" &> /dev/null ;
 }
 
-if [ -f "${HOME}"/.dan_profile ]; then
-    echo "Loading custom profile"
-    source "${HOME}"/.dan_profile
-else
-    echo "Missing .dan_profile!!"
-fi
-
-
 #
 # Append to history file, don't over write it
 # And limit the size it can grow to
@@ -153,6 +145,7 @@ fi
 #}
 
 source_additions=(
+  "${HOME}/.dan_profile"
   "${HOME}/.bashrc-private"
   "${HOME}/.fzf.bash"
   "${HOME}/.git-completion.bash"
