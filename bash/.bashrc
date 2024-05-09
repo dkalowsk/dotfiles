@@ -184,6 +184,8 @@ if [ "Darwin" == "$(uname)" ]; then
   alias top="top -o cpu"
 fi
 
+[ "$TERM" = "xterm-kitty" ] && alias ssh='kitty +kitten ssh'
+
 [ -x "/usr/local/bin/python3" ] && alias python=/usr/local/bin/python3
 [ -x "/usr/bin/python3" ] && alias python=/usr/bin/python3
 
