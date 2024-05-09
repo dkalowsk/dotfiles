@@ -1,0 +1,9 @@
+  compiledb
+  conan
+  jedi
+  neovim
+  parso
+  pygments
+  pygments-style-solarized
+  west
+
