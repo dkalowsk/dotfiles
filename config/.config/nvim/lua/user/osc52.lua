@@ -11,15 +11,9 @@ local function paste()
 end
 
 function M.config()
-    local wk = require "which-key"
-    wk.register({
-        f = "OSC52",
-        c = { require("osc52").copy_operator, "Copy text to clipboard" },
-    }, { prefix = "<leader>", mode = "n" })
-    wk.register({
-        f = "OSC52",
-        c = { require("osc52").copy_visual, "Copy selection to clipboard" },
-    }, { prefix = "<leader>", mode = "v" })
+    vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+    vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+    vim.keymap.set('v', '<leader>c', require('osc52').copy_visual)
 
     vim.g.clipboard = {
       name = 'osc52',
