@@ -62,7 +62,7 @@
 	frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
 	rmfind = "!git log --all -p --reverse --source -S"
 [diff]
-	tool = meld 
+	tool = kitty
 	# Use the slower but better patience diff algorithm
 	algorithm = patience
 	# Use new diff algorithm to make function diffs look better
