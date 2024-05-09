@@ -73,7 +73,14 @@
 	# use the experimental heuristics
 	indentHeuristic = on
 	# enable the new color moved to show moved code in a different shade
-	colorMoved = zebra
+    colorMoved = zebra
+[difftool]
+    prompt = false
+    trustExitCode = true
+[difftool "kitty"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
+[difftool "kitty.gui"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
 [difftool "meld"]
 	cmd = meld "$LOCAL" "$REMOTE"
 [difftool "vscode"]
