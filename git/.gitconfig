@@ -121,7 +121,7 @@
 #	show = diff-so-fancy | less -RFX
 #	diff = diff-so-fancy | less -RFX
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = diff-so-fancy 
 #	diffFilter = diff-highlight --color-words
 [color]
 	ui = always
