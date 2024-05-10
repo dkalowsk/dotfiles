@@ -57,8 +57,6 @@ debug() {
 
 
 doStow() {
-  local orig_file=
-
   if hash stow 2>/dev/null; then
     stow "${1}"
   else
@@ -68,45 +66,40 @@ doStow() {
     # previous _installStow function as we may not have compiling tools
     # installed yet.  grrr...
     #
-    if [ -d "${1}" ]; then
-      shopt -s dotglob
-      for dotfile in "${1}"/.* ; do
-        if [ ! -f "${dotfile}" ]; then
-          #
-          # Skip the . and .. files as they don't count
-          #
-          if [[ ("${dotfile}" == "${1}/." ) || ( "${dotfile}" == "${1}/.." ) ]]; then
-            debug "Skipping"
-            continue
-          fi
-
-          #
-          # Work around to deal with a whole .dir
-          #
-          ln -s "${dotfile}" "${HOME}/${dotfile##*/}"
-        else
-          debug "We have a dotfile: ${dotfile}"
-          orig_file=$(basename "${dotfile}")
-
-          #
-          # Check for a version in the $HOME
-          # If there is one, delete it
-          #
-          if [ -f "${HOME}/${orig_file}" ]; then
-                debug "Removing original file"
-            rm -Rf "${HOME:?}/${orig_file}"
-          fi
-          if [ -L "${HOME}/${orig_file}" ]; then
-                debug "Removing soft linked file"
-            rm -Rf "${HOME:?}/${orig_file}"
-          fi
-
-          debug "Linking ${HOME}/${dotfile##*/} with ${DOTFILES_DIR}/${dotfile}"
-          ln -s "${DOTFILES_DIR}/${dotfile}" "${HOME}/${dotfile##*/}"
-        fi
-      done
-      shopt -u dotglob
+    if [ ! -d "${1}" ]; then
+      return
     fi
+
+    shopt -s dotglob
+    find "${1}" -type f -print0 | while IFS= read -r -d $'' dotfile; do
+      local orig_file=$(basename "${dotfile}")
+      local home_dir_dot_file="${HOME}/${dotfile#*/}"
+      local home_dir_dot_path=$(dirname "${home_dir_dot_file}")
+
+      #
+      # Check for a version in the $HOME
+      # If there is one, delete it
+      #
+      if [ -L "${home_dir_dot_file}" ]; then
+        debug "Removing soft linked file"
+        rm "${home_dir_dot_file}"
+      fi
+      if [ -f "${home_dir_dot_file}" ]; then
+        debug "Removing original file"
+        rm "${home_dir_dot_file}"
+      fi
+      #
+      # Make sure the path in the home dir actually exists
+      #
+      if [ ! -d "${home_dir_dot_path}" ]; then
+        debug "Add home path: ${home_dir_dot_path}"
+        mkdir -p "${home_dir_dot_path}"
+      fi
+
+      debug "Linking ${home_dir_dot_file} with ${DOTFILES_DIR}/${dotfile}"
+      ln -s "${DOTFILES_DIR}/${dotfile}" "${home_dir_dot_file}"
+    done
+    shopt -u dotglob
   fi
 }
 
