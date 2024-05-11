@@ -18,6 +18,7 @@ function M.config()
     ["<leader>fl"] = { "<cmd>Telescope resume<cr>", "Last Search" },
     ["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     ["<leader>fa"] = { "<cmd>Telescope grep_string<cr>", "Find Cursor Text" },
+    ["<leader>fp"] = { "<cmd>Telescope projects<cr>", "List Projects" },
   }
 
 --  local icons = require "user.icons"
@@ -28,6 +29,7 @@ function M.config()
     defaults = {
       -- prompt_prefix = icons.ui.Telescope .. " ",
       -- selection_caret = icons.ui.Forward .. " ",
+      file_ignore_patterns = { ".git/", ".west/", ".venv/" },
       entry_prefix = "   ",
       initial_mode = "insert",
       selection_strategy = "reset",
