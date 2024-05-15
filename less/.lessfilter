@@ -9,14 +9,19 @@ case "$1" in
     *.ad[asb]|*.asm|*.inc|*.[ch]|*.[ch]pp|*.[ch]xx|*.cc|*.hh|\
     *.lsp|*.l|*.pas|*.p|*.xml|*.xps|*.xsl|*.axp|*.ppd|*.pov|\
     *.diff|*.patch|*.py|*.rb|*.sql|*.ebuild|*.eclass)
-        pygmentize -O style=solarizeddark "$1";;
+        pygmentize -O style=solarized_dark "$1";;
 
     *.bashrc|*.bash_aliases|*.bash_environment)
-        pygmentize -O style=paraiso-dark -l sh "$1";;
+        pygmentize -O style=github-dark -l sh "$1";;
+
+    *.md|*.rst)
+        pygmentize -O style=solarized_dark -l sh "$1";;
 
     *)
         if grep -q "#\!/usr/bin/bash" "$1" 2> /dev/null; then
-            pygmentize -f 256 -l sh "$1"
+            pygmentize -O style=solarized -l sh "$1"
+        elif grep -q "#\!/usr/bin/env bash" "$1" 2> /dev/null; then
+            pygmentize -O style=solarized -l sh "$1"
         else
             exit 1
         fi
