@@ -23,42 +23,20 @@ M.config = function()
 
     require("gitsigns").setup {
         signs = {
-            add = {
-                hl = "GitSignsAdd",
-                text = icons.ui.BoldLineMiddle,
-                numhl = "GitSignsAddNr",
-                linehl = "GitSignsAddLn",
-            },
-            change = {
-                hl = "GitSignsChange",
-                text = icons.ui.BoldLineDashedMiddle,
-                numhl = "GitSignsChangeNr",
-                linehl = "GitSignsChangeLn",
-            },
-            delete = {
-                hl = "GitSignsDelete",
-                text = icons.ui.TriangleShortArrowRight,
-                numhl = "GitSignsDeleteNr",
-                linehl = "GitSignsDeleteLn",
-            },
-            topdelete = {
-                hl = "GitSignsDelete",
-                text = icons.ui.TriangleShortArrowRight,
-                numhl = "GitSignsDeleteNr",
-                linehl = "GitSignsDeleteLn",
-            },
-            changedelete = {
-                hl = "GitSignsChange",
-                text = icons.ui.BoldLineMiddle,
-                numhl = "GitSignsChangeNr",
-                linehl = "GitSignsChangeLn",
-            },
+            add = { text = icons.ui.BoldLineMiddle },
+            change = { text = icons.ui.BoldLineDashedMiddle },
+            delete = { text = icons.ui.TriangleShortArrowRight },
+            topdelete = { text = icons.ui.TriangleShortArrowRight },
+            changedelete = { text = icons.ui.BoldLineMiddle },
         },
         watch_gitdir = {
             interval = 1000,
             follow_files = true,
         },
         signcolumn = true,
+        numhl = false,
+        linehl = false,
+        auto_attach = true,
         attach_to_untracked = true,
         current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
         current_line_blame_opts = {
@@ -69,6 +47,7 @@ M.config = function()
             virt_text_priority = 100,
         },
         update_debounce = 200,
+        status_formatter = nil,
         max_file_length = 40000,
         preview_config = {
             border = "rounded",
