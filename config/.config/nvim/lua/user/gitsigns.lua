@@ -6,20 +6,26 @@ local M = {
 
 M.config = function()
     local icons = require "user.icons"
+    local gitsigns = require('gitsigns')
 
     local wk = require "which-key"
-    wk.register {
-        ["<leader>gj"] = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk"},
-        ["<leader>gk"] = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk"},
-        ["<leader>gp"] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk"},
-        ["<leader>gr"] = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
-        ["<leader>gl"] = { function() package.loaded.gitsigns.blame_line{full=true} end, "Blame"},
-        ["<leader>gR"] = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
-        ["<leader>gs"] = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
-        ["<leader>gu"] = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk"},
-        ["<leader>gb"] = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Toggle Blame"},
-        ["<leader>gd"] = { "<cmd>Gitsigns diffthis HEAD<cr>", "Git Diff"},
-    }
+    wk.add({
+        { "<leader>gR", gitsigns.reset_buffer, desc = "Reset Buffer" },
+        { "<leader>gb", gitsigns.toggle_current_line_blame, desc = "Toggle Blame" },
+        { "<leader>gd", gitsigns.diffthis, desc = "Git Diff" },
+        { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", desc = "Next Hunk" },
+        { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", desc = "Prev Hunk" },
+        { "<leader>gl", function() gitsigns.blame_line{full=true} end, desc = "Blame" },
+        { "<leader>gp", gitsigns.preview_hunk, desc = "Preview Hunk" },
+        { "<leader>gr", gitsigns.reset_hunk, desc = "Reset Hunk" },
+        { "<leader>gs", gitsigns.stage_hunk, desc = "Stage Hunk" },
+        { "<leader>gu", gitsigns.undo_stage_hunk, desc = "Undo Stage Hunk" },
+    },
+    {
+        mode = { "v" },
+        { "<leader>gs", function() gitsigns.stage_hunk() {vim.fn.line('.'), vim.fn.line('v')} end, desc = "Stage Hunk" },
+        { "<leader>gr", function() gitsigns.reset_hunk() {vim.fn.line('.'), vim.fn.line('v')} end, desc = "Reset Hunk" },
+    })
 
     require("gitsigns").setup {
         signs = {

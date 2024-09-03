@@ -7,19 +7,19 @@ local M = {
 
 function M.config()
   local wk = require "which-key"
-  wk.register {
-    ["<leader>fb"] = { "<cmd>Telescope buffers previewer=false<cr>", "List Buffers" },
-    ["<leader>fc"] = { "<cmd>Telescope colorscheme<cr>", "List Colorschemes" },
-    ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+  wk.add({
+    { "<leader>fb", "<cmd>Telescope buffers previewer=false<cr>", desc = "List Buffers" },
+    { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "List Colorschemes" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     -- yes this is duplicate until I can re-train my muscle memory to not use ctr-p
-    ["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
-    ["<leader>ft"] = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-    ["<leader>fh"] = { "<cmd>Telescope help_tags<cr>", "nvim Help" },
-    ["<leader>fl"] = { "<cmd>Telescope resume<cr>", "Last Search" },
-    ["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
-    ["<leader>fa"] = { "<cmd>Telescope grep_string<cr>", "Find Cursor Text" },
-    ["<leader>fp"] = { "<cmd>Telescope projects<cr>", "List Projects" },
-  }
+    { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+    { "<leader>ft", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "nvim Help" },
+    { "<leader>fl", "<cmd>Telescope resume<cr>", desc = "Last Search" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
+    { "<leader>fa", "<cmd>Telescope grep_string<cr>", desc = "Find Cursor Text" },
+    { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "List Projects" },
+  })
 
 --  local icons = require "user.icons"
   local actions = require "telescope.actions"
