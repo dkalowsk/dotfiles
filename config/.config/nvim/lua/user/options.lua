@@ -40,6 +40,9 @@ vim.opt.title = false
 vim.opt.scrolloff = 4
 vim.opt.sidescroll = 5
 vim.opt.colorcolumn = "120"
+vim.opt.spelllang = { en }
+vim.opt.spelloptions:append("noplainbuffer")
+vim.opt.virtualedit = "block" -- allow cursor to move where this is no text in visual block mode
 vim.opt.undodir = { prefix .. "/nvim/.undo//" }
 vim.opt.fillchars = vim.opt.fillchars + "eob: "
 vim.opt.fillchars:append {
