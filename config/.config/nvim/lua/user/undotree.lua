@@ -5,9 +5,10 @@ local M = {
 
 function M.config()
     local wk = require "which-key"
-    wk.register {
-        ["<leader>uu"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
+    wk.add({
+        { "<leader>uu", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree" },
     }
+    )
 end
 
 return M
