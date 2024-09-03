@@ -3,30 +3,28 @@ local M = {
 }
 
 function M.config()
-  local mappings = {
-    q = { "<cmd>confirm q<CR>", "Quit" },
-    h = { "<cmd>nohlsearch<CR>", "NOHL" },
-    [";"] = { "<cmd>tabnew | terminal<CR>", "Term" },
-    v = { "<cmd>vsplit<CR>", "Split" },
-    b = { name = "Buffers" },
-    d = { name = "Debug" },
-    f = { name = "Find" },
-    g = { name = "Git" },
-    l = { name = "LSP" },
-    p = { name = "Plugins" },
-    t = { name = "Test" },
-    a = {
-      name = "Tab",
-      n = { "<cmd>$tabnew<cr>", "New Empty Tab" },
-      N = { "<cmd>tabnew %<cr>", "New Tab" },
-      o = { "<cmd>tabonly<cr>", "Only" },
-      h = { "<cmd>-tabmove<cr>", "Move Left" },
-      l = { "<cmd>+tabmove<cr>", "Move Right" },
-    },
-    T = { name = "Treesitter" },
-  }
+  local which_key = require("which-key")
+  which_key.add({
+    mode = { "n" }, -- NORMAL mode
+    { "<leader><space>", "<cmd>nohlsearch<CR>", desc ="No HL" },
+    { "<leader>;", "<cmd>tabnew | terminal<CR>", desc ="Term" },
+    { "<leader>h", "<cmd>split<CR>", desc ="Split" },
+    { "<leader>b", group = "Buffers" },
+    { "<leader>d", group = "Debug" },
+    { "<leader>f", group = "Find" },
+    { "<leader>g", group = "Git" },
+    { "<leader>l", group = "LSP" },
+    { "<leader>p", group = "Plugins" },
+    { "<leader>t", group = "Test" },
+    { "<leader>a", group = "Tab" },
+    { "<leader>an", "<cmd>$tabnew<cr>", desc ="New Empty Tab" },
+    { "<leader>aN", "<cmd>tabnew %<cr>", desc ="New Tab" },
+    { "<leader>ao", "<cmd>tabonly<cr>", desc ="Only" },
+    { "<leader>ah", "<cmd>-tabmove<cr>", desc ="Move Left" },
+    { "<leader>al", "<cmd>+tabmove<cr>", desc ="Move Right" },
+    { "<leader>T", group = "Treesitter" },
+  })
 
-  local which_key = require "which-key"
   which_key.setup {
     plugins = {
       marks = true,
@@ -45,12 +43,14 @@ function M.config()
         g = false,
       },
     },
-    window = {
-      border = "rounded",
-      position = "bottom",
-      padding = { 2, 2, 2, 2 },
+    win= {
+      no_overlap = true,
+      padding = { 2, 2 }, -- [ top/bottom, right/left ]
+      title = true,
     },
-    ignore_missing = true,
+    filter = function(mapping)
+        return true
+        end,
     show_help = false,
     show_keys = false,
     disable = {
@@ -58,13 +58,6 @@ function M.config()
       filetypes = { "TelescopePrompt" },
     },
   }
-
-  local opts = {
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-  }
-
-  which_key.register(mappings, opts)
 end
 
 return M
