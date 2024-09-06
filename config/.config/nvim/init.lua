@@ -14,6 +14,7 @@ spec "user.lspconfig"
 -- cmp must come after lspconfig it seems
 spec "user.cmp"
 spec "user.lualine"
+spec "user.neoclip"
 spec "user.neogit"
 spec "user.telescope"
 spec "user.trouble"
