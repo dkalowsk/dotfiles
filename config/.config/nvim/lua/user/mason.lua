@@ -8,7 +8,7 @@ local M = {
 function M.config()
     local servers = {
         "bashls",
-        "clangd",
+--        "clangd",
         "lua_ls",
         "pyright",
     }

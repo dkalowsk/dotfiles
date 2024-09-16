@@ -70,8 +70,8 @@ function M.config()
 
     local servers = {
         "bashls",
-        "clangd",
-        -- "ccls",
+        -- "clangd",
+        "ccls",
         "lua_ls",
         "pyright",
     }
