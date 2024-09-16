@@ -126,7 +126,15 @@ function M.config()
         end
 
         if server == "ccls" then
-            opts.compilationDatabaseDirectory = "build/release/lsp/mpro_fw"
+            local cc_path_full = vim.loop.cwd()
+            local cc_path_relative = "build/release/lsp/mpro_fw"
+            if vim.fn.isdirectory(cc_path_full .. cc_path_relative) == 0 then
+                cc_path_relative = "ampere-zephyr/" .. cc_path_relative
+                if vim.fn.isdirectory(cc_path_full .. cc_path_relative) == 0 then
+                    cc_path_relative = ""
+                end
+            end
+            opts.compilationDatabaseDirectory = cc_path_full .. cc_path_relative
         end
 
         lspconfig[server].setup(opts)
