@@ -11,8 +11,6 @@ function M.config()
     { "<leader>fb", "<cmd>Telescope buffers previewer=false<cr>", desc = "List Buffers" },
     { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "List Colorschemes" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-    -- yes this is duplicate until I can re-train my muscle memory to not use ctr-p
-    { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>ft", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "nvim Help" },
     { "<leader>fl", "<cmd>Telescope resume<cr>", desc = "Last Search" },
