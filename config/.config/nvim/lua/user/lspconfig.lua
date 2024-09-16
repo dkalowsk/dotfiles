@@ -14,11 +14,17 @@ local function lsp_keymaps(bufnr)
 
     print("LSP started")
 
+    opts.desc = "Goto Declaration"
     keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+    opts.desc = "Goto Definition"
     keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+    opts.desc = "Hover"
     keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+    opts.desc = "Goto Implementaiton"
     keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+    opts.desc = "Find References"
     keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+    opts.desc = "Diagnostics Open Float"
     keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
 end
 
