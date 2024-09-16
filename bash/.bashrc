@@ -177,7 +177,7 @@ function ccd {
 }
 
 alias ll='ls --color=auto -Al'
-alias ffind='find . -name'
+alias ffind='find . -iname'
 
 if [ "Darwin" == "$(uname)" ]; then
   alias telnet=nc
