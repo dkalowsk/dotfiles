@@ -15,17 +15,17 @@ local function lsp_keymaps(bufnr)
     print("LSP started")
 
     opts.desc = "Goto Declaration"
-    keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+    keymap(bufnr, "n", "gD", "vim.lsp.buf.declaration", opts)
     opts.desc = "Goto Definition"
-    keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+    keymap(bufnr, "n", "gd", "vim.lsp.buf.definition", opts)
     opts.desc = "Hover"
-    keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+    keymap(bufnr, "n", "K", "vim.lsp.buf.hover", opts)
     opts.desc = "Goto Implementaiton"
-    keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+    keymap(bufnr, "n", "gI", "vim.lsp.buf.implementation", opts)
     opts.desc = "Find References"
-    keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+    keymap(bufnr, "n", "gr", "vim.lsp.buf.references", opts)
     opts.desc = "Diagnostics Open Float"
-    keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+    keymap(bufnr, "n", "gl", "vim.diagnostic.open_float", opts)
 end
 
 M.on_attach = function(client, bufnr)
