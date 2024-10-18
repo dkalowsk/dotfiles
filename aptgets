@@ -10,6 +10,7 @@ nodejs
 python-optcomplete
 python3-pip
 python3-venv
+python3-virtualenvwrapper
 ripgrep
 rxvt-unicode
 shellcheck
