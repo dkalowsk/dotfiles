@@ -36,9 +36,6 @@ path_additions=(
   "${HOME}/.cargo/bin"
   "${HOME}/.gem/bin"
   "${HOME}/.local/bin"
-  "${HOME}/Library/Python/3.6/bin"
-  "${HOME}/Library/Python/3.7/bin"
-  "${HOME}/Library/Python/3.8/bin"
   "${HOME}/Library/Python/3.9/bin"
   "${HOME}/Library/Python/3.10/bin"
   "${HOME}/.yarn/bin"
@@ -186,9 +183,6 @@ if [ "Darwin" == "$(uname)" ]; then
 fi
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh='kitty +kitten ssh'
-
-[ -x "/usr/local/bin/python3" ] && alias python=/usr/local/bin/python3
-[ -x "/usr/bin/python3" ] && alias python=/usr/bin/python3
 
 #
 # For git repos, enable a quick return to the root directory
