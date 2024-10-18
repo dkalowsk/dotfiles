@@ -150,6 +150,7 @@ source_additions=(
   "${HOME}/.fzf.bash"
   "${HOME}/.git-completion.bash"
   "${HOME}/.stgit-completion.bash"
+  "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 )
 
 for entry in "${source_additions[@]}"; do
