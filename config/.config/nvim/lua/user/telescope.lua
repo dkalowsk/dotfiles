@@ -5,28 +5,41 @@ local M = {
       { "nvim-lua/plenary.nvim" } },
 }
 
+function M.find_files()
+    require("user.telescopePickers").prettyFilesPicker {
+        picker = "find_files",
+        -- options = { search_dirs = get_search_dirs() },
+    }
+end
+
 function M.config()
   local wk = require "which-key"
+  local custom_picker = require "user.telescopePickers"
+
   wk.add({
-    { "<leader>fb", "<cmd>Telescope buffers previewer=false<cr>", desc = "List Buffers" },
+    { "<leader>fb", "<cmd>Telescope buffers previewer=true sort_mru=true<cr>", desc = "List Buffers" },
     { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "List Colorschemes" },
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-    { "<leader>ft", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },
+    { "<leader>ff", function() M.find_files() end, desc = "Find Files" },
+    { "<leader>ft", function() custom_picker.prettyGrepPicker({ picker = 'live_grep' }) end, desc = "Find Text" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "nvim Help" },
     { "<leader>fl", "<cmd>Telescope resume<cr>", desc = "Last Search" },
-    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
-    { "<leader>fa", "<cmd>Telescope grep_string<cr>", desc = "Find Cursor Text" },
+    { "<leader>fr", function() custom_picker.prettyFilesPicker({ picker = 'oldfiles' }) end, desc = "Recent Files" },
+    { "<leader>fa", function() custom_picker.prettyGrepPicker({ picker = 'grep_string' }) end, desc = "Find Cursor Text" },
     { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "List Projects" },
+    { "<leader>s", "<cmd>Telescope registers<cr>", desc = "Registers" },
   })
+--    custom_picker.prettyGrepPicker({ picker = 'live_grep' }),
+--    custom_picker.prettyGrepPicker({ picker = 'grep_string' }),
+--    custom_picker.prettyFilesPicker({ picker = 'oldfiles' }),
+--    custom_picker.prettyFilesPicker({ picker = 'find_files' }),
 
---  local icons = require "user.icons"
+  local icons = require "user.icons"
   local actions = require "telescope.actions"
-
 
   require("telescope").setup {
     defaults = {
-      -- prompt_prefix = icons.ui.Telescope .. " ",
-      -- selection_caret = icons.ui.Forward .. " ",
+       prompt_prefix = icons.ui.Telescope .. " ",
+      selection_caret = icons.ui.Forward .. " ",
       file_ignore_patterns = { ".git/", ".west/", ".venv/" },
       entry_prefix = "   ",
       initial_mode = "insert",
@@ -76,7 +89,7 @@ function M.config()
         previewer = true,
         path_display = function(opts, path)
             local tail = require("telescope.utils").path_tail(path)
-            return string.format("%s (%s)", tail, path)
+            return string.format("%s (%s)", tail, path), { { { 1, #tail }, "Constant" } }
         end,
       },
 
