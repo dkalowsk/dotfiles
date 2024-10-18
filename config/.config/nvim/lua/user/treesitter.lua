@@ -13,6 +13,7 @@ function M.config()
             "cpp",
             "devicetree",
             "dockerfile",
+            "doxygen",
             "lua",
             "markdown",
             "markdown_inline",
