@@ -12,6 +12,7 @@ python3-venv
 ripgrep
 ssh-askpass
 keychain
+git-delta
 shellcheck
 snapd
 snapd-xdg-open
