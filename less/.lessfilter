@@ -9,13 +9,13 @@ case "$1" in
     *.ad[asb]|*.asm|*.inc|*.[ch]|*.[ch]pp|*.[ch]xx|*.cc|*.hh|\
     *.lsp|*.l|*.pas|*.p|*.xml|*.xps|*.xsl|*.axp|*.ppd|*.pov|\
     *.diff|*.patch|*.py|*.rb|*.sql|*.ebuild|*.eclass)
-        pygmentize -O style=solarized_dark "$1";;
+        pygmentize -O style=solarized-dark "$1";;
 
     *.bashrc|*.bash_aliases|*.bash_environment)
         pygmentize -O style=github-dark -l sh "$1";;
 
     *.md|*.rst)
-        pygmentize -O style=solarized_dark -l sh "$1";;
+        pygmentize -O style=solarized-dark -l sh "$1";;
 
     *)
         if grep -q "#\!/usr/bin/bash" "$1" 2> /dev/null; then
