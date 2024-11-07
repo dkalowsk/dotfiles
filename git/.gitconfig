@@ -6,7 +6,8 @@
 	mergeoptions = --no-edit
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	trustctime = false
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    #pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = delta
 	exludesFile = /Users/dkalowsky/.gitignore
 [fetch]
 	# always prune when fetching (and pulling)
@@ -62,7 +63,8 @@
 	frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
 	rmfind = "!git log --all -p --reverse --source -S"
 [diff]
-	tool = kitty
+    tool = delta
+    #tool = kitty
 	# Use the slower but better patience diff algorithm
 	algorithm = patience
 	# Use new diff algorithm to make function diffs look better
@@ -73,7 +75,8 @@
 	# use the experimental heuristics
 	indentHeuristic = on
 	# enable the new color moved to show moved code in a different shade
-    colorMoved = zebra
+    #colorMoved = zebra
+    colorMoved = default
 [difftool]
     prompt = false
     trustExitCode = true
@@ -86,7 +89,9 @@
 [difftool "vscode"]
         cmd = code --wait --diff "$LOCAL" "$REMOTE"
 [merge]
-	tool = meld 
+    conflictstyle = diff3
+    #tool = meld
+    tool = delta
 [mergetool]
 	# Don't prompt before opening the merge tool
 	prompt = false
@@ -94,6 +99,9 @@
 	keepBackup = false
 	# Don't keep the merge tool temporary input/output files
 	keepTemporaries = false
+[delta]
+    navigate = true # use n and N to move between diff sections
+    #dark = true
 [apply]
 	# Cleanup whitespace by default when applying patches
 	whitespace = fix
@@ -121,7 +129,8 @@
 #	show = diff-so-fancy | less -RFX
 #	diff = diff-so-fancy | less -RFX
 [interactive]
-	diffFilter = diff-so-fancy 
+    diffFilter = delta --color-only
+    #diffFilter = diff-so-fancy
 #	diffFilter = diff-highlight --color-words
 [color]
 	ui = always
