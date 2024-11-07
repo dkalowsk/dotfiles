@@ -23,7 +23,7 @@ case "$1" in
         elif grep -q "#\!/usr/bin/env bash" "$1" 2> /dev/null; then
             pygmentize -O style=solarized -l sh "$1"
         else
-            exit 1
+            pygmentize -O style=stata-dark -l sh "$1"
         fi
 esac
 
