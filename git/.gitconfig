@@ -62,6 +62,7 @@
 	restore = "!git config remote.origin.fetch \"+refs/heads/*:refs/remotes/origin/*\" && git fetch origin"
 	frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
 	rmfind = "!git log --all -p --reverse --source -S"
+	branch-compare = "!f() {git log --left-right --graph --chery-mark --oneline $1...$2}"
 [diff]
     tool = delta
     #tool = kitty
@@ -89,9 +90,9 @@
 [difftool "vscode"]
         cmd = code --wait --diff "$LOCAL" "$REMOTE"
 [merge]
-    conflictstyle = diff3
-    #tool = meld
-    tool = delta
+    conflictstyle = zdiff3
+    tool = meld
+    #tool = delta
 [mergetool]
 	# Don't prompt before opening the merge tool
 	prompt = false
@@ -100,8 +101,10 @@
 	# Don't keep the merge tool temporary input/output files
 	keepTemporaries = false
 [delta]
-    navigate = true # use n and N to move between diff sections
-    #dark = true
+    # use n and N to move between diff sections
+    navigate = true
+    dark = true
+    line-numbers = true
 [apply]
 	# Cleanup whitespace by default when applying patches
 	whitespace = fix
@@ -131,7 +134,7 @@
 [interactive]
     diffFilter = delta --color-only
     #diffFilter = diff-so-fancy
-#	diffFilter = diff-highlight --color-words
+    #diffFilter = diff-highlight --color-words
 [color]
 	ui = always
 [color "diff-so-fancy"]
