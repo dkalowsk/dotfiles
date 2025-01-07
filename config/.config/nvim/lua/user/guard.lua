@@ -14,6 +14,11 @@ function M.config()
     ft('sh'):lint('shellcheck')
     ft('py'):fmt('black')
 
+    local wk = require "which-key"
+    wk.add({
+        { "<leader>le", "<cmd>enable-fmt<CR>", desc = "Enable Auto Format" },
+        { "<leader>ld", "<cmd>disable-fmt<CR>", desc = "Disable Auto Format" },
+    })
 
     vim.g.guard_config = {
         fmt_on_save = true,
