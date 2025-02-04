@@ -74,6 +74,7 @@ set wrap-lines			= no		# Wrap long lines in pager views?
 set tab-size			= 2		# Number of spaces to use when expanding tabs
 set line-graphics		= default	# Enum: ascii, default, utf-8
 set truncation-delimiter	= ~		# Character drawn for truncations, or "utf-8"
+set vertical-split      = no        # I don't like the veritcal split right now
 
 bind status	C	!git commit --signoff
 
