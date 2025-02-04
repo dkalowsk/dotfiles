@@ -1,0 +1,16 @@
+font-family = "Cascadia Code NF"
+font-size = 16
+theme = "Argonaut"
+shell-integration = "bash"
+shell-integration-features = no-cursor,sudo,no-title
+adjust-cell-height = 25%
+
+link-url = true
+
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+window-save-state = always
+
+copy-on-select = clipboard
+
