@@ -147,6 +147,7 @@ source_additions=(
   "${HOME}/.fzf.bash"
   "${HOME}/.git-completion.bash"
   "${HOME}/.stgit-completion.bash"
+  "${HOME}/.delta-completion.bash"
   "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 )
 
