@@ -28,6 +28,10 @@ function M.config()
         indent = {
             enable = true
         },
+        auto_install = true,
+        sync_install = true,
+        ignore_install = { },
+        additional_vim_regex_highlights = false,
     }
 end
 
