@@ -122,7 +122,7 @@ function M.config()
         end
 
         if server == "lua_ls" then
-            require("neodev").setup {}
+            require("neodev").setup{}
         end
 
         if server == "ccls" then
