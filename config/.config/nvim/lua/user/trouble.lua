@@ -5,12 +5,12 @@ local M = {
 function M.config()
     local wk = require "which-key"
     wk.add({
-        {"<leader>to", function() require("trouble").toggle() end, desc = "Trouble Toggle" },
-        {"<leader>tw", function() require("trouble").toggle("workspace_diagnostics") end, desc = "Workspace Diagnostics" },
-        {"<leader>td", function() require("trouble").toggle("document_diagnostics") end, desc = "Document Diagnostics" },
-        {"<leader>tq", function() require("trouble").toggle("quickfix") end, desc = "Quickfix" },
-        {"<leader>tl", function() require("trouble").toggle("loclist") end, desc = "Local list" },
-        {"gR", function() require("trouble").toggle("lsp_references") end, desc = "LSP References" },
+        {"<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Trouble Toggle" },
+        {"<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Trouble Buffer Diagnostics" },
+        {"<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Trouble Symbols" },
+        {"<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Trouble Quickfix" },
+        {"<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "Trouble Local list" },
+        {"<leader>xcl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "Trouble LSP References" },
     }
     )
 
