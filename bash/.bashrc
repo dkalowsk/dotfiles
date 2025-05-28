@@ -40,6 +40,7 @@ path_additions=(
   "${HOME}/Library/Python/3.10/bin"
   "${HOME}/.yarn/bin"
   "${HOME}/go/bin"
+  "${HOME}.local/share/nvim/mason/bin"
   "/opt/usr/bin"
   "/opt/bin"
   "/usr/local/sbin"
