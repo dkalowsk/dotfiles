@@ -3,6 +3,7 @@ autoconf
 bat
 ccache
 curl
+fd-find
 git-delta
 keychain
 neovim
