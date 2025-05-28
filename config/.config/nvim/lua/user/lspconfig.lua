@@ -65,74 +65,64 @@ function M.config()
         { "<leader>laa", "<cmd>lua vim.lsp.buf.code_action()<cr>", descr = "Code Action"},
     })
 
-    local lspconfig = require "lspconfig"
-    local icons = require "user.icons"
-
-    local servers = {
-        "bashls",
-        "clangd",
-        -- "ccls",
-        "lua_ls",
-        "pyright",
-    }
-
-    local default_diagnostic_config = {
-        signs = {
-            active = true,
-            values = {
-                { name  = "DiagnosticSignError", text = icons.diagnostics.Error },
-                { name  = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-                { name  = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-                { name  = "DiagnosticSignInfo", text = icons.diagnostics.Information },
-            },
-        },
-        virtual_text = false,
-        update_in_insert = false,
-        underline = true,
-        severity_sort = true,
-        float = {
-            focusable = true,
-            style = "minimal",
-            border = "rounded",
-            source = "always",
-            header = "",
-            prefix = "",
-        },
-    }
-
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
     require("lspconfig.ui.windows").default_options.border = "rounded"
 
-    for _, server in pairs(servers) do
-        local opts = {
-            on_attach = M.on_attach,
-            capabilities = M.common_capabilities(),
-        }
+    vim.lsp.config('bashls', {})
+    vim.lsp.config('clangd', {})
+--    vim.lsp.config('ccls', {
+--        init_options= {
+--            compileationDatabaseDirectory = "build/release/lsp";
+--            index = {
+--                threads = 0;
+--            };
+--        }
+--    })
+    vim.lsp.config('pyright', {})
 
-        local require_ok, settings = pcall(require, "user.lspsettings." .. server)
-        if require_ok then
-            opts = vim.tbl_deep_extend("force", settings, opts)
-        end
+    -- the following pulled from the nvim-lspconfig lua_ls.lua
+     vim.lsp.config('lua_ls', {
+       on_init = function(client)
+         if client.workspace_folders then
+           local path = client.workspace_folders[1].name
+           if
+             path ~= vim.fn.stdpath('config')
+             and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+           then
+             return
+           end
+         end
 
-        if server == "lua_ls" then
-            require("neodev").setup{}
-        end
+         client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+           runtime = {
+             -- Tell the language server which version of Lua you're using (most
+             -- likely LuaJIT in the case of Neovim)
+             version = 'LuaJIT',
+             -- Tell the language server how to find Lua modules same way as Neovim
+             -- (see `:h lua-module-load`)
+             path = {
+               'lua/?.lua',
+               'lua/?/init.lua',
+             },
+           },
+           -- Make the server aware of Neovim runtime files
+           workspace = {
+             checkThirdParty = false,
+             library = {
+               vim.env.VIMRUNTIME
+             }
+           }
+         })
+       end,
+       settings = {
+         Lua = {}
+       }
+    })
 
-        if server == "ccls" then
-            local cc_path_full = vim.loop.cwd()
-            local cc_path_relative = "build/release/lsp/mpro_fw"
-            if vim.fn.isdirectory(cc_path_full .. cc_path_relative) == 0 then
-                cc_path_relative = "ampere-zephyr/" .. cc_path_relative
-                if vim.fn.isdirectory(cc_path_full .. cc_path_relative) == 0 then
-                    cc_path_relative = ""
-                end
-            end
-            opts.compilationDatabaseDirectory = cc_path_full .. cc_path_relative
-        end
+    vim.lsp.enable('bashls')
+    vim.lsp.enable('clangd')
+    vim.lsp.enable('pyright')
+    vim.lsp.enable('lua_ls')
 
-        lspconfig[server].setup(opts)
-    end
 end
 
 return M
