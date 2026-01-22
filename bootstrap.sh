@@ -477,6 +477,11 @@ doConfig() {
     chmod +x "${HOME}/bin/diff-so-fancy"
   fi
 
+  info "Installing pwndbg-gdb"
+  if ! command -v curl > /dev/null; then
+    curl -qsL 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb
+  fi
+
   if ! command -v yarn > /dev/null; then
     curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
   fi
