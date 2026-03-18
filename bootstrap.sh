@@ -18,7 +18,11 @@ if [[ -n "${DEBUG_SCRIPT:-}" ]]; then
 fi
 
 DOTFILES_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-PLATFORM="$(uname)"
+
+readonly PLATFORM_LINUX="Linux"
+readonly PLATFORM_DARWIN="Darwin"
+readonly PLATFORM_MICROSOFT="MSYS"
+
 DEBUG_PRINTS=0
 
 # Font colors
@@ -54,6 +58,31 @@ debug() {
     echo -e "${GREEN}$@${NORMAL}"
   fi
 }
+
+_configure_platform() {
+  #
+  # Why add a function that basically mimics uname?
+  # Have run into cases where the uname value is different
+  # for some distros.  This just gives a chance to ensure
+  # there is a consistent naming going forward.
+  #
+  local uname="$(uname)"
+
+  # by default assume Linux right now
+  if [ "${uname}" == "Darwin" ]; then
+    echo "${PLATFORM_DARWIN}"
+    return
+  fi
+
+  if [[ "${uname}" == *"MSYS"* ]]; then
+    echo "${PLATFORM_MICROSOFT}"
+    return
+  fi
+
+  echo "${PLATFORM_LINUX}"
+}
+
+PLATFORM="$(_configure_platform)"
 
 
 doStow() {
@@ -127,7 +156,7 @@ doSync() {
 
 doBrew() {
 
-  if [ "${PLATFORM}" != "Darwin" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_DARWIN}" ]; then
     return
   fi
 
@@ -172,7 +201,7 @@ doFonts() {
   curl --output cascadia.zip -O https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip
   unzip cascadia.zip
 
-  if [ "${PLATFORM}" == "MSYS" ]; then
+  if [ "${PLATFORM}" == "${PLATFORM_MICROSOFT}" ]; then
     info "You will need to manually install the fonts by clicking on them."
     info "I have not setup the PowerShell script to do so yet."
     info "This might help: https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58"
@@ -181,7 +210,7 @@ doFonts() {
 
   fi
 
-  if [ "${PLATFORM}" == "Darwin" ]; then
+  if [ "${PLATFORM}" == "${PLATFORM_DARWIN}" ]; then
     fonts_dir="${HOME}/Library/Fonts"
   fi
 
@@ -217,13 +246,13 @@ doPython() {
 }
 
 doWindowsConfig() {
-  if [ "${PLATFORM}" != "MSYS" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_MICROSOFT}" ]; then
     return
   fi
 }
 
 doMacOSConfig() {
-  if [ "${PLATFORM}" != "Darwin" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_DARWIN}" ]; then
     return
   fi
 
@@ -342,7 +371,7 @@ doMacOSConfig() {
 }
 
 doLinuxConfig() {
-  if [ "${PLATFORM}" != "Linux" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_LINUX}" ]; then
     return
   fi
 
