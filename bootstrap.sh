@@ -163,9 +163,13 @@ doInstall() {
 
 doFonts() {
   info "Installing Fonts"
+  #
+  # Assuming Linux is the default here
+  #
+  fonts_dir="${HOME}/.local/share/fonts"
 
   # Grab the latest Microsoft Cascadia Code font
-  curl --output cascadia.zip -O https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip
+  curl --output cascadia.zip -O https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip
   unzip cascadia.zip
 
   if [ "${PLATFORM}" == "MSYS" ]; then
@@ -179,8 +183,6 @@ doFonts() {
 
   if [ "${PLATFORM}" == "Darwin" ]; then
     fonts_dir="${HOME}/Library/Fonts"
-  elif [ "${PLATFORM}" == "Linux" ]; then
-    fonts_dir="${HOME}/.local/share/fonts"
   fi
 
   mkdir -p "${fonts_dir}"
