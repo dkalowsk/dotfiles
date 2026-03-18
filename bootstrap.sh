@@ -336,6 +336,7 @@ doMacOSConfig() {
     #
     [ "${xcode_status:=2}" -ne 2 ] && doBrew
   fi
+
 }
 
 doLinuxConfig() {
@@ -359,6 +360,9 @@ doLinuxConfig() {
   fi
 
   if [ "${distro}" == "Ubuntu" ]; then
+
+    info "Installing snaps"
+    sudo snap install diff-so-fancy
 
     info "Installing from aptgets"
     if ((EUID != 0)); then
@@ -440,7 +444,6 @@ doConfig() {
     [ -f "${HOME}/.git-completion.bash" ] && rm "${HOME}/.git-completion.bash"
     [ -f "${HOME}/.tigrc.vim" ] && rm "${HOME}/.tigrc.vim"
     [ -f "${HOME}/bin/git-quick-stats" ] && rm "${HOME}/bin/git-quick-stats"
-    [ -f "${HOME}/bin/diff-so-fancy" ] && rm "${HOME}/bin/diff-so-fancy"
     [ -d "${HOME}/.yarn" ] && rm -Rf "${HOME}/.yarn"
   fi
 
@@ -469,12 +472,6 @@ doConfig() {
     make install PREFIX="${HOME}"
     popd > /dev/null
     rm -Rf "${HOME}/git-quick-stats"
-  fi
-
-  info "Installing diff-so-fancy"
-  if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
-    curl -L https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o "${HOME}/bin/diff-so-fancy"
-    chmod +x "${HOME}/bin/diff-so-fancy"
   fi
 
   if ! command -v yarn > /dev/null; then
