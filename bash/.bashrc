@@ -148,6 +148,7 @@ source_additions=(
   "${HOME}/.git-completion.bash"
   "${HOME}/.stgit-completion.bash"
   "${HOME}/.delta-completion.bash"
+  "/usr/share/bash-completion/completions/git"
   "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 )
 
