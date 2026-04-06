@@ -1,5 +1,6 @@
 apt-listdifferences
 autoconf
+bash-completion
 bat
 ccache
 curl
@@ -7,6 +8,7 @@ git-delta
 keychain
 neovim
 nodejs
+openocd
 python-optcomplete
 python3-pip
 python3-venv
@@ -22,5 +24,6 @@ tig
 ubuntu-restricted-extras
 universal-ctags
 vim
+wl-clipboard
 xclip
 xsel
