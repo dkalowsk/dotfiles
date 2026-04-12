@@ -34,6 +34,8 @@
 	# show the current list of files to be assumed unchanged
 	hidden = !git ls-files -v | grep  \"^[[:lower:]]\"
 	ignored = !git status -s --ignored | grep \"^!!\"
+	# check the velocity of the project over time by commits
+	velocity = "!git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c"
 	# get the current number of commits ahead of source branch
 	count = "!f() { git rev-list --count HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u});  }; f"
 	# On an interactive add, work around the githooks adding back in the whole file at commit
