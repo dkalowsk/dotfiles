@@ -149,6 +149,8 @@ source_additions=(
   "${HOME}/.stgit-completion.bash"
   "${HOME}/.delta-completion.bash"
   "/usr/share/bash-completion/completions/git"
+  "/usr/share/doc/fzf/examples/key-bindings.bash"
+  "/usr/share/doc/fzf/examples/completion.bash"
   "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 )
 
