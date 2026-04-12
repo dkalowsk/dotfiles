@@ -453,14 +453,20 @@ doConfig() {
   doLinuxConfig
   doWindowsConfig
 
-  if [ ! -d "${HOME}/.fzf" ]; then
+  if hash fzf 2>/dev/null; then
+    info "FZF already installed at $(which fzf)"
+  else
+    #if [ ! -d "${HOME}/.fzf" ]; then
     info "Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     "${HOME}"/.fzf/install --bin --no-update-rc --completion --key-bindings
   fi
 
   if [[ ${update} == true ]]; then
-    if [ -d "${HOME}/.fzf" ]; then
+    if [[ "$(which fzf)" != "/usr/bin/fzf" ]] && [[ -d "${HOME}/.fzf" ]]; then
+      # this is not a system installed FZF and likely a personally installed
+      # meaning we can update it
+      info "Updating fzf"
       pushd "${HOME}"/.fzf > /dev/null
       git pull --prune && ./install
       popd > /dev/null
