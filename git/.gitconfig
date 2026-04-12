@@ -65,6 +65,8 @@
 	frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
 	rmfind = "!git log --all -p --reverse --source -S"
 	branch-compare = "!f() {git log --left-right --graph --chery-mark --oneline $1...$2}"
+	# check which files are the most hot, these are usually problem files
+	most-changed = "!git log --format=format: --name-only --since=\"1 year ago\" | sort | uniq -c | sort -nr | head -20"
 [diff]
     tool = delta
     #tool = kitty
