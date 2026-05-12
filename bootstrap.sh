@@ -59,6 +59,8 @@ debug() {
   fi
 }
 
+PLATFORM=
+
 _configure_platform() {
   #
   # Why add a function that basically mimics uname?
@@ -69,22 +71,16 @@ _configure_platform() {
   local uname="$(uname)"
 
   # by default assume Linux right now
-  platform="Linux"
   if [ "${uname}" == "Darwin" ]; then
     echo "${PLATFORM_DARWIN}"
-    return
-  fi
-
-  if [ "${PLATFORM}" == "MSYS" ]; then
+  elif [ "${uname}" == "MSYS" ]; then
     echo "${PLATFORM_MICROSOFT}"
-    return
+  else
+    echo "${PLATFORM_LINUX}"
   fi
-
-  echo "${PLATFORM_LINUX}"
 }
 
 PLATFORM="$(_configure_platform)"
-
 
 doStow() {
   if hash stow 2>/dev/null; then
