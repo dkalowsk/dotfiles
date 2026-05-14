@@ -73,6 +73,10 @@ if command_exists rbenv ; then
   eval "$(rbenv init -)"
 fi
 
+if command_exists fzf ; then
+  eval "$(fzf --bash)"
+fi
+
 GGREP_FLAGS="-rnw './' -e"
 GREP_FLAGS="--exclude=tags --exclude=TAGS"
 
@@ -144,13 +148,11 @@ fi
 source_additions=(
   "${HOME}/.dan_profile"
   "${HOME}/.bashrc-private"
-  "${HOME}/.fzf.bash"
   "${HOME}/.git-completion.bash"
   "${HOME}/.stgit-completion.bash"
   "${HOME}/.delta-completion.bash"
   "/usr/share/bash-completion/completions/git"
   "/usr/share/doc/fzf/examples/key-bindings.bash"
-  "/usr/share/doc/fzf/examples/completion.bash"
   "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 )
 
