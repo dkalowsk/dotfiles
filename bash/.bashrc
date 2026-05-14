@@ -153,6 +153,8 @@ source_additions=(
   "${HOME}/.delta-completion.bash"
   "/usr/share/bash-completion/completions/git"
   "/usr/share/doc/fzf/examples/key-bindings.bash"
+  # the first is the pip installed version the second is the apt
+  "${HOME}/.local/bin/virtualenvwrapper.sh"
   "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 )
 
