@@ -96,8 +96,8 @@ if command_exists rg ; then
 fi
 
 if command_exists batcat ; then
-    alias bat="batcat --color-always --style=numbers"
-    alias fzf="fzf --preview 'batcat --color-always --style=numbers --line-range=:500 {}'"
+    alias bat="batcat --color always --style=numbers"
+    alias fzf="fzf --preview 'batcat --color always --style=numbers --line-range=:500 {}'"
 fi
 
 # Thanks to jvillalovos for this
