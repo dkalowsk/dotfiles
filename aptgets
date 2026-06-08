@@ -2,11 +2,13 @@ apt-listdifferences
 autoconf
 bash-completion
 bat
+btm
 ccache
 curl
 fzf
 git-delta
 keychain
+luarocks
 neovim
 nodejs
 openocd
