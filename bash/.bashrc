@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
+
 # Simple function to check if a command exists
 command_exists() {
   type "$1" &> /dev/null ;
 }
 
+# Simple function to check if a .local/env exists
+# and if it does parse it for all the values you want
+# to add to the shell session.
+function export_env()
+{
+  if [ ! -f $HOME/.local/env ]; then
+    return
+  fi
+
+  pushd $HOME/.local > /dev/null
+  unamestr=$(uname)
+  if [ "$unamestr" = 'Linux' ]; then
+    export $(grep -v '^#' env | xargs -d '\n')
+  fi
+  popd > /dev/null
+}
 #
 # Append to history file, don't over write it
 # And limit the size it can grow to
@@ -213,3 +230,7 @@ fi
 if command_exists ag ; then
     alias ag="ag --ignore '*tags'"
 fi
+
+# if the custom bash function export_env exists, then run it and load the
+# custom environment variables needed.
+[[ $(type -t export_env) == function ]] && export_env
