@@ -34,6 +34,8 @@
 	# show the current list of files to be assumed unchanged
 	hidden = !git ls-files -v | grep  \"^[[:lower:]]\"
 	ignored = !git status -s --ignored | grep \"^!!\"
+	# check the velocity of the project over time by commits
+	velocity = "!git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c"
 	# get the current number of commits ahead of source branch
 	count = "!f() { git rev-list --count HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u});  }; f"
 	# On an interactive add, work around the githooks adding back in the whole file at commit
@@ -63,6 +65,8 @@
 	frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
 	rmfind = "!git log --all -p --reverse --source -S"
 	branch-compare = "!f() {git log --left-right --graph --chery-mark --oneline $1...$2}"
+	# check which files are the most hot, these are usually problem files
+	most-changed = "!git log --format=format: --name-only --since=\"1 year ago\" | sort | uniq -c | sort -nr | head -20"
 [diff]
     tool = delta
     #tool = kitty
@@ -157,3 +161,11 @@
 	default = matching
 [grep]
 	lineNumber = true
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential

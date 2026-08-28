@@ -18,7 +18,11 @@ if [[ -n "${DEBUG_SCRIPT:-}" ]]; then
 fi
 
 DOTFILES_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-PLATFORM="$(uname)"
+
+readonly PLATFORM_LINUX="Linux"
+readonly PLATFORM_DARWIN="Darwin"
+readonly PLATFORM_MICROSOFT="MSYS"
+
 DEBUG_PRINTS=0
 
 # Font colors
@@ -54,6 +58,31 @@ debug() {
     echo -e "${GREEN}$@${NORMAL}"
   fi
 }
+
+_configure_platform() {
+  #
+  # Why add a function that basically mimics uname?
+  # Have run into cases where the uname value is different
+  # for some distros.  This just gives a chance to ensure
+  # there is a consistent naming going forward.
+  #
+  local uname="$(uname)"
+
+  # by default assume Linux right now
+  if [ "${uname}" == "Darwin" ]; then
+    echo "${PLATFORM_DARWIN}"
+    return
+  fi
+
+  if [[ "${uname}" == *"MSYS"* ]]; then
+    echo "${PLATFORM_MICROSOFT}"
+    return
+  fi
+
+  echo "${PLATFORM_LINUX}"
+}
+
+PLATFORM="$(_configure_platform)"
 
 
 doStow() {
@@ -127,7 +156,7 @@ doSync() {
 
 doBrew() {
 
-  if [ "${PLATFORM}" != "Darwin" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_DARWIN}" ]; then
     return
   fi
 
@@ -163,12 +192,16 @@ doInstall() {
 
 doFonts() {
   info "Installing Fonts"
+  #
+  # Assuming Linux is the default here
+  #
+  fonts_dir="${HOME}/.local/share/fonts"
 
   # Grab the latest Microsoft Cascadia Code font
-  curl --output cascadia.zip -O https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip
+  curl --output cascadia.zip -O https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip
   unzip cascadia.zip
 
-  if [ "${PLATFORM}" == "MSYS" ]; then
+  if [ "${PLATFORM}" == "${PLATFORM_MICROSOFT}" ]; then
     info "You will need to manually install the fonts by clicking on them."
     info "I have not setup the PowerShell script to do so yet."
     info "This might help: https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58"
@@ -177,10 +210,8 @@ doFonts() {
 
   fi
 
-  if [ "${PLATFORM}" == "Darwin" ]; then
+  if [ "${PLATFORM}" == "${PLATFORM_DARWIN}" ]; then
     fonts_dir="${HOME}/Library/Fonts"
-  elif [ "${PLATFORM}" == "Linux" ]; then
-    fonts_dir="${HOME}/.local/share/fonts"
   fi
 
   mkdir -p "${fonts_dir}"
@@ -215,13 +246,13 @@ doPython() {
 }
 
 doWindowsConfig() {
-  if [ "${PLATFORM}" != "MSYS" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_MICROSOFT}" ]; then
     return
   fi
 }
 
 doMacOSConfig() {
-  if [ "${PLATFORM}" != "Darwin" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_DARWIN}" ]; then
     return
   fi
 
@@ -336,10 +367,11 @@ doMacOSConfig() {
     #
     [ "${xcode_status:=2}" -ne 2 ] && doBrew
   fi
+
 }
 
 doLinuxConfig() {
-  if [ "${PLATFORM}" != "Linux" ]; then
+  if [ "${PLATFORM}" != "${PLATFORM_LINUX}" ]; then
     return
   fi
 
@@ -359,6 +391,9 @@ doLinuxConfig() {
   fi
 
   if [ "${distro}" == "Ubuntu" ]; then
+
+    info "Installing snaps"
+    sudo snap install diff-so-fancy
 
     info "Installing from aptgets"
     if ((EUID != 0)); then
@@ -418,14 +453,20 @@ doConfig() {
   doLinuxConfig
   doWindowsConfig
 
-  if [ ! -d "${HOME}/.fzf" ]; then
+  if hash fzf 2>/dev/null; then
+    info "FZF already installed at $(which fzf)"
+  else
+    #if [ ! -d "${HOME}/.fzf" ]; then
     info "Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     "${HOME}"/.fzf/install --bin --no-update-rc --completion --key-bindings
   fi
 
   if [[ ${update} == true ]]; then
-    if [ -d "${HOME}/.fzf" ]; then
+    if [[ "$(which fzf)" != "/usr/bin/fzf" ]] && [[ -d "${HOME}/.fzf" ]]; then
+      # this is not a system installed FZF and likely a personally installed
+      # meaning we can update it
+      info "Updating fzf"
       pushd "${HOME}"/.fzf > /dev/null
       git pull --prune && ./install
       popd > /dev/null
@@ -440,7 +481,6 @@ doConfig() {
     [ -f "${HOME}/.git-completion.bash" ] && rm "${HOME}/.git-completion.bash"
     [ -f "${HOME}/.tigrc.vim" ] && rm "${HOME}/.tigrc.vim"
     [ -f "${HOME}/bin/git-quick-stats" ] && rm "${HOME}/bin/git-quick-stats"
-    [ -f "${HOME}/bin/diff-so-fancy" ] && rm "${HOME}/bin/diff-so-fancy"
     [ -d "${HOME}/.yarn" ] && rm -Rf "${HOME}/.yarn"
   fi
 
@@ -469,12 +509,6 @@ doConfig() {
     make install PREFIX="${HOME}"
     popd > /dev/null
     rm -Rf "${HOME}/git-quick-stats"
-  fi
-
-  info "Installing diff-so-fancy"
-  if [ ! -f "${HOME}/bin/diff-so-fancy" ]; then
-    curl -L https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o "${HOME}/bin/diff-so-fancy"
-    chmod +x "${HOME}/bin/diff-so-fancy"
   fi
 
   if ! command -v yarn > /dev/null; then

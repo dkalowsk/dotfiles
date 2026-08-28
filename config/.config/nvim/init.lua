@@ -1,24 +1,27 @@
-require "user.launch"
-require "user.options"
-require "user.keymaps"
-spec "user.colorscheme"
-spec "user.devicons"
-spec "user.gitsigns"
-spec "user.guard"
--- schemastore and mason need to be before lspconfig so we can get the right schemea
-spec "user.schemastore"
-spec "user.treesitter"
-spec "user.mason"
---spec "user.osc52"
-spec "user.lspconfig"
--- cmp must come after lspconfig it seems
-spec "user.cmp"
-spec "user.lualine"
-spec "user.neoclip"
-spec "user.neogit"
-spec "user.telescope"
-spec "user.trouble"
-spec "user.undotree"
-spec "user.whichkey"
--- spec "user.gutentags"
-require "user.lazy"
+-- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
+-- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
+local lazypath = vim.env.LAZY or vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+if not (vim.env.LAZY or (vim.uv or vim.loop).fs_stat(lazypath)) then
+  -- stylua: ignore
+  local result = vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+  if vim.v.shell_error ~= 0 then
+    -- stylua: ignore
+    vim.api.nvim_echo({ { ("Error cloning lazy.nvim:\n%s\n"):format(result), "ErrorMsg" }, { "Press any key to exit...", "MoreMsg" } }, true, {})
+    vim.fn.getchar()
+    vim.cmd.quit()
+  end
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+-- validate that lazy is available
+if not pcall(require, "lazy") then
+  -- stylua: ignore
+  vim.api.nvim_echo({ { ("Unable to load lazy from: %s\n"):format(lazypath), "ErrorMsg" }, { "Press any key to exit...", "MoreMsg" } }, true, {})
+  vim.fn.getchar()
+  vim.cmd.quit()
+end
+
+require "lazy_setup"
+require "polish"
