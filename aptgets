@@ -4,6 +4,7 @@ bash-completion
 bat
 ccache
 curl
+fastfetch
 fzf
 git-delta
 keychain
