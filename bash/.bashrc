@@ -214,3 +214,5 @@ fi
 if command_exists ag ; then
     alias ag="ag --ignore '*tags'"
 fi
+
+export _JAVA_OPTIONS="-Dsun.java2d.uiScale=2.0"
